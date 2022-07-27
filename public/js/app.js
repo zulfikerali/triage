@@ -13462,6 +13462,10 @@ var Questions = function Questions() {
 
 var Episodes = function Episodes() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_pages_Episodes_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/pages/Episodes.vue */ "./resources/js/components/pages/Episodes.vue"));
+};
+
+var Introduction = function Introduction() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_pages_Intro_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/pages/Intro.vue */ "./resources/js/components/pages/Intro.vue"));
 }; // const Password = () => import('../Views/Password.vue');
 // const Login = () => import('../Views/Login.vue');
 // const ForgotPassword = () => import('../Views/ForgotPassword.vue');
@@ -13484,6 +13488,10 @@ var Episodes = function Episodes() {
   path: '/admin/episodes',
   component: Episodes,
   name: 'Episodes'
+}, {
+  path: '/introduction',
+  component: Introduction,
+  name: 'Introduction'
 } // {
 //     path: '/home',
 //     component: Home,
@@ -23895,7 +23903,7 @@ function useRoute() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_pages_Home_vue":1,"resources_js_components_pages_Questions_vue":1,"resources_js_components_pages_Episodes_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_pages_Home_vue":1,"resources_js_components_pages_Questions_vue":1,"resources_js_components_pages_Episodes_vue":1,"resources_js_components_pages_Intro_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

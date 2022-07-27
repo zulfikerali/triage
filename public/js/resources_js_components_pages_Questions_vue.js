@@ -2301,6 +2301,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   questions: function questions() {
     return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/getQuestions");
+  },
+  selectActiveEpisode: function selectActiveEpisode(episode) {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post("/activeEpisode", episode);
   } //   login (params) {
   //     return api.post('/api/login', params)
   //   },

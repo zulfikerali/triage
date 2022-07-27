@@ -2151,13 +2151,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.traineeId = $event;
     }),
     "class": "px-2 w-full border rounded-md rounded-r-none",
-    placeholder: "Enter Your ID"
+    placeholder: "Enter Trainee ID"
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.traineeId]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: $setup.goToQuestionPage,
     "class": "bg-indigo-600 text-white px-6 text-lg font-semibold py-2 rounded-r-md"
-  }, " Start ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n      class=\"\r\n        grid grid-cols-1\r\n        gap-6\r\n        sm:grid-cols-2\r\n        md:grid-cols-2\r\n        lg:grid-cols-2\r\n        xl:grid-cols-2\r\n      \"\r\n    >\r\n      <div\r\n        v-for=\"episode in episodes\"\r\n        :key=\"episode.id\"\r\n        class=\"\r\n          bg-blue-600\r\n          pt-1\r\n          px-2\r\n          bg-gradient-to-b\r\n          from-blue-400\r\n          to-blue-500\r\n          rounded-xl\r\n          shadow-lg\r\n          w-52\r\n        \"\r\n      >\r\n        <div class=\"flex justify-center\">\r\n          <div\r\n            @click=\"goToQuestionPage(episode.id)\"\r\n            class=\"\r\n              flex\r\n              justify-center\r\n              text-white\r\n              cursor-pointer\r\n              p-4\r\n              bg-blue-400\r\n              ring-2 ring-blue-300\r\n              rounded-lg\r\n              shadow-xl\r\n              w-32\r\n            \"\r\n          >\r\n            Start\r\n          </div>\r\n        </div>\r\n        <div class=\"p-4\">\r\n          <p class=\"text-white font-semibold text-center\">\r\n            {{ episode.episode_name }}\r\n          </p>\r\n          <div class=\"flex justify-between mt-2\">\r\n                    <p class=\"text-gray-200\">20,100 Files</p>\r\n                    <p class=\"text-white\" >6.5GB</p>\r\n                </div>\r\n        </div>\r\n      </div>\r\n    </div> ")])], 64
+  }, " Start ")])])])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -2245,6 +2245,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   questions: function questions() {
     return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/getQuestions");
+  },
+  selectActiveEpisode: function selectActiveEpisode(episode) {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post("/activeEpisode", episode);
   } //   login (params) {
   //     return api.post('/api/login', params)
   //   },

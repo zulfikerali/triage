@@ -21,6 +21,4 @@ use App\Http\Controllers\EpisodeController;
 Route::get('getEpisodes', [EpisodeController::class, 'getEpisodes']);
 Route::get('getActiveEpisode', [EpisodeController::class, 'getActiveEpisode']);
 Route::get('getQuestions', [EpisodeController::class, 'getQuestions']);
-// Route::get('/{any}', function () {
-//     return view('welcome');
-// })->where('any', '.*');
+Route::post('activeEpisode', [EpisodeController::class, 'activeEpisode']);

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Episode extends Model
 {
     use HasFactory;
+    protected $guarded = []; 
     public function questions()
     {
         return $this->hasMany(Question::class);

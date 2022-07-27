@@ -1,8 +1,15 @@
 <template>
   <!-- component -->
   <h1 class="font-bold text-4xl text-center text-indigo-700 flex-none mt-5">
-    Enter Your ID then click start button to start your test.
+    Triage Episodes
   </h1>
+  <p class="text-center text-2xl pt-2">
+    If you want to change other episode to active click
+    <span class="border bg-blue-100 rounded-lg px-1 py-1 text-center ring-2 mr-1"
+      >Not Active
+    </span>
+    button.
+  </p>
   <div class="flex justify-center items-center mt-6">
     <div
       class="
@@ -30,22 +37,51 @@
         "
       >
         <div class="flex justify-center">
-          <div
-            @click="goToQuestionPage(episode.id)"
-            class="
-              flex
-              justify-center
-              text-white
-              cursor-pointer
-              p-4
-              bg-blue-400
-              ring-2 ring-blue-300
-              rounded-lg
-              shadow-xl
-              w-32
-            "
-          >
-            Start
+          <div class="flex items-center justify-center">
+            <span class="relative inline-flex">
+              <div
+                @click.prevent="activeEpisode(episode.id)"
+                class="
+                  flex
+                  justify-center
+                  text-white
+                  p-4
+                  bg-blue-400
+                  rounded-lg
+                  shadow-l
+                  w-32
+                  cursor-pointer
+                "
+                :class="
+                  episode.status == 1
+                    ? 'ring-2 ring-blue-300 cursor-pointer'
+                    : 'ring-2 ring-gray-200'
+                "
+                :disabled="episode.status == 1 ? true : false"
+              >
+                {{ episode.status == 1 ? "Active" : "Not Active" }}
+              </div>
+              <span
+                v-show="episode.status == 1"
+                class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1"
+              >
+                <span
+                  class="
+                    animate-ping
+                    absolute
+                    inline-flex
+                    h-full
+                    w-full
+                    rounded-full
+                    bg-red-400
+                    opacity-75
+                  "
+                ></span>
+                <span
+                  class="relative inline-flex rounded-full h-3 w-3 bg-red-400"
+                ></span>
+              </span>
+            </span>
           </div>
         </div>
         <div class="p-4">
@@ -53,11 +89,16 @@
             {{ episode.episode_name }}
           </p>
           <!-- <div class="flex justify-between mt-2">
-                    <p class="text-gray-200">20,100 Files</p>
-                    <p class="text-white" >6.5GB</p>
-                </div> -->
+                    <p class="text-gray-200">{{episode.questions_count}} Victims</p>
+                    <p class="text-white" >10 marks</p>
+            </div> -->
         </div>
       </div>
+    </div>
+  </div>
+  <div class="flex justify-center mt-4">
+    <div class="px-4 py-2 bg-blue-500 rounded-lg text-white cursor-pointer" @click.prevent="goToPage">
+ Start Exam
     </div>
   </div>
 </template>
@@ -78,10 +119,22 @@ onMounted(() => {
       console.log(err.message);
     });
 });
-const goToQuestionPage = (id) => {
-  router.push({ path: `/questions/${id}`, params: { id: id } });
+const activeEpisode = (id) => {
+  repository
+    .selectActiveEpisode({ id: id })
+    .then((res) => {
+      console.log(res.data);
+      episodes.value = res.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
+const alrearyActive = () => {
+  alert("already active!");
+};
+const goToPage = () => {
+  console.log('first')
+  router.push('/')
+}
 </script>
-
-<style scoped>
-</style>

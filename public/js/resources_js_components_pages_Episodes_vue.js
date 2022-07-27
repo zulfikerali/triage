@@ -2086,19 +2086,32 @@ __webpack_require__.r(__webpack_exports__);
       });
     });
 
-    var goToQuestionPage = function goToQuestionPage(id) {
-      router.push({
-        path: "/questions/".concat(id),
-        params: {
-          id: id
-        }
+    var activeEpisode = function activeEpisode(id) {
+      _api_repository__WEBPACK_IMPORTED_MODULE_1__["default"].selectActiveEpisode({
+        id: id
+      }).then(function (res) {
+        console.log(res.data);
+        episodes.value = res.data;
+      })["catch"](function (err) {
+        console.log(err);
       });
+    };
+
+    var alrearyActive = function alrearyActive() {
+      alert("already active!");
+    };
+
+    var goToPage = function goToPage() {
+      console.log('first');
+      router.push('/');
     };
 
     var __returned__ = {
       router: router,
       episodes: episodes,
-      goToQuestionPage: goToQuestionPage,
+      activeEpisode: activeEpisode,
+      alrearyActive: alrearyActive,
+      goToPage: goToPage,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
       useRouter: vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter,
@@ -2130,44 +2143,87 @@ __webpack_require__.r(__webpack_exports__);
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
   "class": "font-bold text-4xl text-center text-indigo-700 flex-none mt-5"
-}, " Enter Your ID then click start button to start your test. ", -1
+}, " Triage Episodes ", -1
 /* HOISTED */
 );
 
-var _hoisted_2 = {
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "text-center text-2xl pt-2"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" If you want to change other episode to active click "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "border bg-blue-100 rounded-lg px-1 py-1 text-center ring-2 mr-1"
+}, "Not Active "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" button. ")], -1
+/* HOISTED */
+);
+
+var _hoisted_3 = {
   "class": "flex justify-center items-center mt-6"
 };
-var _hoisted_3 = {
+var _hoisted_4 = {
   "class": "grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2"
 };
-var _hoisted_4 = {
+var _hoisted_5 = {
   "class": "flex justify-center"
 };
-var _hoisted_5 = ["onClick"];
 var _hoisted_6 = {
-  "class": "p-4"
+  "class": "flex items-center justify-center"
 };
 var _hoisted_7 = {
+  "class": "relative inline-flex"
+};
+var _hoisted_8 = ["onClick", "disabled"];
+var _hoisted_9 = {
+  "class": "flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1"
+};
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "relative inline-flex rounded-full h-3 w-3 bg-red-400"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_12 = [_hoisted_10, _hoisted_11];
+var _hoisted_13 = {
+  "class": "p-4"
+};
+var _hoisted_14 = {
   "class": "text-white font-semibold text-center"
 };
+var _hoisted_15 = {
+  "class": "flex justify-center mt-4"
+};
+var _hoisted_16 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" component "), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.episodes, function (episode) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" component "), _hoisted_1, _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.episodes, function (episode) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: episode.id,
       "class": "bg-blue-600 pt-1 px-2 bg-gradient-to-b from-blue-400 to-blue-500 rounded-xl shadow-lg w-52"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-      onClick: function onClick($event) {
-        return $setup.goToQuestionPage(episode.id);
-      },
-      "class": "flex justify-center text-white cursor-pointer p-4 bg-blue-400 ring-2 ring-blue-300 rounded-lg shadow-xl w-32"
-    }, " Start ", 8
-    /* PROPS */
-    , _hoisted_5)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(episode.episode_name), 1
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+      onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
+        return $setup.activeEpisode(episode.id);
+      }, ["prevent"]),
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex justify-center text-white p-4 bg-blue-400 rounded-lg shadow-l w-32 cursor-pointer", episode.status == 1 ? 'ring-2 ring-blue-300 cursor-pointer' : 'ring-2 ring-gray-200']),
+      disabled: episode.status == 1 ? true : false
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(episode.status == 1 ? "Active" : "Not Active"), 11
+    /* TEXT, CLASS, PROPS */
+    , _hoisted_8), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_9, _hoisted_12, 512
+    /* NEED_PATCH */
+    ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, episode.status == 1]])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(episode.episode_name), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"flex justify-between mt-2\">\r\n                    <p class=\"text-gray-200\">20,100 Files</p>\r\n                    <p class=\"text-white\" >6.5GB</p>\r\n                </div> ")])]);
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"flex justify-between mt-2\">\r\n                    <p class=\"text-gray-200\">{{episode.questions_count}} Victims</p>\r\n                    <p class=\"text-white\" >10 marks</p>\r\n            </div> ")])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])])], 64
+  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "px-4 py-2 bg-blue-500 rounded-lg text-white cursor-pointer",
+    onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.goToPage, ["prevent"])
+  }, " Start Exam ", 8
+  /* PROPS */
+  , _hoisted_16)])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -2255,6 +2311,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   questions: function questions() {
     return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/getQuestions");
+  },
+  selectActiveEpisode: function selectActiveEpisode(episode) {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post("/activeEpisode", episode);
   } //   login (params) {
   //     return api.post('/api/login', params)
   //   },

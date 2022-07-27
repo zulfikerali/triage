@@ -9,6 +9,9 @@ export default {
   questions () {
     return api.get(`/getQuestions`)
   },
+  selectActiveEpisode (episode) {
+    return api.post(`/activeEpisode`, episode)
+  },
 //   login (params) {
 //     return api.post('/api/login', params)
 //   },

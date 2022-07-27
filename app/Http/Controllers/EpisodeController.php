@@ -9,7 +9,8 @@ class EpisodeController extends Controller
 {
     public function getEpisodes()
     {
-        return Episode::all();
+        $episode =  Episode::withCount('questions')->with('questions')->get();
+        return $episode;
     }
     public function getActiveEpisode()
     {
@@ -18,6 +19,16 @@ class EpisodeController extends Controller
     public function getQuestions()
     {
         return Episode::where('status', 1)->first()->questions;
+    }
+    public function activeEpisode(Request $request)
+    {
+        Episode::where('status', 1)->update([
+            'status' => ''
+        ]);
+        Episode::where('id', $request->id)->update([
+            'status' => '1'
+        ]);
+       return Episode::all();
     }
     public function addResults()
     {
