@@ -2081,6 +2081,24 @@ __webpack_require__.r(__webpack_exports__);
     var videoPlayer = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
     var isOpen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
     var nextPage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(true);
+    var video = document.getElementById('video');
+    var game = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+      current: 0,
+      state: 'video'
+    });
+
+    var onended = function onended() {
+      game.state = 'triage';
+    };
+
+    var selectedColorCode = function selectedColorCode(code) {
+      game.state = 'priority';
+    };
+
+    var selectedPriority = function selectedPriority(code) {
+      game.current++;
+      game.state = 'video';
+    };
 
     var gotoNextPage = function gotoNextPage() {
       nextPage.value = !nextPage.value;
@@ -2093,32 +2111,26 @@ __webpack_require__.r(__webpack_exports__);
       console.log(route);
       _api_repository__WEBPACK_IMPORTED_MODULE_1__["default"].questions().then(function (res) {
         questionsData.value = res.data;
-        console.log(res.data); // playVideo()
+        console.log(res.data);
       })["catch"](function (err) {
         console.log(err.message);
       });
     });
-
-    var videoPath = function videoPath() {
-      var player = document.getElementById("player"); // player.play()
-    };
-
-    var playVideo = function playVideo() {
-      var v = document.getElementById("myVedio");
-      v.play();
-    };
-
     var __returned__ = {
       route: route,
       questionsData: questionsData,
       videoPlayer: videoPlayer,
       isOpen: isOpen,
       nextPage: nextPage,
+      video: video,
+      game: game,
+      onended: onended,
+      selectedColorCode: selectedColorCode,
+      selectedPriority: selectedPriority,
       gotoNextPage: gotoNextPage,
-      videoPath: videoPath,
-      playVideo: playVideo,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
+      reactive: vue__WEBPACK_IMPORTED_MODULE_0__.reactive,
       useRoute: vue_router__WEBPACK_IMPORTED_MODULE_2__.useRoute,
       repository: _api_repository__WEBPACK_IMPORTED_MODULE_1__["default"]
     };
@@ -2151,69 +2163,157 @@ var _withScopeId = function _withScopeId(n) {
 };
 
 var _hoisted_1 = {
-  "class": "flex w-full justify-center items-center"
+  key: 0,
+  "class": "flex justify-center max-h-screen"
 };
-var _hoisted_2 = {
-  "class": "w-full max-w-xl p-3"
+var _hoisted_2 = ["src"];
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Your browser does not support the video tag. ");
+
+var _hoisted_4 = {
+  key: 0,
+  "class": "bg-white p-6 rounded-lg shadow-lg w-full h-screen"
 };
 
-var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-    "class": "font-bold text-5xl text-center text-indigo-700"
-  }, "Triage", -1
+var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+    "class": "text-xl lg:text-5xl text-gray-500 font-thin mt-4 mb-10 text-center"
+  }, " Which color do you think about this victim? ", -1
   /* HOISTED */
   );
 });
 
-var _hoisted_4 = {
-  "class": "flex justify-center mt-4"
+var _hoisted_6 = {
+  "class": "grid grid-rows-2 grid-flow-col gap-4 justify-center p-3"
 };
-var _hoisted_5 = {
-  key: 0,
-  id: "myVedio",
-  width: "320",
-  height: "240",
-  autoplay: ""
+var _hoisted_7 = {
+  key: 1,
+  "class": "antialiased bg-slate-200 w-full h-screen flex justify-center flex-col"
 };
-var _hoisted_6 = ["src"];
-
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Your browser does not support the video tag. ");
-
 var _hoisted_8 = {
-  "class": "bg-white p-6 rounded-lg shadow-lg w-full mt-8"
-};
-var _hoisted_9 = {
-  key: 0
+  "class": "max-w-lg mx-3 md:mx-auto bg-white p-8 rounded-xl shadow shadow-slate-300"
 };
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<p class=\"text-xl text-gray-500 font-bold mb-5 text-center\" data-v-16005427> Whice color do you think about this victim? </p><div class=\"grid grid-rows-2 grid-flow-col gap-4 justify-center\" data-v-16005427><div class=\"bg-red-500 h-36 w-36 rounded-lg shadow-md cursor-pointer hover:bg-red-700\" data-v-16005427></div><div class=\"bg-yellow-400 h-36 w-36 rounded-lg shadow-md cursor-pointer hover:bg-yellow-600\" data-v-16005427></div><div class=\"bg-green-500 h-36 w-36 rounded-lg shadow-md cursor-pointer hover:bg-green-700\" data-v-16005427></div><div class=\"bg-gray-800 h-36 w-36 rounded-lg shadow-md cursor-pointer hover:bg-gray-900\" data-v-16005427></div></div>", 2);
+var _hoisted_9 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+    "class": "text-2xl lg:text-5xl text-gray-500 font-thin mt-4 mb-10 text-center"
+  }, " What is the priority? ", -1
+  /* HOISTED */
+  );
+});
 
-var _hoisted_12 = [_hoisted_10];
+var _hoisted_10 = {
+  "class": "my-5"
+};
+
+var _hoisted_11 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "text-lg lg:text-xl"
+  }, "One", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_12 = [_hoisted_11];
 var _hoisted_13 = {
-  key: 1
+  "class": "my-5"
 };
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<p class=\"text-xl font-bold\" data-v-16005427> What is the priority? </p><label for=\"a\" class=\"block mt-4 border border-gray-300 rounded-lg px-6 py-2 text-lg hover:bg-gray-100 cursor-pointer\" data-v-16005427><input id=\"a\" type=\"radio\" class=\"hidden\" value=\"a\" data-v-16005427> One </label><label for=\"b\" class=\"block mt-4 border border-gray-300 rounded-lg px-6 py-2 text-lg hover:bg-gray-100 cursor-pointer\" data-v-16005427><input id=\"b\" type=\"radio\" class=\"hidden\" value=\"b\" data-v-16005427>Two</label><label for=\"c\" class=\"block mt-4 border border-gray-300 rounded-lg px-6 py-2 text-lg hover:bg-gray-100 cursor-pointer\" data-v-16005427><input id=\"c\" type=\"radio\" class=\"hidden\" value=\"c\" data-v-16005427>Three</label><label for=\"d\" class=\"block mt-4 border border-gray-300 rounded-lg px-6 py-2 text-lg hover:bg-gray-100 cursor-pointer\" data-v-16005427><input id=\"d\" type=\"radio\" class=\"hidden\" value=\"d\" data-v-16005427>Four</label>", 5);
+var _hoisted_14 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "text-lg lg:text-xl"
+  }, "Two", -1
+  /* HOISTED */
+  );
+});
 
-var _hoisted_19 = [_hoisted_14];
-var _hoisted_20 = {
-  "class": "mt-6 flow-root"
+var _hoisted_15 = [_hoisted_14];
+var _hoisted_16 = {
+  "class": "my-5"
 };
+
+var _hoisted_17 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "text-lg lg:text-xl"
+  }, "Three", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_18 = [_hoisted_17];
+var _hoisted_19 = {
+  "class": "my-5"
+};
+
+var _hoisted_20 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+    "class": "text-lg lg:text-xl"
+  }, "Four", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_21 = [_hoisted_20];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [$setup.questionsData.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("video", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("source", {
-    src: '/videos/' + $setup.questionsData[0].video_path,
-    type: "video/mp4"
-  }, null, 8
-  /* PROPS */
-  , _hoisted_6), _hoisted_7])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [$setup.nextPage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, _hoisted_12)) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, _hoisted_19)), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [$setup.nextPage ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
-    key: 0,
-    onClick: $setup.gotoNextPage,
-    "class": "float-right bg-indigo-600 text-white text-sm font-bold tracking-wide rounded-full px-5 py-2"
-  }, " Next >")) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
-    key: 1,
-    onClick: $setup.gotoNextPage,
-    "class": "float-right bg-indigo-600 text-white text-sm font-bold tracking-wide rounded-full px-5 py-2"
-  }, " Finish "))])])], 64
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.questionsData, function (question, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: question.id
+    }, [$setup.game.state === 'video' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [$setup.game.current === index ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("video", {
+      key: 0,
+      onEnded: $setup.onended,
+      "class": "w-full m-2 lg:m-5 rounded lg:rounded-lg",
+      autoplay: ""
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("source", {
+      src: '/videos/' + question.video_path,
+      type: "video/mp4"
+    }, null, 8
+    /* PROPS */
+    , _hoisted_2), _hoisted_3], 32
+    /* HYDRATE_EVENTS */
+    )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  )), $setup.game.state === 'triage' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    onClick: _cache[0] || (_cache[0] = function ($event) {
+      return $setup.selectedColorCode(1);
+    }),
+    "class": "bg-red-500 h-36 lg:h-48 w-36 lg:w-48 rounded-lg shadow-md cursor-pointer hover:bg-red-700"
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    onClick: _cache[1] || (_cache[1] = function ($event) {
+      return $setup.selectedColorCode(3);
+    }),
+    "class": "bg-green-500 h-36 lg:h-48 w-36 lg:w-48 rounded-lg shadow-md cursor-pointer hover:bg-green-700"
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    onClick: _cache[2] || (_cache[2] = function ($event) {
+      return $setup.selectedColorCode(2);
+    }),
+    "class": "bg-yellow-400 h-36 lg:h-48 w-36 lg:w-48 rounded-lg shadow-md cursor-pointer hover:bg-yellow-600"
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    onClick: _cache[3] || (_cache[3] = function ($event) {
+      return $setup.selectedColorCode(4);
+    }),
+    "class": "bg-gray-800 h-36 lg:h-48 w-36 lg:w-48 rounded-lg shadow-md cursor-pointer hover:bg-gray-900"
+  })])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'priority' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[4] || (_cache[4] = function ($event) {
+      return $setup.selectedPriority(1);
+    }),
+    "class": "w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:bg-green-500 hover:text-white hover:shadow transition duration-150"
+  }, _hoisted_12)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[5] || (_cache[5] = function ($event) {
+      return $setup.selectedPriority(2);
+    }),
+    "class": "w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:bg-green-500 hover:text-white hover:shadow transition duration-150"
+  }, _hoisted_15)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[6] || (_cache[6] = function ($event) {
+      return $setup.selectedPriority(3);
+    }),
+    "class": "w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:bg-green-500 hover:text-white hover:shadow transition duration-150"
+  }, _hoisted_18)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[7] || (_cache[7] = function ($event) {
+      return $setup.selectedPriority(4);
+    }),
+    "class": "w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:bg-green-500 hover:text-white hover:shadow transition duration-150"
+  }, _hoisted_21)])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)], 64
   /* STABLE_FRAGMENT */
   );
 }
