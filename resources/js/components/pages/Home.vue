@@ -11,6 +11,7 @@
           v-model="traineeId"
           class="px-2 w-full border rounded-md rounded-r-none"
           placeholder="Enter Your ID"
+          v-on:keyup.enter="goToQuestionPage"
         />
         <button
           @click="goToQuestionPage"

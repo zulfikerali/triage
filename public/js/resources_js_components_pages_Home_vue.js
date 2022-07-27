@@ -2144,6 +2144,7 @@ var _hoisted_3 = {
 var _hoisted_4 = {
   "class": "flex rounded-md overflow-hidden w-full"
 };
+var _hoisted_5 = ["onKeyup"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" component "), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
@@ -2151,13 +2152,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.traineeId = $event;
     }),
     "class": "px-2 w-full border rounded-md rounded-r-none",
-    placeholder: "Enter Your ID"
-  }, null, 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.traineeId]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    placeholder: "Enter Your ID",
+    onKeyup: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)($setup.goToQuestionPage, ["enter"])
+  }, null, 40
+  /* PROPS, HYDRATE_EVENTS */
+  , _hoisted_5), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.traineeId]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: $setup.goToQuestionPage,
     "class": "bg-indigo-600 text-white px-6 text-lg font-semibold py-2 rounded-r-md"
-  }, " Start ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n      class=\"\r\n        grid grid-cols-1\r\n        gap-6\r\n        sm:grid-cols-2\r\n        md:grid-cols-2\r\n        lg:grid-cols-2\r\n        xl:grid-cols-2\r\n      \"\r\n    >\r\n      <div\r\n        v-for=\"episode in episodes\"\r\n        :key=\"episode.id\"\r\n        class=\"\r\n          bg-blue-600\r\n          pt-1\r\n          px-2\r\n          bg-gradient-to-b\r\n          from-blue-400\r\n          to-blue-500\r\n          rounded-xl\r\n          shadow-lg\r\n          w-52\r\n        \"\r\n      >\r\n        <div class=\"flex justify-center\">\r\n          <div\r\n            @click=\"goToQuestionPage(episode.id)\"\r\n            class=\"\r\n              flex\r\n              justify-center\r\n              text-white\r\n              cursor-pointer\r\n              p-4\r\n              bg-blue-400\r\n              ring-2 ring-blue-300\r\n              rounded-lg\r\n              shadow-xl\r\n              w-32\r\n            \"\r\n          >\r\n            Start\r\n          </div>\r\n        </div>\r\n        <div class=\"p-4\">\r\n          <p class=\"text-white font-semibold text-center\">\r\n            {{ episode.episode_name }}\r\n          </p>\r\n          <div class=\"flex justify-between mt-2\">\r\n                    <p class=\"text-gray-200\">20,100 Files</p>\r\n                    <p class=\"text-white\" >6.5GB</p>\r\n                </div>\r\n        </div>\r\n      </div>\r\n    </div> ")])], 64
+  }, " Start ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\n      class=\"\n        grid grid-cols-1\n        gap-6\n        sm:grid-cols-2\n        md:grid-cols-2\n        lg:grid-cols-2\n        xl:grid-cols-2\n      \"\n    >\n      <div\n        v-for=\"episode in episodes\"\n        :key=\"episode.id\"\n        class=\"\n          bg-blue-600\n          pt-1\n          px-2\n          bg-gradient-to-b\n          from-blue-400\n          to-blue-500\n          rounded-xl\n          shadow-lg\n          w-52\n        \"\n      >\n        <div class=\"flex justify-center\">\n          <div\n            @click=\"goToQuestionPage(episode.id)\"\n            class=\"\n              flex\n              justify-center\n              text-white\n              cursor-pointer\n              p-4\n              bg-blue-400\n              ring-2 ring-blue-300\n              rounded-lg\n              shadow-xl\n              w-32\n            \"\n          >\n            Start\n          </div>\n        </div>\n        <div class=\"p-4\">\n          <p class=\"text-white font-semibold text-center\">\n            {{ episode.episode_name }}\n          </p>\n          <div class=\"flex justify-between mt-2\">\n                    <p class=\"text-gray-200\">20,100 Files</p>\n                    <p class=\"text-white\" >6.5GB</p>\n                </div>\n        </div>\n      </div>\n    </div> ")])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -2621,13 +2623,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Home_vue_vue_type_template_id_a9aac016__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Home.vue?vue&type=template&id=a9aac016 */ "./resources/js/components/pages/Home.vue?vue&type=template&id=a9aac016");
 /* harmony import */ var _Home_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Home.vue?vue&type=script&setup=true&lang=js */ "./resources/js/components/pages/Home.vue?vue&type=script&setup=true&lang=js");
-/* harmony import */ var C_laragon_www_Triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var C_laragon_www_triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,C_laragon_www_Triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Home_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Home_vue_vue_type_template_id_a9aac016__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/pages/Home.vue"]])
+const __exports__ = /*#__PURE__*/(0,C_laragon_www_triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Home_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Home_vue_vue_type_template_id_a9aac016__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/pages/Home.vue"]])
 /* hot reload */
 if (false) {}
 

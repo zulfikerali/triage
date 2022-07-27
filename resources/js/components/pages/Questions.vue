@@ -1,137 +1,65 @@
 <template>
-  <div class="flex w-full justify-center items-center">
-    <div class="w-full max-w-xl p-3">
-      <h1 class="font-bold text-5xl text-center text-indigo-700">Triage</h1>
-      <div class="flex justify-center mt-4">
-        <video
-          id="myVedio"
-          width="320"
-          height="240"
-          v-if="questionsData.length > 0"
-          autoplay
-        >
-          <source
-            :src="'/videos/' + questionsData[0].video_path"
-            type="video/mp4"
-          />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    </div>
+  <div
+      v-for="(question, index) in questionsData" :key="question.id"
+      v-if="game.state === 'video'"
+      class="flex justify-center max-h-screen"
+  >
+    <video
+        @ended="onended"
+        class="w-full m-2 lg:m-5 rounded lg:rounded-lg"
+        v-if="game.current === index"
+        autoplay
+    >
+      <source
+        :src="'/videos/' + question.video_path"
+        type="video/mp4"
+      />
+      Your browser does not support the video tag.
+    </video>
   </div>
-  <div class="bg-white p-6 rounded-lg shadow-lg w-full mt-8">
-      <div v-if="nextPage">
-        <p class="text-xl text-gray-500 font-bold mb-5 text-center">
-          Whice color do you think about this victim?
-        </p>
-        <div class="grid grid-rows-2 grid-flow-col gap-4 justify-center">
-          <div class="bg-red-500 h-36 w-36 rounded-lg shadow-md cursor-pointer hover:bg-red-700"></div>
-          <div class="bg-yellow-400 h-36 w-36 rounded-lg shadow-md cursor-pointer hover:bg-yellow-600"></div>
-          <div class="bg-green-500 h-36 w-36 rounded-lg shadow-md cursor-pointer hover:bg-green-700"></div>
-          <div class="bg-gray-800 h-36 w-36 rounded-lg shadow-md cursor-pointer hover:bg-gray-900"></div>
-      </div>
-      </div>
-      <div v-else>
-        <p class="text-xl font-bold">
-          What is the priority?
-        </p>
-        <label
-          for="a"
-          class="
-            block
-            mt-4
-            border border-gray-300
-            rounded-lg
-            px-6
-            py-2
-            text-lg
-            hover:bg-gray-100
-            cursor-pointer
-          "
-          ><input id="a" type="radio" class="hidden" value="a" /> One </label
-        >
-        <label
-          for="b"
-          class="
-            block
-            mt-4
-            border border-gray-300
-            rounded-lg
-            px-6
-            py-2
-            text-lg
-            hover:bg-gray-100
-            cursor-pointer
-          "
-          ><input id="b" type="radio" class="hidden" value="b" />Two</label
-        ><label
-          for="c"
-          class="
-            block
-            mt-4
-            border border-gray-300
-            rounded-lg
-            px-6
-            py-2
-            text-lg
-            hover:bg-gray-100
-            cursor-pointer
-          "
-          ><input id="c" type="radio" class="hidden" value="c" />Three</label
-        ><label
-          for="d"
-          class="
-            block
-            mt-4
-            border border-gray-300
-            rounded-lg
-            px-6
-            py-2
-            text-lg
-            hover:bg-gray-100
-            cursor-pointer
-          "
-          ><input id="d" type="radio" class="hidden" value="d" />Four</label
-        >
-      </div>
-      <div class="mt-6 flow-root">
-          <button
-          v-if="nextPage"
-          @click="gotoNextPage"
-            class="
-              float-right
-              bg-indigo-600
-              text-white text-sm
-              font-bold
-              tracking-wide
-              rounded-full
-              px-5
-              py-2
-            "
-          >
-            Next &gt;</button
-          >
-          <button
-          v-else
-          @click="gotoNextPage"
-            class="
-              float-right
-              bg-indigo-600
-              text-white text-sm
-              font-bold
-              tracking-wide
-              rounded-full
-              px-5
-              py-2
-            "
-          >
-            Finish
-          </button>
-      </div>
+    <div v-if="game.state === 'triage'" class="bg-white p-6 rounded-lg shadow-lg w-full h-screen">
+        <p class="text-xl lg:text-5xl text-gray-500 font-thin mt-4 mb-10 text-center">
+      Which color do you think about this victim?
+    </p>
+        <div class="grid grid-rows-2 grid-flow-col gap-4 justify-center p-3">
+          <div @click="selectedColorCode(1)" class="bg-red-500 h-36 lg:h-48 w-36 lg:w-48 rounded-lg shadow-md cursor-pointer hover:bg-red-700"></div>
+          <div @click="selectedColorCode(3)" class="bg-green-500 h-36 lg:h-48 w-36 lg:w-48 rounded-lg shadow-md cursor-pointer hover:bg-green-700"></div>
+          <div @click="selectedColorCode(2)" class="bg-yellow-400 h-36 lg:h-48 w-36 lg:w-48 rounded-lg shadow-md cursor-pointer hover:bg-yellow-600"></div>
+          <div @click="selectedColorCode(4)" class="bg-gray-800 h-36 lg:h-48 w-36 lg:w-48 rounded-lg shadow-md cursor-pointer hover:bg-gray-900"></div>
+        </div>
+    </div>
+
+    <div v-if="game.state === 'priority'" class="antialiased bg-slate-200 w-full h-screen flex justify-center flex-col">
+        <div class="max-w-lg mx-3 md:mx-auto bg-white p-8 rounded-xl shadow shadow-slate-300 ">
+            <p class="text-2xl lg:text-5xl text-gray-500 font-thin mt-4 mb-10 text-center">
+                What is the priority?
+            </p>
+
+            <div class="my-5">
+                <button @click="selectedPriority(1)" class="w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:bg-green-500 hover:text-white hover:shadow transition duration-150">
+                    <span class="text-lg lg:text-xl">One</span>
+                </button>
+            </div>
+            <div class="my-5">
+                <button @click="selectedPriority(2)" class="w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:bg-green-500 hover:text-white hover:shadow transition duration-150">
+                    <span class="text-lg lg:text-xl">Two</span>
+                </button>
+            </div>
+            <div class="my-5">
+                <button @click="selectedPriority(3)" class="w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:bg-green-500 hover:text-white hover:shadow transition duration-150">
+                    <span class="text-lg lg:text-xl">Three</span>
+                </button>
+            </div>
+            <div class="my-5">
+                <button @click="selectedPriority(4)" class="w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:bg-green-500 hover:text-white hover:shadow transition duration-150">
+                    <span class="text-lg lg:text-xl">Four</span>
+                </button>
+            </div>
+        </div>
     </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, reactive } from "vue";
 import { useRoute } from "vue-router";
 // import axios from 'axios'
 import repository from "../../api/repository";
@@ -140,6 +68,25 @@ const questionsData = ref([]);
 const videoPlayer = ref(null);
 const isOpen = ref(false);
 const nextPage = ref(true);
+const video = document.getElementById('video')
+const game = reactive({
+    current: 0,
+    state: 'video'
+})
+
+const onended = () => {
+    game.state = 'triage'
+}
+
+const selectedColorCode = (code) => {
+    game.state = 'priority'
+}
+
+const selectedPriority = (code) => {
+    game.current ++
+    game.state = 'video'
+}
+
 const gotoNextPage = () => {
   nextPage.value = !nextPage.value;
 };
@@ -153,20 +100,12 @@ onMounted(() => {
     .then((res) => {
       questionsData.value = res.data;
       console.log(res.data);
-      // playVideo()
     })
     .catch((err) => {
       console.log(err.message);
     });
 });
-const videoPath = () => {
-  const player = document.getElementById("player");
-  // player.play()
-};
-const playVideo = () => {
-  const v = document.getElementById("myVedio");
-  v.play();
-};
+
 </script>
 
 <style scoped>
