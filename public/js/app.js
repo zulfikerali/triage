@@ -13452,12 +13452,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-var Episode = function Episode() {
-  return __webpack_require__.e(/*! import() */ "resources_js_components_pages_Episode_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/pages/Episode.vue */ "./resources/js/components/pages/Episode.vue"));
+var Home = function Home() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_pages_Home_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/pages/Home.vue */ "./resources/js/components/pages/Home.vue"));
 };
 
 var Questions = function Questions() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_pages_Questions_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/pages/Questions.vue */ "./resources/js/components/pages/Questions.vue"));
+};
+
+var Episodes = function Episodes() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_pages_Episodes_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/pages/Episodes.vue */ "./resources/js/components/pages/Episodes.vue"));
 }; // const Password = () => import('../Views/Password.vue');
 // const Login = () => import('../Views/Login.vue');
 // const ForgotPassword = () => import('../Views/ForgotPassword.vue');
@@ -13470,12 +13474,16 @@ var Questions = function Questions() {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
   path: '/',
-  component: Episode,
-  name: 'Episode'
+  component: Home,
+  name: 'Home'
 }, {
-  path: '/questions/:episode',
+  path: '/questions',
   component: Questions,
   name: 'Questions'
+}, {
+  path: '/admin/episodes',
+  component: Episodes,
+  name: 'Episodes'
 } // {
 //     path: '/home',
 //     component: Home,
@@ -23887,7 +23895,7 @@ function useRoute() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_pages_Episode_vue":1,"resources_js_components_pages_Questions_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_pages_Home_vue":1,"resources_js_components_pages_Questions_vue":1,"resources_js_components_pages_Episodes_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

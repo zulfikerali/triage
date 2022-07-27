@@ -1,5 +1,6 @@
-const Episode = () => import('../components/pages/Episode.vue');
+const Home = () => import('../components/pages/Home.vue');
 const Questions = () => import('../components/pages/Questions.vue');
+const Episodes = () => import('../components/pages/Episodes.vue');
 // const Password = () => import('../Views/Password.vue');
 // const Login = () => import('../Views/Login.vue');
 // const ForgotPassword = () => import('../Views/ForgotPassword.vue');
@@ -12,14 +13,20 @@ const Questions = () => import('../components/pages/Questions.vue');
 export default [
     {
         path: '/',
-        component: Episode,
-        name: 'Episode',
+        component: Home,
+        name: 'Home',
 
     },
     {
-        path: '/questions/:episode',
+        path: '/questions',
         component: Questions,
         name: 'Questions',
+
+    },
+    {
+        path: '/admin/episodes',
+        component: Episodes,
+        name: 'Episodes',
 
     },
     // {

@@ -19,7 +19,8 @@ use App\Http\Controllers\EpisodeController;
 //     return $request->user();
 // });
 Route::get('getEpisodes', [EpisodeController::class, 'getEpisodes']);
-Route::get('getQuestions/{episode}', [EpisodeController::class, 'getQuestions']);
+Route::get('getActiveEpisode', [EpisodeController::class, 'getActiveEpisode']);
+Route::get('getQuestions', [EpisodeController::class, 'getQuestions']);
 // Route::get('/{any}', function () {
 //     return view('welcome');
 // })->where('any', '.*');

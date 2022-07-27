@@ -2127,41 +2127,39 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-var _hoisted_1 = {
-  "class": "flex justify-center items-center mt-6 h-full lg:h-screen overflow-auto"
-};
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+  "class": "font-bold text-4xl text-center text-indigo-700 flex-none mt-5"
+}, " Enter Your ID then click start button to start your test. ", -1
+/* HOISTED */
+);
+
 var _hoisted_2 = {
-  "class": "grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2"
+  "class": "flex justify-center items-center mt-6"
 };
 var _hoisted_3 = {
-  "class": "flex justify-center"
+  "class": "mt-4"
 };
-var _hoisted_4 = ["onClick"];
-var _hoisted_5 = {
-  "class": "p-4"
+var _hoisted_4 = {
+  "class": "flex rounded-md overflow-hidden w-full"
 };
-var _hoisted_6 = {
-  "class": "text-white font-semibold text-center"
-};
+
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  type: "text",
+  "class": "px-2 w-full border rounded-md rounded-r-none",
+  placeholder: "Enter Your ID"
+}, null, -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" component "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Start Card "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.episodes, function (episode) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      key: episode.id,
-      "class": "bg-blue-600 pt-1 px-2 bg-gradient-to-b from-blue-400 to-blue-500 rounded-xl shadow-lg w-52"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-      onClick: function onClick($event) {
-        return $setup.goToQuestionPage(episode.id);
-      },
-      "class": "flex justify-center text-white cursor-pointer p-4 bg-blue-400 ring-2 ring-blue-300 rounded-lg shadow-xl w-32"
-    }, " Start ", 8
-    /* PROPS */
-    , _hoisted_4)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(episode.episode_name), 1
-    /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"flex justify-between mt-2\">\r\n                    <p class=\"text-gray-200\">20,100 Files</p>\r\n                    <p class=\"text-white\" >6.5GB</p>\r\n                </div> ")])]);
-  }), 128
-  /* KEYED_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("End Card ")])])], 2112
-  /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" component "), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[0] || (_cache[0] = function ($event) {
+      return _ctx.$router.push('/questions/1?id=12456');
+    }),
+    "class": "bg-indigo-600 text-white px-6 text-lg font-semibold py-2 rounded-r-md"
+  }, " Start ")])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div\r\n      class=\"\r\n        grid grid-cols-1\r\n        gap-6\r\n        sm:grid-cols-2\r\n        md:grid-cols-2\r\n        lg:grid-cols-2\r\n        xl:grid-cols-2\r\n      \"\r\n    >\r\n      <div\r\n        v-for=\"episode in episodes\"\r\n        :key=\"episode.id\"\r\n        class=\"\r\n          bg-blue-600\r\n          pt-1\r\n          px-2\r\n          bg-gradient-to-b\r\n          from-blue-400\r\n          to-blue-500\r\n          rounded-xl\r\n          shadow-lg\r\n          w-52\r\n        \"\r\n      >\r\n        <div class=\"flex justify-center\">\r\n          <div\r\n            @click=\"goToQuestionPage(episode.id)\"\r\n            class=\"\r\n              flex\r\n              justify-center\r\n              text-white\r\n              cursor-pointer\r\n              p-4\r\n              bg-blue-400\r\n              ring-2 ring-blue-300\r\n              rounded-lg\r\n              shadow-xl\r\n              w-32\r\n            \"\r\n          >\r\n            Start\r\n          </div>\r\n        </div>\r\n        <div class=\"p-4\">\r\n          <p class=\"text-white font-semibold text-center\">\r\n            {{ episode.episode_name }}\r\n          </p>\r\n          <div class=\"flex justify-between mt-2\">\r\n                    <p class=\"text-gray-200\">20,100 Files</p>\r\n                    <p class=\"text-white\" >6.5GB</p>\r\n                </div>\r\n        </div>\r\n      </div>\r\n    </div> ")])], 64
+  /* STABLE_FRAGMENT */
   );
 }
 

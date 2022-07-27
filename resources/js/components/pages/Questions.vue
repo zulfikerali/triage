@@ -1,73 +1,4 @@
 <template>
-  <div class="container mx-auto">
-    <div class="flex justify-center">
-      <button
-        @click="isOpen = true"
-        class="px-6 py-2 text-white bg-blue-600 rounded shadow"
-        type="button"
-      >
-        Open Model
-      </button>
-
-      <div
-        v-show="isOpen"
-        class="
-          absolute
-          inset-0
-          flex
-          items-center
-          justify-center
-          bg-gray-700 bg-opacity-50
-          z-10
-        "
-      >
-        <div class="max-w-2xl p-6 bg-white rounded-md shadow-xl">
-          <div class="flex items-center justify-between">
-            <h3 class="text-2xl">
-              Enter Your ID then Click Go Button to start your test.
-            </h3>
-            <!-- <svg
-              @click="isOpen = false"
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-8 h-8 text-red-900 cursor-pointer"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg> -->
-          </div>
-          <div class="mt-4">
-            <div class="flex rounded-md overflow-hidden w-full">
-              <input
-                type="text"
-                class="p-2 w-full border rounded-md rounded-r-none"
-                placeholder="Enter Your ID"
-              />
-              <button
-                class="
-                  bg-indigo-600
-                  text-white
-                  px-6
-                  text-lg
-                  font-semibold
-                  py-4
-                  rounded-r-md
-                "
-              >
-                Go
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
   <div class="flex w-full justify-center items-center">
     <div class="w-full max-w-xl p-3">
       <h1 class="font-bold text-5xl text-center text-indigo-700">Triage</h1>
@@ -85,10 +16,119 @@
           />
           Your browser does not support the video tag.
         </video>
-        <button @click="playVideo">Play</button>
       </div>
     </div>
   </div>
+  <div class="bg-white p-6 rounded-lg shadow-lg w-full mt-8">
+      <div v-if="nextPage">
+        <p class="text-xl text-gray-500 font-bold mb-5 text-center">
+          Whice color do you think about this victim?
+        </p>
+        <div class="grid grid-rows-2 grid-flow-col gap-4 justify-center">
+          <div class="bg-red-500 h-36 w-36 rounded-lg shadow-md cursor-pointer hover:bg-red-700"></div>
+          <div class="bg-yellow-400 h-36 w-36 rounded-lg shadow-md cursor-pointer hover:bg-yellow-600"></div>
+          <div class="bg-green-500 h-36 w-36 rounded-lg shadow-md cursor-pointer hover:bg-green-700"></div>
+          <div class="bg-gray-800 h-36 w-36 rounded-lg shadow-md cursor-pointer hover:bg-gray-900"></div>
+      </div>
+      </div>
+      <div v-else>
+        <p class="text-xl font-bold">
+          What is the priority?
+        </p>
+        <label
+          for="a"
+          class="
+            block
+            mt-4
+            border border-gray-300
+            rounded-lg
+            px-6
+            py-2
+            text-lg
+            hover:bg-gray-100
+            cursor-pointer
+          "
+          ><input id="a" type="radio" class="hidden" value="a" /> One </label
+        >
+        <label
+          for="b"
+          class="
+            block
+            mt-4
+            border border-gray-300
+            rounded-lg
+            px-6
+            py-2
+            text-lg
+            hover:bg-gray-100
+            cursor-pointer
+          "
+          ><input id="b" type="radio" class="hidden" value="b" />Two</label
+        ><label
+          for="c"
+          class="
+            block
+            mt-4
+            border border-gray-300
+            rounded-lg
+            px-6
+            py-2
+            text-lg
+            hover:bg-gray-100
+            cursor-pointer
+          "
+          ><input id="c" type="radio" class="hidden" value="c" />Three</label
+        ><label
+          for="d"
+          class="
+            block
+            mt-4
+            border border-gray-300
+            rounded-lg
+            px-6
+            py-2
+            text-lg
+            hover:bg-gray-100
+            cursor-pointer
+          "
+          ><input id="d" type="radio" class="hidden" value="d" />Four</label
+        >
+      </div>
+      <div class="mt-6 flow-root">
+          <button
+          v-if="nextPage"
+          @click="gotoNextPage"
+            class="
+              float-right
+              bg-indigo-600
+              text-white text-sm
+              font-bold
+              tracking-wide
+              rounded-full
+              px-5
+              py-2
+            "
+          >
+            Next &gt;</button
+          >
+          <button
+          v-else
+          @click="gotoNextPage"
+            class="
+              float-right
+              bg-indigo-600
+              text-white text-sm
+              font-bold
+              tracking-wide
+              rounded-full
+              px-5
+              py-2
+            "
+          >
+            Finish
+          </button>
+      </div>
+    </div>
 </template>
 <script setup>
 import { ref, onMounted } from "vue";
@@ -107,8 +147,9 @@ onMounted(() => {
   console.log("videoPlayer", videoPlayer);
   // playVideo()
   // repository.questions(parseInt(route.params.episode))
+  console.log(route)
   repository
-    .questions(1)
+    .questions()
     .then((res) => {
       questionsData.value = res.data;
       console.log(res.data);

@@ -11,8 +11,16 @@ class EpisodeController extends Controller
     {
         return Episode::all();
     }
-    public function getQuestions(Episode $episode)
+    public function getActiveEpisode()
     {
-        return $episode->questions;
+        return Episode::where('status', 1)->first();
+    }
+    public function getQuestions()
+    {
+        return Episode::where('status', 1)->first()->questions;
+    }
+    public function addResults()
+    {
+        return Episode::where('status', 1)->first()->questions;
     }
 }

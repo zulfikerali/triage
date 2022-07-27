@@ -3,8 +3,11 @@ export default {
   episodes () {
     return api.get(`/getEpisodes`)
   },
-  questions (episode) {
-    return api.get(`/getQuestions/${episode}`)
+  activeEpisode () {
+    return api.get(`/getActiveEpisode`)
+  },
+  questions () {
+    return api.get(`/getQuestions`)
   },
 //   login (params) {
 //     return api.post('/api/login', params)
