@@ -23,3 +23,4 @@ Route::get('getActiveEpisode', [EpisodeController::class, 'getActiveEpisode']);
 Route::get('getQuestions', [EpisodeController::class, 'getQuestions']);
 Route::post('activeEpisode', [EpisodeController::class, 'activeEpisode']);
 Route::post('storeResult', [EpisodeController::class, 'storeResult']);
+Route::get('getResult/{traineeId}', [EpisodeController::class, 'getResult']);

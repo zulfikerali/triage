@@ -1,5 +1,4 @@
 <template>
-  <!-- component -->
   <h1 class="font-bold text-4xl text-center text-indigo-700 flex-none mt-5">
     Triage Episodes
   </h1>

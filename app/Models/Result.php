@@ -11,5 +11,6 @@ class Result extends Model
     protected $guarded = [];
     protected $casts = [
         'evaluation_data' => 'json',
+        'result_data' => 'json',
     ];
 }

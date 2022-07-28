@@ -19,7 +19,7 @@ class EpisodeController extends Controller
     }
     public function getQuestions()
     {
-        return Episode::where('status', 1)->first()->questions;
+        return Episode::where('status', 1)->first()->questions()->inRandomOrder()->get();
     }
     public function activeEpisode(Request $request)
     {
@@ -35,12 +35,18 @@ class EpisodeController extends Controller
     {
         // return $request->all();
         $episodeId = Episode::where('status', 1)->first()->id;
-        Result::create([
+       return Result::create([
             'trainee_id' => $request->evaluation['traineeID'],
             'episode_id' => $episodeId,
-            'evaluation_data' => $request->evaluation['result']
+            'evaluation_data' => $request->evaluation['result'],
+            'result_data' => $request->evaluation['resultValue']
         ]);
-        return Result::where('trainee_id', $request->evaluation['traineeID'])->first();
+        return 'success';
 
+    }
+    public function getResult($traineeId)
+    {
+        $episodeId = Episode::where('status', 1)->first()->id;
+        return Result::where('trainee_id', $traineeId)->where('episode_id', $episodeId)->first();
     }
 }

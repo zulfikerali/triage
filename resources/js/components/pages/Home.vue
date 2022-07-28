@@ -1,6 +1,5 @@
 <template>
-  <!-- component -->
-  <h1 class="font-bold text-3xl text-center text-indigo-700 flex-none mt-5">
+  <h1 class="font-bold text-4xl text-center text-indigo-700 flex-none mt-5">
     Enter Your ID then click start button to start your test.
   </h1>
   <div class="flex justify-center items-center mt-6">
@@ -10,7 +9,7 @@
           type="text"
           v-model="traineeId"
           class="px-2 w-full border rounded-md rounded-r-none"
-          placeholder="Enter Your ID"
+          placeholder="Enter Trainee ID"
           v-on:keyup.enter="goToQuestionPage"
         />
         <button
@@ -29,7 +28,7 @@
         </button>
       </div>
     </div>
-    </div>
+  </div>
 </template>
 <script setup>
 import { ref, onMounted } from "vue";
@@ -38,6 +37,13 @@ import repository from "../../api/repository";
 const router = useRouter();
 const activeEp = ref(null);
 const traineeId = ref(null);
+function hasOneDigit(val) {
+  if (String(Math.abs(val)).charAt(0) == val) {
+    return 0;
+  } else {
+    return;
+  }
+}
 onMounted(() => {
   repository
     .activeEpisode()
@@ -49,13 +55,10 @@ onMounted(() => {
     });
 });
 const goToQuestionPage = () => {
-  if(traineeId.value != null){
-    router.push({ path: `/questions`, query: {traineeID: traineeId.value} });
+  if (traineeId.value != null) {
+    router.push({ path: `/questions`, query: { traineeID: traineeId.value } });
   } else {
-    alert('Feild is required!')
+    alert("Feild is required!");
   }
 };
 </script>
-
-<style scoped>
-</style>

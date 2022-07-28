@@ -2078,6 +2078,15 @@ __webpack_require__.r(__webpack_exports__);
     var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
     var activeEp = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
     var traineeId = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+
+    function hasOneDigit(val) {
+      if (String(Math.abs(val)).charAt(0) == val) {
+        return 0;
+      } else {
+        return;
+      }
+    }
+
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       _api_repository__WEBPACK_IMPORTED_MODULE_1__["default"].activeEpisode().then(function (res) {
         activeEp.value = res.data;
@@ -2095,7 +2104,7 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       } else {
-        alert('Feild is required!');
+        alert("Feild is required!");
       }
     };
 
@@ -2103,6 +2112,7 @@ __webpack_require__.r(__webpack_exports__);
       router: router,
       activeEp: activeEp,
       traineeId: traineeId,
+      hasOneDigit: hasOneDigit,
       goToQuestionPage: goToQuestionPage,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
@@ -2134,7 +2144,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "font-bold text-3xl text-center text-indigo-700 flex-none mt-5"
+  "class": "font-bold text-4xl text-center text-indigo-700 flex-none mt-5"
 }, " Enter Your ID then click start button to start your test. ", -1
 /* HOISTED */
 );
@@ -2150,13 +2160,13 @@ var _hoisted_4 = {
 };
 var _hoisted_5 = ["onKeyup"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" component "), _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $setup.traineeId = $event;
     }),
     "class": "px-2 w-full border rounded-md rounded-r-none",
-    placeholder: "Enter Your ID",
+    placeholder: "Enter Trainee ID",
     onKeyup: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)($setup.goToQuestionPage, ["enter"])
   }, null, 40
   /* PROPS, HYDRATE_EVENTS */
