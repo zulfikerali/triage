@@ -115,7 +115,7 @@
           text-center
         "
       >
-        What is the priority?
+        What the priority for this victim?
       </p>
 
       <div class="my-5">

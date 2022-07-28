@@ -2358,7 +2358,7 @@ var _hoisted_8 = {
 var _hoisted_9 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
     "class": "text-2xl lg:text-5xl text-gray-500 font-thin mt-4 mb-10 text-center"
-  }, " What is the priority? ", -1
+  }, " What the priority for this victim? ", -1
   /* HOISTED */
   );
 });
