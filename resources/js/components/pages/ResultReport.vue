@@ -177,6 +177,9 @@
           <button class="px-4 py-2 text-sm text-green-600 bg-green-100">
             Print
           </button>
+           <router-link to="/" class="px-4 py-2 text-sm text-blue-600 bg-blue-100">
+            Home
+          </router-link>
           <!-- <button class="px-4 py-2 text-sm text-blue-600 bg-blue-100">
             Save
           </button>

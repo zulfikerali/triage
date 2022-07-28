@@ -1,7 +1,7 @@
 <template>
     <div>
         <p class="text-xl font-bold">
-          What is the priority?
+          What the priority for this victim?
         </p>
         <label
           for="a"
