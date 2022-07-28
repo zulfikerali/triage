@@ -65,6 +65,10 @@ import { useRoute } from "vue-router";
 // import axios from 'axios'
 import repository from "../../api/repository";
 const route = useRoute();
+const evaluation = reactive({
+  traineeID: null,
+  result : []
+})
 const questionsData = ref([]);
 const videoPlayer = ref(null);
 const isOpen = ref(false);
@@ -72,7 +76,14 @@ const nextPage = ref(true);
 const video = document.getElementById('video')
 const game = reactive({
     current: 0,
-    state: 'video'
+    state: 'video',
+    questionAnswer: {
+    questionID: null,
+    selectedColorCode: null,
+    correctColorCode: null,
+    selectedPriority: null,
+    correctPriority: null
+  }
 })
 
 const onended = () => {
@@ -80,19 +91,37 @@ const onended = () => {
 }
 
 const selectedColorCode = (code) => {
+    game.questionAnswer.questionID = questionsData.value[game.current].id
+    game.questionAnswer.selectedColorCode = code
+    game.questionAnswer.correctColorCode = questionsData.value[game.current].color_code
     game.state = 'priority'
 }
 
 const selectedPriority = (code) => {
+    game.questionAnswer.selectedPriority = code
+    game.questionAnswer.correctPriority = questionsData.value[game.current].priority
+    let clone = {...game.questionAnswer}
+    evaluation.result.push(clone)
     game.current ++
-    game.state = 'video'
+    if(questionsData.value.length == game.current){
+      evaluation.traineeID = route.query.traineeID
+      repository.storeResult({evaluation: evaluation})
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+      console.log(evaluation)
+      // return
+    }
+      game.state = 'video'
 }
 
 const gotoNextPage = () => {
   nextPage.value = !nextPage.value;
 };
 onMounted(() => {
-  console.log("videoPlayer", videoPlayer);
   // playVideo()
   // repository.questions(parseInt(route.params.episode))
   console.log(route)

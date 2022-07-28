@@ -49,7 +49,11 @@ onMounted(() => {
     });
 });
 const goToQuestionPage = () => {
-  router.push({ path: `/questions`, query: {traineeID: traineeId.value} });
+  if(traineeId.value != null){
+    router.push({ path: `/questions`, query: {traineeID: traineeId.value} });
+  } else {
+    alert('Feild is required!')
+  }
 };
 </script>
 

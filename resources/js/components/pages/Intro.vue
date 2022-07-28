@@ -28,6 +28,7 @@
         md:flex
         items-center
         text-center
+        watermark
       "
     >
       <div class="w-full md:w-1/2">
@@ -87,6 +88,7 @@
         lg:p-20
         text-gray-800
         relative
+        watermark
       "
     >
       <div class="flex md:flex items-center text-center">
@@ -188,5 +190,11 @@ const goToPage = () => {
 .slide-fade-leave-to {
   transform: translateX(20px);
   opacity: 0;
+}
+.watermark{
+    background-image: url('/logos/watermark.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 </style>

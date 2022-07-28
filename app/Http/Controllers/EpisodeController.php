@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Episode;
+use App\Models\Result;
 
 class EpisodeController extends Controller
 {
@@ -30,8 +31,16 @@ class EpisodeController extends Controller
         ]);
        return Episode::all();
     }
-    public function addResults()
+    public function storeResult(Request $request)
     {
-        return Episode::where('status', 1)->first()->questions;
+        // return $request->all();
+        $episodeId = Episode::where('status', 1)->first()->id;
+        Result::create([
+            'trainee_id' => $request->evaluation['traineeID'],
+            'episode_id' => $episodeId,
+            'evaluation_data' => $request->evaluation['result']
+        ]);
+        return Result::where('trainee_id', $request->evaluation['traineeID'])->first();
+
     }
 }

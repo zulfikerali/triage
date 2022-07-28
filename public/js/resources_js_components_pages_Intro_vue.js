@@ -72,7 +72,7 @@ var _hoisted_1 = {
 };
 var _hoisted_2 = {
   key: 0,
-  "class": "flex min-h-full min-w-full rounded-3xl bg-white shadow-xl p-10 lg:p-20 text-gray-800 relative md:flex items-center text-center"
+  "class": "flex min-h-full min-w-full rounded-3xl bg-white shadow-xl p-10 lg:p-20 text-gray-800 relative md:flex items-center text-center watermark"
 };
 
 var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
@@ -112,7 +112,7 @@ var _hoisted_4 = /*#__PURE__*/_withScopeId(function () {
 var _hoisted_5 = [_hoisted_3, _hoisted_4];
 var _hoisted_6 = {
   key: 1,
-  "class": "min-h-full min-w-full rounded-3xl bg-white shadow-xl p-10 lg:p-20 text-gray-800 relative"
+  "class": "min-h-full min-w-full rounded-3xl bg-white shadow-xl p-10 lg:p-20 text-gray-800 relative watermark"
 };
 
 var _hoisted_7 = /*#__PURE__*/_withScopeId(function () {
@@ -191,7 +191,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.slide-fade-enter-active[data-v-727a82c6] {\r\n  transition: all 0.3s ease-out;\n}\n.slide-fade-leave-active[data-v-727a82c6] {\r\n  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);\n}\n.slide-fade-enter-from[data-v-727a82c6],\r\n.slide-fade-leave-to[data-v-727a82c6] {\r\n  transform: translateX(20px);\r\n  opacity: 0;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.slide-fade-enter-active[data-v-727a82c6] {\r\n  transition: all 0.3s ease-out;\n}\n.slide-fade-leave-active[data-v-727a82c6] {\r\n  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);\n}\n.slide-fade-enter-from[data-v-727a82c6],\r\n.slide-fade-leave-to[data-v-727a82c6] {\r\n  transform: translateX(20px);\r\n  opacity: 0;\n}\n.watermark[data-v-727a82c6]{\r\n    background-image: url('/logos/watermark.png');\r\n    background-repeat: no-repeat;\r\n    background-attachment: fixed;\r\n    background-position: center;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -2067,6 +2067,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.mjs");
 /* harmony import */ var _api_repository__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../api/repository */ "./resources/js/api/repository.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
  // import axios from 'axios'
 
@@ -2077,6 +2083,10 @@ __webpack_require__.r(__webpack_exports__);
     var expose = _ref.expose;
     expose();
     var route = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRoute)();
+    var evaluation = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+      traineeID: null,
+      result: []
+    });
     var questionsData = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var videoPlayer = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
     var isOpen = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(false);
@@ -2084,7 +2094,14 @@ __webpack_require__.r(__webpack_exports__);
     var video = document.getElementById('video');
     var game = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       current: 0,
-      state: 'video'
+      state: 'video',
+      questionAnswer: {
+        questionID: null,
+        selectedColorCode: null,
+        correctColorCode: null,
+        selectedPriority: null,
+        correctPriority: null
+      }
     });
 
     var onended = function onended() {
@@ -2092,11 +2109,33 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     var selectedColorCode = function selectedColorCode(code) {
+      game.questionAnswer.questionID = questionsData.value[game.current].id;
+      game.questionAnswer.selectedColorCode = code;
+      game.questionAnswer.correctColorCode = questionsData.value[game.current].color_code;
       game.state = 'priority';
     };
 
     var selectedPriority = function selectedPriority(code) {
+      game.questionAnswer.selectedPriority = code;
+      game.questionAnswer.correctPriority = questionsData.value[game.current].priority;
+
+      var clone = _objectSpread({}, game.questionAnswer);
+
+      evaluation.result.push(clone);
       game.current++;
+
+      if (questionsData.value.length == game.current) {
+        evaluation.traineeID = route.query.traineeID;
+        _api_repository__WEBPACK_IMPORTED_MODULE_1__["default"].storeResult({
+          evaluation: evaluation
+        }).then(function (res) {
+          console.log(res.data);
+        })["catch"](function (err) {
+          console.log(err);
+        });
+        console.log(evaluation); // return
+      }
+
       game.state = 'video';
     };
 
@@ -2105,9 +2144,8 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
-      console.log("videoPlayer", videoPlayer); // playVideo()
+      // playVideo()
       // repository.questions(parseInt(route.params.episode))
-
       console.log(route);
       _api_repository__WEBPACK_IMPORTED_MODULE_1__["default"].questions().then(function (res) {
         questionsData.value = res.data;
@@ -2118,6 +2156,7 @@ __webpack_require__.r(__webpack_exports__);
     });
     var __returned__ = {
       route: route,
+      evaluation: evaluation,
       questionsData: questionsData,
       videoPlayer: videoPlayer,
       isOpen: isOpen,
@@ -2404,171 +2443,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   selectActiveEpisode: function selectActiveEpisode(episode) {
     return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post("/activeEpisode", episode);
-  } //   login (params) {
-  //     return api.post('/api/login', params)
-  //   },
-  //   registration (params) {
-  //     return api.post('/api/registration', params)
-  //   },
-  //   changeAddress (params) {
-  //     return api.post('/api/change-address', params)
-  //   },
-  //   otp (param) {
-  //     return api.post('/api/otp', param)
-  //   },
-  //   logout () {
-  //     return api.delete('/api/logout')
-  //   },
-  //   getUsers () {
-  //     return api.get('/api/users')
-  //   },
-  //   reSendOtp (param) {
-  //     return api.post('/api/re_generate_otp', param)
-  //   },
-  //   resetPassword (param) {
-  //     return api.post('/api/reset-password', param)
-  //   },
-  //   resetOTP (param) {
-  //     return api.post('/api/reset-otp', param)
-  //   },
-  //   setPassword (param) {
-  //     return api.post('/api/set-password', param)
-  //   },
-  //   getCurrentLocation (param) {
-  //     return api.post('/api/getCurrentLocation', param)
-  //   },
-  //   getAutocompleteAddress (address) {
-  //     return api.get(`/api/getAutocompleteAddress/${address}`)
-  //   },
-  //   setSelectedAddress (placeId) {
-  //     return api.get(`/api/getPlaceDetails/${placeId}`)
-  //   },
-  //   getUserAddress (param) {
-  //     return api.get(`/api/address/${param}`)
-  //   },
-  //   addAddress (param) {
-  //     return api.post('/api/store-address', param)
-  //   },
-  //   removeAddress (param) {
-  //     return api.post('/api/delete-address', param)
-  //   },
-  //   getRestaurant (param) {
-  //     return api.get(`/api/getRestaurant?${param}`)
-  //   },
-  //   getProduct (param) {
-  //     return api.get(`/api/getProduct/${param}`)
-  //   },
-  //   getShopProducts (param) {
-  //     return api.get(`/api/shopProducts/${param}`)
-  //   },
-  //   getShopCategory (param) {
-  //     return api.get(`/api/shopCategory/${param}`)
-  //   },
-  //   getShopProductsCategory (param1, param2) {
-  //     return api.get(`/api/shopProductsCategory/${param1}/${param2}`)
-  //   },
-  //   searchShopProducts (param1, param2) {
-  //     return api.get(`/api/searchShopProducts/${param1}/${param2}`)
-  //   },
-  //   saveCarts (param) {
-  //     return api.post('/api/save-cart', param)
-  //   },
-  //   removeCartItem (param) {
-  //     return api.post('/api/delete-cart', param)
-  //   },
-  //   getCartItems (param) {
-  //     return api.get(`/api/getCart/${param}`)
-  //   },
-  //   incrementCartItem (param) {
-  //     return api.post('/api/incrementCart', param)
-  //   },
-  //   decrementCartItem (param) {
-  //     return api.post('/api/decrementCart', param)
-  //   },
-  //   shopProduct (param) {
-  //     return api.get(`/api/shopProduct/${param}`)
-  //   },
-  //   saveReview (param) {
-  //     return api.post('/api/save-review', param)
-  //   },
-  //   getProductReview (param) {
-  //     console.log(['obj', param])
-  //     return api.get(`/api/get-product-review/${param.product}?page=${param.pagenumber}`)
-  //   },
-  //   saveDeliveryReview (param) {
-  //     return api.post('/api/save-delivery-review', param)
-  //   },
-  //   getDeliveryReview (param) {
-  //     return api.get(`/api/get-delivery-review/${param}`)
-  //   },
-  //   getDistance (param) {
-  //     return api.get(`/api/get-distance/${param.origins}/${param.destinations}`)
-  //   },
-  //   getMenus (role) {
-  //     return api.get(`/api/get-menus/${role}`)
-  //   },
-  //   allMenu () {
-  //     return api.get('/api/all-menus')
-  //   },
-  //   storeMenuRole (param) {
-  //     return api.post('/api/store-role-menu', param)
-  //   },
-  //   sellerRegistration (param) {
-  //     return api.post('/api/seller-registration', param)
-  //   },
-  //   riderRegistration (param) {
-  //     return api.post('/api/rider-registration', param)
-  //   },
-  //   storeOrder (param) {
-  //     // console.log('param.....', typeof param, param)
-  //     return api.post('/api/store-orders', param)
-  //   },
-  //   getOrders (param) {
-  //     return api.get(`/api/get-orders?page=${param.page}`)
-  //   },
-  //   searchOrders (param) {
-  //     return api.get(`/api/search-orders/${param}`)
-  //   },
-  //   allSearchable (keyword) {
-  //     return api.get(`/api/all-searchable/${keyword}`)
-  //   },
-  //   allSearchRestaurent (keyword) {
-  //     return api.post('/api/search-by-item-category-restaurent', keyword)
-  //   },
-  //   getPolicy () {
-  //     return api.get('/api/get-policy')
-  //   },
-  //   getOrdersHistoryByUser (user) {
-  //     return api.get(`/api/get-orders-history/${user}`)
-  //   },
-  //   getCurrentOrdersByUser (user) {
-  //     return api.get(`/api/get-current-orders/${user}`)
-  //   },
-  //   trackingOrders (orderNo) {
-  //     return api.post('/api/tracking-orders', orderNo)
-  //   },
-  //   storeWiselist (param) {
-  //     return api.post('/api/store-wiselist', param)
-  //   },
-  //   storeFavourite (param) {
-  //     return api.post('/api/store-favourite', param)
-  //   },
-  //   getFavourites (user) {
-  //     return api.get(`/api/get-favourites/${user}`)
-  //   },
-  //   removeFavourite (favourite) {
-  //     return api.delete(`/api/remove-favourite/${favourite}`)
-  //   },
-  //   userProductReviews (user) {
-  //     return api.get(`/api/user-product-reviews/${user}`)
-  //   },
-  //   userTobeReviewed (user) {
-  //     return api.get(`/api/user-tobe-reviewed/${user}`)
-  //   },
-  //   productOptions (product) {
-  //     return api.get(`/api/get-product-details/${product}`)
-  //   }
-
+  },
+  storeResult: function storeResult(evaluation) {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post("/storeResult", evaluation);
+  }
 });
 
 /***/ }),
