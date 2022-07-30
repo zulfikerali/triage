@@ -44,9 +44,9 @@ class EpisodeController extends Controller
         return 'success';
 
     }
-    public function getResult($traineeId)
+    public function getResult($episodeId, $traineeId)
     {
-        $episodeId = Episode::where('status', 1)->first()->id;
+        // $episodeId = Episode::where('status', 1)->first()->id;
         return Result::where('trainee_id', $traineeId)->where('episode_id', $episodeId)->first();
     }
 }

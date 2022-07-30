@@ -2,7 +2,7 @@ const Home = () => import('../components/pages/Home.vue');
 const Questions = () => import('../components/pages/Questions.vue');
 const Episodes = () => import('../components/pages/Episodes.vue');
 const Introduction = () => import('../components/pages/Intro.vue');
-const Result = () => import('../components/pages/ResultReport.vue');
+const Result = () => import('../components/pages/Result.vue');
 // const Password = () => import('../Views/Password.vue');
 // const Login = () => import('../Views/Login.vue');
 // const ForgotPassword = () => import('../Views/ForgotPassword.vue');
@@ -14,7 +14,7 @@ const Result = () => import('../components/pages/ResultReport.vue');
 
 export default [
     {
-        path: '/',
+        path: '/start-game',
         component: Home,
         name: 'Home',
 
@@ -32,13 +32,13 @@ export default [
 
     },
     {
-        path: '/introduction',
+        path: '/',
         component: Introduction,
         name: 'Introduction',
 
     },
     {
-        path: '/result-report',
+        path: '/result-report/:episodeId/:traineeId',
         component: Result,
         name: 'Result',
 

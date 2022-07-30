@@ -133,7 +133,6 @@ const alrearyActive = () => {
   alert("already active!");
 };
 const goToPage = () => {
-  console.log('first')
-  router.push('/')
+  router.push('/start-game')
 }
 </script>

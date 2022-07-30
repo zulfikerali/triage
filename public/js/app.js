@@ -13477,7 +13477,7 @@ var Introduction = function Introduction() {
 };
 
 var Result = function Result() {
-  return __webpack_require__.e(/*! import() */ "resources_js_components_pages_ResultReport_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/pages/ResultReport.vue */ "./resources/js/components/pages/ResultReport.vue"));
+  return __webpack_require__.e(/*! import() */ "resources_js_components_pages_Result_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/pages/Result.vue */ "./resources/js/components/pages/Result.vue"));
 }; // const Password = () => import('../Views/Password.vue');
 // const Login = () => import('../Views/Login.vue');
 // const ForgotPassword = () => import('../Views/ForgotPassword.vue');
@@ -13489,7 +13489,7 @@ var Result = function Result() {
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
-  path: '/',
+  path: '/start-game',
   component: Home,
   name: 'Home'
 }, {
@@ -13501,11 +13501,11 @@ var Result = function Result() {
   component: Episodes,
   name: 'Episodes'
 }, {
-  path: '/introduction',
+  path: '/',
   component: Introduction,
   name: 'Introduction'
 }, {
-  path: '/result-report',
+  path: '/result-report/:episodeId/:traineeId',
   component: Result,
   name: 'Result'
 } // {
@@ -24258,7 +24258,7 @@ function useRoute() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_pages_Home_vue":1,"resources_js_components_pages_Questions_vue":1,"resources_js_components_pages_Episodes_vue":1,"resources_js_components_pages_Intro_vue":1,"resources_js_components_pages_ResultReport_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_pages_Home_vue":1,"resources_js_components_pages_Questions_vue":1,"resources_js_components_pages_Episodes_vue":1,"resources_js_components_pages_Intro_vue":1,"resources_js_components_pages_Result_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

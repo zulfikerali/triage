@@ -2236,16 +2236,21 @@ __webpack_require__.r(__webpack_exports__);
     },
     episode: {
       type: [String, Number],
-      "default": ''
+      "default": ""
     },
     traineeId: {
       type: [String, Number],
-      "default": ''
+      "default": ""
+    },
+    examDate: {
+      type: String,
+      "default": ""
     }
   },
   setup: function setup(__props, _ref) {
     var expose = _ref.expose;
     expose();
+    var props = __props;
 
     function hasOneDigit(val) {
       if (String(Math.abs(val)).charAt(0) == val) {
@@ -2256,44 +2261,27 @@ __webpack_require__.r(__webpack_exports__);
     }
 
     var dateFormate = function dateFormate() {
-      var date = new Date();
-      return date.getDate() + "/" + hasOneDigit(date.getMonth()) + date.getMonth() + "/" + date.getFullYear();
-    };
+      // console.log(props.examDate)
+      var date;
 
-    var getResult = function getResult(data) {
-      var questions = 0,
-          attempt = 0,
-          marks = 0;
-      questions = data.length * 2;
-      data.forEach(function (q) {
-        if (q.selectedColorCode != null) {
-          attempt++;
+      if (props.examDate) {
+        // date = new Date();
+        date = new Date(props.examDate);
+      } else {
+        date = new Date();
+      }
 
-          if (q.selectedColorCode == q.correctColorCode) {
-            marks++;
-          }
-        }
+      var dd = String(date.getDate()).padStart(2, "0");
+      var mm = String(date.getMonth() + 1).padStart(2, "0"); //January is 0!
 
-        if (q.selectedPriority != null) {
-          attempt++;
-
-          if (q.selectedPriority == q.correctPriority) {
-            marks++;
-          }
-        }
-      });
-      return {
-        questions: questions,
-        attempt: attempt,
-        marks: marks
-      };
-      console.log('TotalQuestion: ' + questions + ', Attempt: ' + attempt + ', Marks: ' + marks);
+      var yyyy = date.getFullYear();
+      return dd + "/" + mm + "/" + yyyy;
     };
 
     var __returned__ = {
+      props: props,
       hasOneDigit: hasOneDigit,
-      dateFormate: dateFormate,
-      getResult: getResult
+      dateFormate: dateFormate
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -2518,7 +2506,7 @@ var _hoisted_2 = {
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-center p-4 gap-2\" data-v-40a8d3c7><div class=\"p-2 flex border-r-2 border-indigo-200 gap-4\" data-v-40a8d3c7><div class=\"mb-4 w-20 h-20\" data-v-40a8d3c7><img src=\"/logos/first.jpeg\" class=\"max-w-full h-auto rounded-full\" alt=\"\" data-v-40a8d3c7></div><div class=\"mb-4 w-20 h-20\" data-v-40a8d3c7><img src=\"/logos/second.jpeg\" class=\"max-w-full h-auto rounded-full\" alt=\"\" data-v-40a8d3c7></div></div><div data-v-40a8d3c7><h1 class=\"text-3xl font-extrabold text-indigo-500\" data-v-40a8d3c7> Army Medical Corps Center &amp; School </h1><p class=\"text-base\" data-v-40a8d3c7> Shaheed Salahuddin Cantonment, Ghatail, Tangail, Bangladesh </p></div></div><div class=\"w-full h-0.5 bg-indigo-300\" data-v-40a8d3c7></div>", 2);
 
 var _hoisted_5 = {
-  "class": "flex flex-row justify-center gap-96 items-center m-4"
+  "class": "flex flex-row justify-center gap-52 items-center m-4"
 };
 
 var _hoisted_6 = /*#__PURE__*/_withScopeId(function () {
@@ -2684,6 +2672,7 @@ var _hoisted_36 = {
 
 var _hoisted_37 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onclick: "window.print()",
     "class": "px-4 py-2 text-sm text-green-600 bg-green-100"
   }, " Print ", -1
   /* HOISTED */
@@ -2695,13 +2684,13 @@ var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNo
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.traineeId), 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.traineeId), 1
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.episode), 1
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.dateFormate()), 1
   /* TEXT */
-  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"w-40\">\r\n          <address class=\"text-sm\">\r\n            <span class=\"font-bold\"> Exam Date : </span>\r\n            12/12/2022\r\n          </address>\r\n        </div>\r\n        <div class=\"w-40\">\r\n          <address class=\"text-sm\">\r\n            <span class=\"font-bold\"> Trainee ID : </span>\r\n            1542457\r\n          </address>\r\n        </div>\r\n        <div class=\"w-40\">\r\n          <address class=\"text-sm\">\r\n            <span class=\"font-bold\">Episode No :</span>\r\n            1\r\n          </address>\r\n        </div> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.marks), 1
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.marks), 1
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.correct), 1
   /* TEXT */
@@ -2709,8 +2698,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_29, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.questions * 2), 1
   /* TEXT */
-  )])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"flex justify-center gap-20 h-96\">\r\n        <div class=\"flex flex-col justify-center items-center\">\r\n          <div class=\"w-40\">\r\n            <address class=\"text-sm\">\r\n              <span class=\"font-bold\"> Exam Date : </span>\r\n              12/12/2022\r\n            </address>\r\n          </div>\r\n          <div class=\"w-40\">\r\n            <address class=\"text-sm\">\r\n              <span class=\"font-bold\"> Trainee ID : </span>\r\n              1542457\r\n            </address>\r\n          </div>\r\n          <div class=\"w-40\">\r\n            <address class=\"text-sm\">\r\n              <span class=\"font-bold\">Episode No :</span>\r\n              1\r\n            </address>\r\n          </div>\r\n          <div></div>\r\n        </div>\r\n        <div class=\"flex justify-center p-2 rounded-lg\">\r\n          <table class=\"border border-gray-400\">\r\n            <tbody>\r\n              <tr class=\"whitespace-nowrap\">\r\n                <td class=\"px-2 py-2\">\r\n                  <div class=\"text-sm text-gray-900\">Marks</div>\r\n                </td>\r\n                <td class=\"px-2 py-2 text-right\">\r\n                  <div class=\"text-sm text-gray-500\">2</div>\r\n                </td>\r\n              </tr>\r\n              <tr class=\"whitespace-nowrap\">\r\n                <td class=\"px-2 py-2\">\r\n                  <div class=\"text-sm text-gray-900\">Correct Answer</div>\r\n                </td>\r\n                <td class=\"px-2 py-2 text-right\">\r\n                  <div class=\"text-sm text-gray-500\">4</div>\r\n                </td>\r\n              </tr>\r\n              <tr class=\"whitespace-nowrap\">\r\n                <td class=\"px-2 py-2\">\r\n                  <div class=\"text-sm text-gray-900\">Wrong Answer</div>\r\n                </td>\r\n                <td class=\"px-2 py-2 text-right\">\r\n                  <div class=\"text-sm text-gray-500\">4</div>\r\n                </td>\r\n              </tr>\r\n            </tbody>\r\n          </table>\r\n        </div>\r\n      </div> "), _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/",
+  )])])])])])]), _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
+    to: "/start-game",
     "class": "px-4 py-2 text-sm text-blue-600 bg-blue-100"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
@@ -2719,9 +2708,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     _: 1
     /* STABLE */
 
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"px-4 py-2 text-sm text-blue-600 bg-blue-100\">\r\n            Save\r\n          </button>\r\n          <button class=\"px-4 py-2 text-sm text-red-600 bg-red-100\">\r\n            Cancel\r\n          </button> ")])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"flex items-center justify-center min-h-screen bg-gray-100\">\r\n    <div class=\"w-6/12 mt-4 text-left bg-white shadow-lg\">\r\n      <div class=\"flex justify-between px-8 py-6\">\r\n        <div class=\"flex items-center\">sale invoice</div>\r\n        <div class=\"flex items-center gap-4\">\r\n          <button class=\"px-2 py-1 bg-gray-200 hover:bg-gray-400\">Save</button>\r\n          <button class=\"px-2 py-1 bg-gray-200 hover:bg-gray-400\">Print</button>\r\n        </div>\r\n      </div>\r\n      <div class=\"w-full h-0.5 bg-gray-800\"></div>\r\n    </div>\r\n  </div> ")], 2112
-  /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */
-  );
+  })])])])]);
 }
 
 /***/ }),
@@ -2813,6 +2800,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   storeResult: function storeResult(evaluation) {
     return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post("/storeResult", evaluation);
+  },
+  getResult: function getResult(episodeId, traineeId) {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/getResult/".concat(episodeId, "/").concat(traineeId));
   }
 });
 
