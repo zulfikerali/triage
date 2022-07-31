@@ -1,4 +1,7 @@
 <template>
+    <div v-show="game.timer">
+        <h1 class="text-center bg-transparent text-2xl text-gray-500">{{ game.minutes + "m " + game.seconds + "s " }}</h1>
+    </div>
   <div v-for="(question, index) in questionsData" :key="question.id">
     <div v-if="game.state === 'video'" class="flex justify-center max-h-screen">
       <video
@@ -225,8 +228,8 @@ import { ref, onMounted, reactive } from "vue";
 import { useRoute } from "vue-router";
 import Result from "../pages/ResultReport.vue";
 // import axios from 'axios'
-import repository from "../../api/repository";
-const route = useRoute();
+import repository from "../../api/repository"
+const route = useRoute()
 const evaluation = reactive({
   traineeID: null,
   result: [],
@@ -237,15 +240,19 @@ const evaluation = reactive({
     marks: 0,
     questions: 0,
   },
-});
-const questionsData = ref([]);
-const videoPlayer = ref(null);
-const isOpen = ref(false);
-const nextPage = ref(true);
-const video = document.getElementById("video");
+})
+const questionsData = ref([])
+const videoPlayer = ref(null)
+const isOpen = ref(false)
+const nextPage = ref(true)
+const video = document.getElementById("video")
+
 const game = reactive({
   current: 0,
   state: "video",
+  minutes: 0,
+  seconds: 0,
+  timer: null,
   questionAnswer: {
     questionID: null,
     selectedColorCode: null,
@@ -255,7 +262,36 @@ const game = reactive({
   },
   resultData: [],
 });
-
+const gameStart = () => {
+    let countDownDate = new Date().getTime() + 102000
+    game.timer = setInterval(() => {
+        let now = new Date().getTime()
+        let distance = countDownDate - now
+        game.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+        game.seconds = Math.floor((distance % (1000 * 60)) / 1000)
+        if (distance < 0) {
+            gameEnd()
+        }
+    }, 1000)
+}
+const gameEnd = () => {
+    clearInterval(game.timer)
+    game.timer = null
+    evaluation.traineeID = route.query.traineeID;
+    evaluation.resultValue.questions = questionsData.value.length;
+    repository
+        .storeResult({ evaluation: evaluation })
+        .then((res) => {
+            let resData = { ...evaluation.resultValue };
+            game.resultData = resData;
+            game.state = "result";
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    console.log(evaluation);
+    // return
+}
 const onended = () => {
   game.state = "triage";
 };
@@ -289,20 +325,7 @@ const selectedPriority = (code) => {
   evaluation.result.push(clone);
   game.current++;
   if (questionsData.value.length == game.current) {
-    evaluation.traineeID = route.query.traineeID;
-    evaluation.resultValue.questions = questionsData.value.length;
-    repository
-      .storeResult({ evaluation: evaluation })
-      .then((res) => {
-        let resData = { ...evaluation.resultValue };
-        game.resultData = resData;
-        game.state = "result";
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log(evaluation);
-    // return
+      gameEnd()
   }
   game.state = "video";
 };
@@ -311,6 +334,7 @@ const gotoNextPage = () => {
   nextPage.value = !nextPage.value;
 };
 onMounted(() => {
+    gameStart()
   // playVideo()
   // repository.questions(parseInt(route.params.episode))
   console.log(route);

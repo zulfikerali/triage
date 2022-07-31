@@ -12,73 +12,75 @@
       relative
     "
   >
-  <Transition name="slide-fade">
-  <div
-      v-if="slide == 1"
-      class="
-        flex
-        min-h-full min-w-full
-        rounded-3xl
-        bg-white
-        shadow-xl
-        p-10
-        lg:p-20
-        text-gray-800
-        relative
-        md:flex
-        items-center
-        text-center
-        watermark
-      "
-    >
-      <div class="w-full md:w-1/2">
-        <div class="mb-10 md:mb-20 text-gray-600 font-light">
-          <h1
-            class="
-              font-black
-              uppercase
-              text-3xl
-              lg:text-3xl
-              text-yellow-500
-              mb-10
-            "
-          >
-            ARMY MEDICAL CORPS CENTRE AND SCHOOL
-          </h1>
-          <p>SHAHEED SALAHUDDIN CANTONMENT, GHATAIL, TANGAIL, BANGLADESH</p>
-        </div>
-      </div>
-      <div class="w-full md:w-1/2">
+    <Transition name="slide-fade">
         <div
+          v-show="slide == 1"
           class="
-            mb-10
-            md:mb-20
-            text-gray-600
-            font-light
             flex
-            justify-center
-            gap-4
+            min-h-full min-w-full
+            rounded-3xl
+            bg-white
+            shadow-xl
+            p-10
+            lg:p-20
+            text-gray-800
+            relative
+            md:flex
+            items-center
+            text-center
+            watermark
           "
         >
-          <div class="w-36">
-            <img
-              src="http://triage.test/logos/first.jpeg"
-              class="max-w-full h-auto rounded-full"
-              alt=""
-            />
+          <div class="w-full md:w-1/2">
+            <div class="mb-10 md:mb-20 text-gray-600 font-light">
+              <h1
+                class="
+                  font-black
+                  uppercase
+                  text-3xl
+                  lg:text-3xl
+                  text-yellow-500
+                  mb-10
+                "
+              >
+                ARMY MEDICAL CORPS CENTRE AND SCHOOL
+              </h1>
+              <p>SHAHEED SALAHUDDIN CANTONMENT, GHATAIL, TANGAIL, BANGLADESH</p>
+            </div>
           </div>
-          <div class="w-36">
-            <img
-              src="http://triage.test/logos/second.jpeg"
-              class="max-w-full h-auto rounded-full"
-              alt=""
-            />
+          <div class="w-full md:w-1/2">
+            <div
+              class="
+                mb-10
+                md:mb-20
+                text-gray-600
+                font-light
+                flex
+                justify-center
+                gap-4
+              "
+            >
+              <div class="w-36">
+                <img
+                  src="http://triage.test/logos/first.jpeg"
+                  class="max-w-full h-auto rounded-full"
+                  alt=""
+                />
+              </div>
+              <div class="w-36">
+                <img
+                  src="http://triage.test/logos/second.jpeg"
+                  class="max-w-full h-auto rounded-full"
+                  alt=""
+                />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div
-      v-else
+    </transition>
+    <transition name="slide">
+        <div
+      v-show="slide !=1"
       class="
         min-h-full min-w-full
         rounded-3xl
@@ -117,8 +119,7 @@
       </div>
       <span class="flex items-end justify-end cursor-pointer text-blue-800" @click="goToPage">Go to Episode page →</span>
     </div>
-</Transition>
-    
+    </transition>
     <div
       class="
         w-64
@@ -151,17 +152,8 @@
         transform
       "
     ></div>
-    
-  </div>
 
-  <!-- BUY ME A BEER AND HELP SUPPORT OPEN-SOURCE RESOURCES -->
-  <!-- <div class="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
-    <div>
-        <a title="Buy me a beer" href="https://www.buymeacoffee.com/scottwindon" target="_blank" class="block w-16 h-16 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12">
-            <img class="object-cover object-center w-full h-full rounded-full" src="https://i.pinimg.com/originals/60/fd/e8/60fde811b6be57094e0abc69d9c2622a.jpg"/>
-        </a>
-    </div>
-</div> -->
+  </div>
 </template>
 <script setup>
 import { ref, onMounted } from "vue";
@@ -178,19 +170,9 @@ const goToPage = () => {
 };
 </script>
 <style scoped>
-.slide-fade-enter-active {
-  transition: all 0.3s ease-out;
-}
-
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateX(20px);
-  opacity: 0;
-}
+.slide-enter-to {  right: 0%;}
+.slide-enter-from {  right: -100%;}
+.slide-enter-active {  transition: all 0.5s ease;}
 .watermark{
     background-image: url('/logos/watermark.png');
     background-repeat: no-repeat;
