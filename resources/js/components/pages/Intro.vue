@@ -171,8 +171,12 @@ const goToPage = () => {
 </script>
 <style scoped>
 .slide-enter-to {  right: 0%;}
-.slide-enter-from {  right: -100%;}
-.slide-enter-active {  transition: all 0.5s ease;}
+.slide-enter-from {
+    right: -100%;
+}
+.slide-enter-active {
+    transition: all 0.5s ease;
+}
 .watermark{
     background-image: url('/logos/watermark.png');
     background-repeat: no-repeat;
