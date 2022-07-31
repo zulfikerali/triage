@@ -17,5 +17,11 @@ export default {
   },
   getResult (episodeId, traineeId) {
     return api.get(`/getResult/${episodeId}/${traineeId}`)
+  },
+  storeQuestion (questionData) {
+    return api.post(`/storeQuestion`, questionData)
+  },
+  allColorCode () {
+    return api.get(`/allColorCode` )
   }
 }

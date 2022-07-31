@@ -2268,6 +2268,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   getResult: function getResult(episodeId, traineeId) {
     return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/getResult/".concat(episodeId, "/").concat(traineeId));
+  },
+  storeQuestion: function storeQuestion(questionData) {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post("/storeQuestion", questionData);
+  },
+  allColorCode: function allColorCode() {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/allColorCode");
   }
 });
 

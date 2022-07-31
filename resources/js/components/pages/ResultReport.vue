@@ -72,6 +72,14 @@
               </tr>
               <tr class="whitespace-nowrap">
                 <td class="px-2 py-2">
+                  <div class="text-sm text-gray-900">Total Attempted</div>
+                </td>
+                <td class="px-2 py-2 text-right">
+                  <div class="text-sm text-gray-500">{{ result.attempt }}</div>
+                </td>
+              </tr>
+              <tr class="whitespace-nowrap">
+                <td class="px-2 py-2">
                   <div class="text-sm text-gray-900">Correct Answer</div>
                 </td>
                 <td class="px-2 py-2 text-right">

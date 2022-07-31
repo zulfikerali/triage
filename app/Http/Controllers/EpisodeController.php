@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Episode;
 use App\Models\Result;
+use App\Models\Question;
+use App\Models\ColorCode;
 
 class EpisodeController extends Controller
 {
@@ -48,5 +50,29 @@ class EpisodeController extends Controller
     {
         // $episodeId = Episode::where('status', 1)->first()->id;
         return Result::where('trainee_id', $traineeId)->where('episode_id', $episodeId)->first();
+    }
+    public function storeQuestion(Request $request)
+    {
+        // return $request->all();
+        $fileName = '';
+        if($request->file){
+            $upload_path = public_path('videos');
+            $fileName = 'ep_'.$request->episode.time().'.'.$request->file->getClientOriginalExtension();
+            $request->file->move($upload_path, $fileName);
+        }
+        Question::create([
+            'episode_id' => $request->episode,
+            'video_path' => $fileName,
+            'color_code' => $request->colorCode,
+            'color_code_marks' => $request->colorCodeMark,
+            'priority' => $request->priority,
+            'priority_marks' => $request->prioritMark
+
+        ]);
+        return 'success';
+    }
+    public function allColorCode()
+    {
+        return ColorCode::all();
     }
 }

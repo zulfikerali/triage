@@ -3,9 +3,9 @@
     Triage Episodes
   </h1>
   <p class="text-center text-2xl pt-2">
-    If you want to change other episode to active click
+    If you want to change episode to click
     <span class="border bg-blue-100 rounded-lg px-1 py-1 text-center ring-2 mr-1"
-      >Not Active
+      >Active
     </span>
     button.
   </p>
@@ -21,7 +21,7 @@
       "
     >
       <div
-        v-for="episode in episodes"
+        v-for="(episode, index) in episodes"
         :key="episode.id"
         class="
           bg-blue-600
@@ -39,7 +39,7 @@
           <div class="flex items-center justify-center">
             <span class="relative inline-flex">
               <div
-                @click.prevent="activeEpisode(episode.id)"
+                @click.prevent="index > 0 ? commingSoon() : activeEpisode(episode.id)"
                 class="
                   flex
                   justify-center
@@ -58,7 +58,7 @@
                 "
                 :disabled="episode.status == 1 ? true : false"
               >
-                {{ episode.status == 1 ? "Active" : "Not Active" }}
+                {{ episode.status == 1 ? "Current" : "Active" }}
               </div>
               <span
                 v-show="episode.status == 1"
@@ -134,5 +134,8 @@ const alrearyActive = () => {
 };
 const goToPage = () => {
   router.push('/start-game')
+}
+const commingSoon = () => {
+  alert('Comming soon ..')
 }
 </script>

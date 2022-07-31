@@ -13478,15 +13478,11 @@ var Introduction = function Introduction() {
 
 var Result = function Result() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_pages_Result_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/pages/Result.vue */ "./resources/js/components/pages/Result.vue"));
-}; // const Password = () => import('../Views/Password.vue');
-// const Login = () => import('../Views/Login.vue');
-// const ForgotPassword = () => import('../Views/ForgotPassword.vue');
-// const ResetPassword = () => import('../Views/ResetPassword.vue');
-// const VerifyEmail = () => import('../Views/VerifyEmail.vue');
-// const Register = () => import('../Views/Register.vue');
-// const Home = () => import('../Views/Home.vue');
-// const Welcome = () => import('../Views/Welcome.vue')
+};
 
+var CreateQuestion = function CreateQuestion() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_pages_CreateQuestion_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/pages/CreateQuestion.vue */ "./resources/js/components/pages/CreateQuestion.vue"));
+};
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
   path: '/start-game',
@@ -13508,6 +13504,10 @@ var Result = function Result() {
   path: '/result-report/:episodeId/:traineeId',
   component: Result,
   name: 'Result'
+}, {
+  path: '/create-question',
+  component: CreateQuestion,
+  name: 'CreateQuestion'
 } // {
 //     path: '/:pathMatch(.*)*',
 //     redirect: '/',
@@ -24258,7 +24258,7 @@ function useRoute() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_pages_Home_vue":1,"resources_js_components_pages_Questions_vue":1,"resources_js_components_pages_Episodes_vue":1,"resources_js_components_pages_Intro_vue":1,"resources_js_components_pages_Result_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_pages_Home_vue":1,"resources_js_components_pages_Questions_vue":1,"resources_js_components_pages_Episodes_vue":1,"resources_js_components_pages_Intro_vue":1,"resources_js_components_pages_Result_vue":1,"resources_js_components_pages_CreateQuestion_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

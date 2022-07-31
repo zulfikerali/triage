@@ -2105,12 +2105,17 @@ __webpack_require__.r(__webpack_exports__);
       router.push('/start-game');
     };
 
+    var commingSoon = function commingSoon() {
+      alert('Comming soon ..');
+    };
+
     var __returned__ = {
       router: router,
       episodes: episodes,
       activeEpisode: activeEpisode,
       alrearyActive: alrearyActive,
       goToPage: goToPage,
+      commingSoon: commingSoon,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
       useRouter: vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter,
@@ -2148,9 +2153,9 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "text-center text-2xl pt-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" If you want to change other episode to active click "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" If you want to change episode to click "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "border bg-blue-100 rounded-lg px-1 py-1 text-center ring-2 mr-1"
-}, "Not Active "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" button. ")], -1
+}, "Active "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" button. ")], -1
 /* HOISTED */
 );
 
@@ -2198,17 +2203,17 @@ var _hoisted_15 = {
 };
 var _hoisted_16 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.episodes, function (episode) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.episodes, function (episode, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: episode.id,
       "class": "bg-blue-600 pt-1 px-2 bg-gradient-to-b from-blue-400 to-blue-500 rounded-xl shadow-lg w-52"
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
       onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return $setup.activeEpisode(episode.id);
+        return index > 0 ? $setup.commingSoon() : $setup.activeEpisode(episode.id);
       }, ["prevent"]),
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex justify-center text-white p-4 bg-blue-400 rounded-lg shadow-l w-32 cursor-pointer", episode.status == 1 ? 'ring-2 ring-blue-300 cursor-pointer' : 'ring-2 ring-gray-200']),
       disabled: episode.status == 1 ? true : false
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(episode.status == 1 ? "Active" : "Not Active"), 11
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(episode.status == 1 ? "Current" : "Active"), 11
     /* TEXT, CLASS, PROPS */
     , _hoisted_8), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_9, _hoisted_12, 512
     /* NEED_PATCH */
@@ -2319,6 +2324,12 @@ __webpack_require__.r(__webpack_exports__);
   },
   getResult: function getResult(episodeId, traineeId) {
     return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/getResult/".concat(episodeId, "/").concat(traineeId));
+  },
+  storeQuestion: function storeQuestion(questionData) {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post("/storeQuestion", questionData);
+  },
+  allColorCode: function allColorCode() {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/allColorCode");
   }
 });
 
