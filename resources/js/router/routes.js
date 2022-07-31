@@ -4,6 +4,7 @@ const Episodes = () => import('../components/pages/Episodes.vue');
 const Introduction = () => import('../components/pages/Intro.vue');
 const Result = () => import('../components/pages/Result.vue');
 const CreateQuestion = () => import('../components/pages/CreateQuestion.vue');
+const TraineeResults = () => import('../components/pages/TraineeResults.vue');
 export default [
     {
         path: '/start-game',
@@ -27,6 +28,12 @@ export default [
         path: '/',
         component: Introduction,
         name: 'Introduction',
+
+    },
+    {
+        path: '/trainee-results',
+        component: TraineeResults,
+        name: 'TraineeResults',
 
     },
     {

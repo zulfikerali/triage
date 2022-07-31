@@ -2330,6 +2330,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   allColorCode: function allColorCode() {
     return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/allColorCode");
+  },
+  getTraineeResults: function getTraineeResults() {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/getTraineeResults");
   }
 });
 

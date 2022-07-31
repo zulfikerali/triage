@@ -204,7 +204,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.slide-enter-to[data-v-727a82c6] {  right: 0%;}\n.slide-enter-from[data-v-727a82c6] {  right: -100%;}\n.slide-enter-active[data-v-727a82c6] {  transition: all 0.5s ease;}\n.watermark[data-v-727a82c6]{\r\n    background-image: url('/logos/watermark.png');\r\n    background-repeat: no-repeat;\r\n    background-attachment: fixed;\r\n    background-position: center;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.slide-enter-to[data-v-727a82c6] {  right: 0%;}\n.slide-enter-from[data-v-727a82c6] {\r\n    right: -100%;\n}\n.slide-enter-active[data-v-727a82c6] {\r\n    transition: all 0.5s ease;\n}\n.watermark[data-v-727a82c6]{\r\n    background-image: url('/logos/watermark.png');\r\n    background-repeat: no-repeat;\r\n    background-attachment: fixed;\r\n    background-position: center;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

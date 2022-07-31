@@ -2093,6 +2093,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         correct: 0,
         wrong: 0,
         marks: 0,
+        totalMarks: 0,
         questions: 0
       }
     });
@@ -2104,9 +2105,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var game = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       current: 0,
       state: "video",
-      minutes: 0,
-      seconds: 0,
-      timer: null,
       questionAnswer: {
         questionID: null,
         selectedColorCode: null,
@@ -2116,38 +2114,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       },
       resultData: []
     });
-
-    var gameStart = function gameStart() {
-      var countDownDate = new Date().getTime() + 102000;
-      game.timer = setInterval(function () {
-        var now = new Date().getTime();
-        var distance = countDownDate - now;
-        game.minutes = Math.floor(distance % (1000 * 60 * 60) / (1000 * 60));
-        game.seconds = Math.floor(distance % (1000 * 60) / 1000);
-
-        if (distance < 0) {
-          gameEnd();
-        }
-      }, 1000);
-    };
-
-    var gameEnd = function gameEnd() {
-      clearInterval(game.timer);
-      game.timer = null;
-      evaluation.traineeID = route.query.traineeID;
-      evaluation.resultValue.questions = questionsData.value.length;
-      _api_repository__WEBPACK_IMPORTED_MODULE_2__["default"].storeResult({
-        evaluation: evaluation
-      }).then(function (res) {
-        var resData = _objectSpread({}, evaluation.resultValue);
-
-        game.resultData = resData;
-        game.state = "result";
-      })["catch"](function (err) {
-        console.log(err);
-      });
-      console.log(evaluation); // return
-    };
 
     var onended = function onended() {
       game.state = "triage";
@@ -2188,7 +2154,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       game.current++;
 
       if (questionsData.value.length == game.current) {
-        gameEnd();
+        evaluation.traineeID = route.query.traineeID;
+        evaluation.resultValue.questions = questionsData.value.length;
+        _api_repository__WEBPACK_IMPORTED_MODULE_2__["default"].storeResult({
+          evaluation: evaluation
+        }).then(function (res) {
+          var resData = _objectSpread({}, evaluation.resultValue);
+
+          game.resultData = resData;
+          game.state = "result";
+        })["catch"](function (err) {
+          console.log(err);
+        });
+        console.log(evaluation); // return
       }
 
       game.state = "video";
@@ -2199,17 +2177,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
 
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
-      gameStart(); // playVideo()
+      // playVideo()
       // repository.questions(parseInt(route.params.episode))
-
       console.log(route);
       _api_repository__WEBPACK_IMPORTED_MODULE_2__["default"].questions().then(function (res) {
         questionsData.value = res.data;
-        console.log(res.data);
+        evaluation.resultValue.totalMarks = sumTotal(res.data);
       })["catch"](function (err) {
         console.log(err.message);
       });
     });
+
+    var sumTotal = function sumTotal(array) {
+      var sum = 0;
+
+      for (var i = 0; i < array.length; i++) {
+        sum += array[i].color_code_marks + array[i].priority_marks;
+      }
+
+      return sum;
+    };
+
     var __returned__ = {
       route: route,
       evaluation: evaluation,
@@ -2219,12 +2207,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       nextPage: nextPage,
       video: video,
       game: game,
-      gameStart: gameStart,
-      gameEnd: gameEnd,
       onended: onended,
       selectedColorCode: selectedColorCode,
       selectedPriority: selectedPriority,
       gotoNextPage: gotoNextPage,
+      sumTotal: sumTotal,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
       reactive: vue__WEBPACK_IMPORTED_MODULE_0__.reactive,
@@ -2338,22 +2325,19 @@ var _withScopeId = function _withScopeId(n) {
 };
 
 var _hoisted_1 = {
-  "class": "text-center bg-transparent text-2xl text-gray-500"
-};
-var _hoisted_2 = {
   key: 0,
   "class": "flex justify-center max-h-screen"
 };
-var _hoisted_3 = ["src"];
+var _hoisted_2 = ["src"];
 
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Your browser does not support the video tag. ");
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Your browser does not support the video tag. ");
 
-var _hoisted_5 = {
+var _hoisted_4 = {
   key: 0,
   "class": "bg-white p-6 rounded-lg shadow-lg w-full h-screen"
 };
 
-var _hoisted_6 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
     "class": "text-xl lg:text-5xl text-gray-500 font-thin mt-4 mb-10 text-center"
   }, " Which color do you think about this victim? ", -1
@@ -2361,18 +2345,18 @@ var _hoisted_6 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_7 = {
+var _hoisted_6 = {
   "class": "grid grid-rows-2 grid-flow-col gap-4 justify-center p-3"
 };
-var _hoisted_8 = {
+var _hoisted_7 = {
   key: 1,
   "class": "antialiased bg-slate-200 w-full h-screen flex justify-center flex-col"
 };
-var _hoisted_9 = {
+var _hoisted_8 = {
   "class": "max-w-lg mx-3 md:mx-auto bg-white p-8 rounded-xl shadow shadow-slate-300"
 };
 
-var _hoisted_10 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_9 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
     "class": "text-2xl lg:text-5xl text-gray-500 font-thin mt-4 mb-10 text-center"
   }, " What the priority for this victim? ", -1
@@ -2380,11 +2364,11 @@ var _hoisted_10 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_11 = {
+var _hoisted_10 = {
   "class": "my-5"
 };
 
-var _hoisted_12 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_11 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "text-lg lg:text-xl"
   }, "One", -1
@@ -2392,12 +2376,12 @@ var _hoisted_12 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_13 = [_hoisted_12];
-var _hoisted_14 = {
+var _hoisted_12 = [_hoisted_11];
+var _hoisted_13 = {
   "class": "my-5"
 };
 
-var _hoisted_15 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_14 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "text-lg lg:text-xl"
   }, "Two", -1
@@ -2405,12 +2389,12 @@ var _hoisted_15 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_16 = [_hoisted_15];
-var _hoisted_17 = {
+var _hoisted_15 = [_hoisted_14];
+var _hoisted_16 = {
   "class": "my-5"
 };
 
-var _hoisted_18 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_17 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "text-lg lg:text-xl"
   }, "Three", -1
@@ -2418,12 +2402,12 @@ var _hoisted_18 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_19 = [_hoisted_18];
-var _hoisted_20 = {
+var _hoisted_18 = [_hoisted_17];
+var _hoisted_19 = {
   "class": "my-5"
 };
 
-var _hoisted_21 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_20 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
     "class": "text-lg lg:text-xl"
   }, "Four", -1
@@ -2431,19 +2415,15 @@ var _hoisted_21 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_22 = [_hoisted_21];
-var _hoisted_23 = {
+var _hoisted_21 = [_hoisted_20];
+var _hoisted_22 = {
   key: 2
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.game.minutes + "m " + $setup.game.seconds + "s "), 1
-  /* TEXT */
-  )], 512
-  /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.game.timer]]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.questionsData, function (question, index) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.questionsData, function (question, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: question.id
-    }, [$setup.game.state === 'video' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [$setup.game.current === index ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("video", {
+    }, [$setup.game.state === 'video' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [$setup.game.current === index ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("video", {
       key: 0,
       onEnded: $setup.onended,
       "class": "w-full m-2 lg:m-5 rounded lg:rounded-lg",
@@ -2453,12 +2433,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       type: "video/mp4"
     }, null, 8
     /* PROPS */
-    , _hoisted_3), _hoisted_4], 32
+    , _hoisted_2), _hoisted_3], 32
     /* HYDRATE_EVENTS */
     )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]);
   }), 128
   /* KEYED_FRAGMENT */
-  )), $setup.game.state === 'triage' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  )), $setup.game.state === 'triage' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $setup.selectedColorCode(1);
     }),
@@ -2478,27 +2458,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $setup.selectedColorCode(4);
     }),
     "class": "bg-gray-800 h-36 lg:h-48 w-36 lg:w-48 rounded-lg shadow-md cursor-pointer hover:bg-gray-900"
-  })])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'priority' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  })])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'priority' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[4] || (_cache[4] = function ($event) {
       return $setup.selectedPriority(1);
     }),
     "class": "w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:bg-green-500 hover:text-white hover:shadow transition duration-150"
-  }, _hoisted_13)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, _hoisted_12)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[5] || (_cache[5] = function ($event) {
       return $setup.selectedPriority(2);
     }),
     "class": "w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:bg-green-500 hover:text-white hover:shadow transition duration-150"
-  }, _hoisted_16)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, _hoisted_15)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[6] || (_cache[6] = function ($event) {
       return $setup.selectedPriority(3);
     }),
     "class": "w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:bg-green-500 hover:text-white hover:shadow transition duration-150"
-  }, _hoisted_19)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, _hoisted_18)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[7] || (_cache[7] = function ($event) {
       return $setup.selectedPriority(4);
     }),
     "class": "w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:bg-green-500 hover:text-white hover:shadow transition duration-150"
-  }, _hoisted_22)])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'result' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Result"], {
+  }, _hoisted_21)])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'result' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Result"], {
     result: $setup.game.resultData,
     episode: $setup.questionsData[0].episode_id,
     traineeId: $setup.evaluation.traineeID
@@ -2536,7 +2516,7 @@ var _hoisted_2 = {
   "class": "w-3/5 bg-white shadow-lg watermark"
 };
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-center p-4 gap-2\" data-v-40a8d3c7><div class=\"p-2 flex border-r-2 border-indigo-200 gap-4\" data-v-40a8d3c7><div class=\"mb-4 w-20 h-20\" data-v-40a8d3c7><img src=\"/logos/first.jpeg\" class=\"max-w-full h-auto rounded-full\" alt=\"\" data-v-40a8d3c7></div><div class=\"mb-4 w-20 h-20\" data-v-40a8d3c7><img src=\"/logos/second.jpeg\" class=\"max-w-full h-auto rounded-full\" alt=\"\" data-v-40a8d3c7></div></div><div data-v-40a8d3c7><h1 class=\"text-3xl font-extrabold text-indigo-500\" data-v-40a8d3c7> Army Medical Corps Center &amp; School </h1><p class=\"text-base\" data-v-40a8d3c7> Shaheed Salahuddin Cantonment, Ghatail, Tangail, Bangladesh </p></div></div><div class=\"w-full h-0.5 bg-indigo-300\" data-v-40a8d3c7></div>", 2);
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-center p-4 gap-2\" data-v-40a8d3c7><div class=\"p-2 flex border-r-2 border-indigo-200 gap-4\" data-v-40a8d3c7><div class=\"mb-4 w-20 h-20\" data-v-40a8d3c7><img src=\"/logos/first.jpeg\" class=\"max-w-full h-auto rounded-full\" alt=\"\" data-v-40a8d3c7></div></div><div data-v-40a8d3c7><h1 class=\"text-3xl font-extrabold text-indigo-500\" data-v-40a8d3c7> Army Medical Corps Center &amp; School </h1><p class=\"text-base\" data-v-40a8d3c7> Shaheed Salahuddin Cantonment, Ghatail, Tangail, Bangladesh </p></div><div class=\"p-2 flex border-l-2 border-indigo-200 gap-4\" data-v-40a8d3c7><div class=\"mt-2 w-20 h-20\" data-v-40a8d3c7><img src=\"/logos/second.jpeg\" class=\"max-w-full h-auto rounded-full\" alt=\"\" data-v-40a8d3c7></div></div></div><div class=\"w-full h-0.5 bg-indigo-300\" data-v-40a8d3c7></div>", 2);
 
 var _hoisted_5 = {
   "class": "flex flex-row justify-center gap-52 items-center m-4"
@@ -2743,7 +2723,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.dateFormate()), 1
   /* TEXT */
-  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.marks), 1
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.marks) + " out of " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.totalMarks), 1
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.attempt), 1
   /* TEXT */
@@ -2864,6 +2844,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   allColorCode: function allColorCode() {
     return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/allColorCode");
+  },
+  getTraineeResults: function getTraineeResults() {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/getTraineeResults");
   }
 });
 

@@ -179,13 +179,17 @@
                   items-center
                 "
               >
-                <input
+                <!-- <input
                   :value="selecItem"
                   name="select"
                   id="select"
-                  class="px-4 appearance-none outline-none text-gray-800 w-full"
-                  checked
-                />
+                  
+                  disabled
+                  @click="openDropdown()"
+                /> -->
+                <div @click="openDropdown()" class="px-4 appearance-none outline-none text-gray-800 w-full cursor-pointer">
+                  {{selecItem}}
+                </div>
 
                 <button
                   class="
@@ -477,6 +481,8 @@ const submitForm = () => {
       questionData.value.colorCodeMark = null;
       questionData.value.priority = "";
       questionData.value.prioritMark = null;
+      videosrc.value = null
+      selecItem.value = "Select Color Code";
       //   console.log(res.data);
     })
     .catch((err) => {
