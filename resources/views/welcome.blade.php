@@ -9,7 +9,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
-    <body class="antialiased text-gray-700 bg-gray-100">
+    <body class="antialiased text-gray-700 bg-gray-50">
     <div id="app"></div>
     <script src="{{mix('js/app.js')}}"></script>
     </body>

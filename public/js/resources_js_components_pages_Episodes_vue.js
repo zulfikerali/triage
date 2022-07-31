@@ -2102,6 +2102,7 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     var goToPage = function goToPage() {
+      // router.push('/admin/episodes/questions')
       router.push('/start-game');
     };
 

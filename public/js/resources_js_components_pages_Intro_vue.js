@@ -124,7 +124,7 @@ var _hoisted_7 = /*#__PURE__*/_withScopeId(function () {
     "class": "font-black uppercase text-3xl text-yellow-500 mb-10"
   }, " PLANNED BY: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
     "class": "text-lg"
-  }, " LT COL SHAIKH MOHAMMAD MAMUNUR RASHID, MPH, FCGP, AMC CHIEF INSTRUCTOR ")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  }, " LT COL SHAIKH MOHAMMAD MAMUNUR RASHID "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, "MPH, FCGP, AMC"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " CHIEF INSTRUCTOR ")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "w-full md:w-1/2"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "mb-10 md:mb-20 text-gray-600 font-light"
@@ -132,7 +132,7 @@ var _hoisted_7 = /*#__PURE__*/_withScopeId(function () {
     "class": "font-black uppercase text-3xl text-yellow-500 mb-10"
   }, " GUIDED BY: "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
     "class": "text-lg"
-  }, " BRIGADIER GENERAL MD IQBAL HASAN, BGBM, M Phil, MPH, MDM, M MEd. COMMANDANT & PAPA HEALERS ")])])], -1
+  }, " BRIGADIER GENERAL MD IQBAL HASAN "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " BGBM, M Phil, MPH, MDM, M MEd. "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " COMMANDANT & PAPA HEALERS ")])])], -1
   /* HOISTED */
   );
 });

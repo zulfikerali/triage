@@ -7,6 +7,7 @@ use App\Models\Episode;
 use App\Models\Result;
 use App\Models\Question;
 use App\Models\ColorCode;
+use Owenoj\LaravelGetId3\GetId3;
 
 class EpisodeController extends Controller
 {
@@ -21,7 +22,8 @@ class EpisodeController extends Controller
     }
     public function getQuestions()
     {
-        return Episode::where('status', 1)->first()->questions()->inRandomOrder()->get();
+        return Episode::where('status', 1)->first()->questions;
+        //()->inRandomOrder()->get();
     }
     public function activeEpisode(Request $request)
     {
@@ -54,21 +56,26 @@ class EpisodeController extends Controller
     public function storeQuestion(Request $request)
     {
         // return $request->all();
-        $fileName = '';
+
         if($request->file){
+            $track = new GetId3(request()->file);
+            $video_length = $track->getPlaytime();
+            $vl = explode(":",$video_length);
+            $video_length_in_second =  ($vl[0] * 60) + $vl[1];
             $upload_path = public_path('videos');
             $fileName = 'ep_'.$request->episode.time().'.'.$request->file->getClientOriginalExtension();
             $request->file->move($upload_path, $fileName);
-        }
-        Question::create([
-            'episode_id' => $request->episode,
-            'video_path' => $fileName,
-            'color_code' => $request->colorCode,
-            'color_code_marks' => $request->colorCodeMark,
-            'priority' => $request->priority,
-            'priority_marks' => $request->prioritMark
 
-        ]);
+            Question::create([
+                'episode_id' => $request->episode,
+                'video_path' => $fileName,
+                'video_length' => $video_length_in_second,
+                'color_code' => $request->colorCode,
+                'color_code_marks' => $request->colorCodeMark,
+                'priority' => $request->priority,
+                'priority_marks' => $request->prioritMark
+            ]);
+        }
         return 'success';
     }
     public function allColorCode()

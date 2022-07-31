@@ -13472,6 +13472,11 @@ var Episodes = function Episodes() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_pages_Episodes_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/pages/Episodes.vue */ "./resources/js/components/pages/Episodes.vue"));
 };
 
+var EpisodeQuestions = function EpisodeQuestions() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_pages_EpisodeQuestions_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/pages/EpisodeQuestions.vue */ "./resources/js/components/pages/EpisodeQuestions.vue"));
+}; // const EpisodeQuestion = () => import('../components/pages/EpisodeQuestions.vue');
+
+
 var Introduction = function Introduction() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_pages_Intro_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/pages/Intro.vue */ "./resources/js/components/pages/Intro.vue"));
 };
@@ -13501,6 +13506,15 @@ var TraineeResults = function TraineeResults() {
   component: Episodes,
   name: 'Episodes'
 }, {
+  path: '/admin/episodes/questions',
+  component: EpisodeQuestions,
+  name: 'EpisodeQuestions'
+}, // {
+//     path: '/admin/episode/questions/:questionId',
+//     component: EpisodeQuestion,
+//     name: 'EpisodeQuestion',
+// },
+{
   path: '/',
   component: Introduction,
   name: 'Introduction'
@@ -24266,7 +24280,7 @@ function useRoute() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_pages_Home_vue":1,"resources_js_components_pages_Questions_vue":1,"resources_js_components_pages_Episodes_vue":1,"resources_js_components_pages_Intro_vue":1,"resources_js_components_pages_Result_vue":1,"resources_js_components_pages_CreateQuestion_vue":1,"resources_js_components_pages_TraineeResults_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_pages_Home_vue":1,"resources_js_components_pages_Questions_vue":1,"resources_js_components_pages_Episodes_vue":1,"resources_js_components_pages_EpisodeQuestions_vue":1,"resources_js_components_pages_Intro_vue":1,"resources_js_components_pages_Result_vue":1,"resources_js_components_pages_CreateQuestion_vue":1,"resources_js_components_pages_TraineeResults_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

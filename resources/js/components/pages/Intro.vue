@@ -100,8 +100,11 @@
               PLANNED BY:
             </h1>
             <p class="text-lg">
-              LT COL SHAIKH MOHAMMAD MAMUNUR RASHID, MPH, FCGP, AMC CHIEF
-              INSTRUCTOR
+              LT COL SHAIKH MOHAMMAD MAMUNUR RASHID
+            </p>
+            <p>MPH, FCGP, AMC</p>
+            <p>
+              CHIEF INSTRUCTOR
             </p>
           </div>
         </div>
@@ -111,7 +114,12 @@
               GUIDED BY:
             </h1>
             <p class="text-lg">
-              BRIGADIER GENERAL MD IQBAL HASAN, BGBM, M Phil, MPH, MDM, M MEd.
+              BRIGADIER GENERAL MD IQBAL HASAN
+            </p>
+            <p>
+              BGBM, M Phil, MPH, MDM, M MEd.
+            </p>
+            <p>
               COMMANDANT & PAPA HEALERS
             </p>
           </div>

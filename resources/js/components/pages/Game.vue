@@ -1,17 +1,4 @@
 <template>
-<!--    <div class="container mx-auto h-screen w-screen">-->
-<!--        <div class="flex items-center justify-center h-full">-->
-<!--            <div class="bg-white shadow-2xl p-6 rounded-2xl border-2 border-gray-50">-->
-<!--                <div class="flex flex-col">-->
-<!--                    <button type="button" class="inline-flex h-16 items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-purple-600 hover:bg-rose-500 focus:border-rose-700 active:bg-rose-700 transition ease-in-out duration-150 cursor-not-allowed" disabled="">-->
-<!--                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>-->
-<!--                        Processing-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
     <div v-show="game.timer">
         <div class="bg-transparent text-2xl text-thin text-gray-500 absolute right-2 top-2">
             {{ game.minutes + "m " + game.seconds + "s " }}
@@ -98,6 +85,7 @@
       ></div>
     </div>
   </div>
+
   <div
     v-if="game.state === 'priority'"
     class="
@@ -124,7 +112,7 @@
       <p
         class="
           text-2xl
-          lg:text-2xl
+          lg:text-5xl
           text-gray-500
           font-thin
           mt-4
@@ -234,11 +222,7 @@
     </div>
   </div>
   <div v-if="game.state === 'result'">
-    <Result
-      :result="game.resultData"
-      :episode="questionsData[0].episode_id"
-      :traineeId="evaluation.traineeID"
-    />
+    <Result :result="game.resultData" :episode="questionsData[0].episode_id" :traineeId='evaluation.traineeID'/>
   </div>
 </template>
 <script setup>
@@ -246,8 +230,8 @@ import { ref, onMounted, reactive } from "vue";
 import { useRoute } from "vue-router";
 import Result from "../pages/ResultReport.vue";
 // import axios from 'axios'
-import repository from "../../api/repository";
-const route = useRoute();
+import repository from "../../api/repository"
+const route = useRoute()
 const evaluation = reactive({
   traineeID: null,
   result: [],
@@ -256,18 +240,21 @@ const evaluation = reactive({
     correct: 0,
     wrong: 0,
     marks: 0,
-    totalMarks: 0,
     questions: 0,
   },
-});
-const questionsData = ref([]);
-const videoPlayer = ref(null);
-const isOpen = ref(false);
-const nextPage = ref(true);
-const video = document.getElementById("video");
+})
+const questionsData = ref([])
+const videoPlayer = ref(null)
+const isOpen = ref(false)
+const nextPage = ref(true)
+const video = document.getElementById("video")
+
 const game = reactive({
   current: 0,
   state: "video",
+  minutes: 0,
+  seconds: 0,
+  timer: null,
   questionAnswer: {
     questionID: null,
     selectedColorCode: null,
@@ -278,7 +265,7 @@ const game = reactive({
   resultData: [],
 });
 const gameStart = () => {
-    let countDownDate = new Date().getTime() + 122000
+    let countDownDate = new Date().getTime() + 102000
     game.timer = setInterval(() => {
         let now = new Date().getTime()
         let distance = countDownDate - now
@@ -315,15 +302,13 @@ const selectedColorCode = (code) => {
   evaluation.resultValue.attempt++;
   if (code == questionsData.value[game.current].color_code) {
     evaluation.resultValue.correct++;
-    evaluation.resultValue.marks +=
-      questionsData.value[game.current].color_code_marks;
+    evaluation.resultValue.marks += questionsData.value[game.current].color_code_marks;
   } else {
     evaluation.resultValue.wrong++;
   }
   game.questionAnswer.questionID = questionsData.value[game.current].id;
   game.questionAnswer.selectedColorCode = code;
-  game.questionAnswer.correctColorCode =
-    questionsData.value[game.current].color_code;
+  game.questionAnswer.correctColorCode = questionsData.value[game.current].color_code;
   game.state = "priority";
 };
 
@@ -331,8 +316,7 @@ const selectedPriority = (code) => {
   evaluation.resultValue.attempt++;
   if (code == questionsData.value[game.current].priority) {
     evaluation.resultValue.correct++;
-    evaluation.resultValue.marks +=
-      questionsData.value[game.current].priority_marks;
+    evaluation.resultValue.marks += questionsData.value[game.current].priority_marks;
   } else {
     evaluation.resultValue.wrong++;
   }
@@ -343,20 +327,7 @@ const selectedPriority = (code) => {
   evaluation.result.push(clone);
   game.current++;
   if (questionsData.value.length == game.current) {
-    evaluation.traineeID = route.query.traineeID;
-    evaluation.resultValue.questions = questionsData.value.length;
-    repository
-      .storeResult({ evaluation: evaluation })
-      .then((res) => {
-        let resData = { ...evaluation.resultValue };
-        game.resultData = resData;
-        game.state = "result";
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log(evaluation);
-    // return
+      gameEnd()
   }
   game.state = "video";
 };
@@ -374,20 +345,12 @@ onMounted(() => {
     .questions()
     .then((res) => {
       questionsData.value = res.data;
-      evaluation.resultValue.totalMarks = sumTotal(res.data)
+      console.log(res.data);
     })
     .catch((err) => {
       console.log(err.message);
     });
 });
-const sumTotal = (array) => {
-  let sum = 0;
-
-  for (let i = 0; i < array.length; i++) {
-    sum += array[i].color_code_marks + array[i].priority_marks;
-  }
-  return sum;
-};
 </script>
 
 <style scoped>

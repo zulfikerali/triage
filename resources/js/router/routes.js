@@ -1,6 +1,8 @@
 const Home = () => import('../components/pages/Home.vue');
 const Questions = () => import('../components/pages/Questions.vue');
 const Episodes = () => import('../components/pages/Episodes.vue');
+const EpisodeQuestions = () => import('../components/pages/EpisodeQuestions.vue');
+// const EpisodeQuestion = () => import('../components/pages/EpisodeQuestions.vue');
 const Introduction = () => import('../components/pages/Intro.vue');
 const Result = () => import('../components/pages/Result.vue');
 const CreateQuestion = () => import('../components/pages/CreateQuestion.vue');
@@ -24,6 +26,16 @@ export default [
         name: 'Episodes',
 
     },
+    {
+        path: '/admin/episodes/questions',
+        component: EpisodeQuestions,
+        name: 'EpisodeQuestions',
+    },
+    // {
+    //     path: '/admin/episode/questions/:questionId',
+    //     component: EpisodeQuestion,
+    //     name: 'EpisodeQuestion',
+    // },
     {
         path: '/',
         component: Introduction,

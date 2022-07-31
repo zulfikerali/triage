@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <div class="w-3/5 bg-white shadow-lg watermark">
-      <div class="flex justify-center p-4 gap-2">
+      <div class="flex justify-center p-4 gap-6">
         <div class="p-2 flex border-r-2 border-indigo-200 gap-4">
           <div class="mb-4 w-20 h-20">
             <img
