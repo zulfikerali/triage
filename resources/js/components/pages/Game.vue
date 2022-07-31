@@ -1,17 +1,4 @@
 <template>
-<!--    <div class="container mx-auto h-screen w-screen">-->
-<!--        <div class="flex items-center justify-center h-full">-->
-<!--            <div class="bg-white shadow-2xl p-6 rounded-2xl border-2 border-gray-50">-->
-<!--                <div class="flex flex-col">-->
-<!--                    <button type="button" class="inline-flex h-16 items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-purple-600 hover:bg-rose-500 focus:border-rose-700 active:bg-rose-700 transition ease-in-out duration-150 cursor-not-allowed" disabled="">-->
-<!--                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>-->
-<!--                        Processing-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
     <div v-show="game.timer">
         <div class="bg-transparent text-2xl text-thin text-gray-500 absolute right-2 top-2">
             {{ game.minutes + "m " + game.seconds + "s " }}
@@ -278,7 +265,7 @@ const game = reactive({
   resultData: [],
 });
 const gameStart = () => {
-    let countDownDate = new Date().getTime() + 122000
+    let countDownDate = new Date().getTime() + 102000
     game.timer = setInterval(() => {
         let now = new Date().getTime()
         let distance = countDownDate - now

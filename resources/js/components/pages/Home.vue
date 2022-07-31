@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="min-h-screen">
   <h1 class="font-bold text-4xl text-center text-indigo-700 flex-none mt-5">
     Enter Your ID then click start button to start your test.
   </h1>
