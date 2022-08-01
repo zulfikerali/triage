@@ -1008,6 +1008,9 @@ video {
 .border-2 {
   border-width: 2px;
 }
+.border-4 {
+  border-width: 4px;
+}
 .border-t {
   border-top-width: 1px;
 }
@@ -1062,6 +1065,10 @@ video {
 .border-indigo-200 {
   --tw-border-opacity: 1;
   border-color: rgb(199 210 254 / var(--tw-border-opacity));
+}
+.border-blue-500 {
+  --tw-border-opacity: 1;
+  border-color: rgb(59 130 246 / var(--tw-border-opacity));
 }
 .bg-gray-50 {
   --tw-bg-opacity: 1;
@@ -1257,6 +1264,10 @@ video {
 .py-0 {
   padding-top: 0px;
   padding-bottom: 0px;
+}
+.px-16 {
+  padding-left: 4rem;
+  padding-right: 4rem;
 }
 .pt-8 {
   padding-top: 2rem;

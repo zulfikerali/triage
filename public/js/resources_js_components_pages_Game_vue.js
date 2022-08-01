@@ -2100,9 +2100,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var videoPlayer = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
     var nextPage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(true);
     var video = document.getElementById("video");
+    var priorities = ['One', 'Two', 'Three', 'Four'];
     var game = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       current: 0,
-      state: "video",
+      state: "triage",
       minutes: 0,
       seconds: 0,
       timer: null,
@@ -2152,23 +2153,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       game.state = "triage";
     };
 
-    var selectedColorCode = function selectedColorCode(code) {
-      evaluation.resultValue.attempt++;
-
-      if (code == questionsData.value[game.current].color_code) {
-        evaluation.resultValue.correct++;
-        evaluation.resultValue.marks += questionsData.value[game.current].color_code_marks;
-      } else {
-        evaluation.resultValue.wrong++;
-      }
-
-      game.questionAnswer.questionID = questionsData.value[game.current].id;
+    var setColorCode = function setColorCode(code) {
       game.questionAnswer.selectedColorCode = code;
-      game.questionAnswer.correctColorCode = questionsData.value[game.current].color_code;
+    };
+
+    var colorCodeSubmit = function colorCodeSubmit() {
+      // evaluation.resultValue.attempt++;
+      // if (code == questionsData.value[game.current].color_code) {
+      //   evaluation.resultValue.correct++;
+      //   evaluation.resultValue.marks += questionsData.value[game.current].color_code_marks;
+      // } else {
+      //   evaluation.resultValue.wrong++;
+      // }
+      // game.questionAnswer.questionID = questionsData.value[game.current].id;
+      // game.questionAnswer.selectedColorCode = code;
+      // game.questionAnswer.correctColorCode = questionsData.value[game.current].color_code;
       game.state = "priority";
     };
 
-    var selectedPriority = function selectedPriority(code) {
+    var setPriority = function setPriority(code) {
+      game.questionAnswer.selectedPriority = code;
+    };
+
+    var prioritySubmit = function prioritySubmit(code) {
       evaluation.resultValue.attempt++;
 
       if (code == questionsData.value[game.current].priority) {
@@ -2213,12 +2220,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       videoPlayer: videoPlayer,
       nextPage: nextPage,
       video: video,
+      priorities: priorities,
       game: game,
       gameStart: gameStart,
       gameEnd: gameEnd,
       onended: onended,
-      selectedColorCode: selectedColorCode,
-      selectedPriority: selectedPriority,
+      setColorCode: setColorCode,
+      colorCodeSubmit: colorCodeSubmit,
+      setPriority: setPriority,
+      prioritySubmit: prioritySubmit,
       gotoNextPage: gotoNextPage,
       ref: vue__WEBPACK_IMPORTED_MODULE_0__.ref,
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
@@ -2388,86 +2398,119 @@ var _hoisted_13 = /*#__PURE__*/_withScopeId(function () {
 var _hoisted_14 = {
   "class": "grid grid-rows-2 grid-flow-col gap-4 justify-center p-3"
 };
+var _hoisted_15 = {
+  key: 0,
+  "class": "h-8 w-8",
+  viewBox: "0 0 448 512",
+  fill: "white"
+};
 
-var _hoisted_15 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "text-center"
-  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "px-6 py-2 bg-blue-500 text-white rounded-3xl hover:bg-blue-700"
-  }, "SUBMIT")], -1
+var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+    d: "M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"
+  }, null, -1
   /* HOISTED */
   );
 });
 
-var _hoisted_16 = {
+var _hoisted_17 = [_hoisted_16];
+var _hoisted_18 = {
+  key: 0,
+  "class": "h-8 w-8",
+  viewBox: "0 0 448 512",
+  fill: "white"
+};
+
+var _hoisted_19 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+    d: "M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"
+  }, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_20 = [_hoisted_19];
+var _hoisted_21 = {
+  key: 0,
+  "class": "h-8 w-8",
+  viewBox: "0 0 448 512",
+  fill: "white"
+};
+
+var _hoisted_22 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+    d: "M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"
+  }, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_23 = [_hoisted_22];
+var _hoisted_24 = {
+  key: 0,
+  "class": "h-8 w-8",
+  viewBox: "0 0 448 512",
+  fill: "white"
+};
+
+var _hoisted_25 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+    d: "M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"
+  }, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_26 = [_hoisted_25];
+var _hoisted_27 = {
+  "class": "text-center"
+};
+var _hoisted_28 = {
   key: 3,
   "class": "antialiased bg-slate-200 w-full h-screen flex justify-center flex-col"
 };
-var _hoisted_17 = {
+var _hoisted_29 = {
   "class": "max-w-lg mx-3 md:mx-auto bg-white p-8 rounded-xl shadow shadow-slate-300"
 };
 
-var _hoisted_18 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_30 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-    "class": "text-2xl lg:text-5xl text-gray-500 font-thin mt-4 mb-10 text-center"
+    "class": "text-2xl text-gray-500 font-thin mt-4 mb-10 text-center"
   }, " What the priority for this victim? ", -1
   /* HOISTED */
   );
 });
 
-var _hoisted_19 = {
-  "class": "my-5"
-};
-
-var _hoisted_20 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "text-lg lg:text-xl"
-  }, "One", -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_21 = [_hoisted_20];
-var _hoisted_22 = {
-  "class": "my-5"
-};
-
-var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "text-lg lg:text-xl"
-  }, "Two", -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_24 = [_hoisted_23];
-var _hoisted_25 = {
-  "class": "my-5"
-};
-
-var _hoisted_26 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "text-lg lg:text-xl"
-  }, "Three", -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_27 = [_hoisted_26];
-var _hoisted_28 = {
-  "class": "my-5"
-};
-
-var _hoisted_29 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-    "class": "text-lg lg:text-xl"
-  }, "Four", -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_30 = [_hoisted_29];
 var _hoisted_31 = {
+  "class": "my-5"
+};
+var _hoisted_32 = ["onClick"];
+var _hoisted_33 = {
+  "class": "absolute right-2"
+};
+var _hoisted_34 = {
+  key: 0,
+  "class": "h-8 w-8",
+  viewBox: "0 0 448 512",
+  fill: "white"
+};
+
+var _hoisted_35 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+    d: "M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"
+  }, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_36 = [_hoisted_35];
+var _hoisted_37 = {
+  "class": "text-lg lg:text-xl"
+};
+var _hoisted_38 = {
+  "class": "text-center"
+};
+var _hoisted_39 = {
   key: 4
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -2506,45 +2549,50 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "bg-indigo-600 text-white px-6 text-lg font-semibold py-2 rounded-r-md"
   }, " Start ")])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'triage' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[4] || (_cache[4] = function ($event) {
-      return $setup.selectedColorCode(1);
+      return $setup.setColorCode(1);
     }),
-    "class": "bg-red-500 h-36 lg:h-48 w-36 lg:w-48 rounded-lg shadow-md cursor-pointer hover:bg-red-700"
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "flex items-center justify-center bg-red-500 h-36 lg:h-48 w-36 lg:w-48 rounded-lg shadow-md cursor-pointer hover:bg-red-700"
+  }, [$setup.game.questionAnswer.selectedColorCode == 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_15, _hoisted_17)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[5] || (_cache[5] = function ($event) {
-      return $setup.selectedColorCode(3);
+      return $setup.setColorCode(3);
     }),
-    "class": "bg-green-500 h-36 lg:h-48 w-36 lg:w-48 rounded-lg shadow-md cursor-pointer hover:bg-green-700"
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "flex items-center justify-center bg-green-500 h-36 lg:h-48 w-36 lg:w-48 rounded-lg shadow-md cursor-pointer hover:bg-green-700"
+  }, [$setup.game.questionAnswer.selectedColorCode == 3 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_18, _hoisted_20)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[6] || (_cache[6] = function ($event) {
-      return $setup.selectedColorCode(2);
+      return $setup.setColorCode(2);
     }),
-    "class": "bg-yellow-400 h-36 lg:h-48 w-36 lg:w-48 rounded-lg shadow-md cursor-pointer hover:bg-yellow-600"
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "flex items-center justify-center bg-yellow-400 h-36 lg:h-48 w-36 lg:w-48 rounded-lg shadow-md cursor-pointer hover:bg-yellow-600"
+  }, [$setup.game.questionAnswer.selectedColorCode == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_21, _hoisted_23)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[7] || (_cache[7] = function ($event) {
-      return $setup.selectedColorCode(4);
+      return $setup.setColorCode(4);
     }),
-    "class": "bg-gray-800 h-36 lg:h-48 w-36 lg:w-48 rounded-lg shadow-md cursor-pointer hover:bg-gray-900"
-  })]), _hoisted_15])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'priority' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[8] || (_cache[8] = function ($event) {
-      return $setup.selectedPriority(1);
-    }),
-    "class": "w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:bg-green-500 hover:text-white hover:shadow transition duration-150"
-  }, _hoisted_21)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[9] || (_cache[9] = function ($event) {
-      return $setup.selectedPriority(2);
-    }),
-    "class": "w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:bg-green-500 hover:text-white hover:shadow transition duration-150"
-  }, _hoisted_24)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[10] || (_cache[10] = function ($event) {
-      return $setup.selectedPriority(3);
-    }),
-    "class": "w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:bg-green-500 hover:text-white hover:shadow transition duration-150"
-  }, _hoisted_27)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[11] || (_cache[11] = function ($event) {
-      return $setup.selectedPriority(4);
-    }),
-    "class": "w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg text-slate-700 hover:bg-green-500 hover:text-white hover:shadow transition duration-150"
-  }, _hoisted_30)])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'result' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Result"], {
+    "class": "flex items-center justify-center bg-gray-800 h-36 lg:h-48 w-36 lg:w-48 rounded-lg shadow-md cursor-pointer hover:bg-gray-900"
+  }, [$setup.game.questionAnswer.selectedColorCode == 4 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_24, _hoisted_26)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: $setup.colorCodeSubmit,
+    "class": "px-16 py-2 mt-2 bg-blue-500 text-white shadow-md rounded-3xl hover:bg-blue-700"
+  }, " SUBMIT ", 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.game.questionAnswer.selectedColorCode != null]])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'priority' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_29, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.priorities, function (priority, index) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      onClick: function onClick($event) {
+        return $setup.setPriority(index + 1);
+      },
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
+        'bg-green-500 text-white': $setup.game.questionAnswer.selectedPriority == index + 1
+      }, "relative w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg hover:bg-green-500 hover:text-white hover:shadow transition duration-150"])
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_33, [$setup.game.questionAnswer.selectedPriority == index + 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_34, _hoisted_36)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(priority), 1
+    /* TEXT */
+    )], 10
+    /* CLASS, PROPS */
+    , _hoisted_32);
+  }), 64
+  /* STABLE_FRAGMENT */
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: $setup.colorCodeSubmit,
+    "class": "px-16 py-2 mt-2 bg-blue-500 text-white shadow-md rounded-3xl hover:bg-blue-700"
+  }, " SUBMIT ", 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.game.questionAnswer.selectedPriority != null]])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'result' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Result"], {
     result: $setup.game.resultData,
     episode: $setup.questionsData[0].episode_id,
     traineeId: $setup.evaluation.traineeID
