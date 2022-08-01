@@ -2102,7 +2102,8 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     var goToPage = function goToPage() {
-      router.push('/admin/episodes/questions'); // router.push('/start-game')
+      // router.push('/admin/episodes/questions')
+      router.push('/game'); // router.push('/start-game')
     };
 
     var commingSoon = function commingSoon() {
@@ -2330,6 +2331,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   allColorCode: function allColorCode() {
     return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/allColorCode");
+  },
+  getTraineeResults: function getTraineeResults() {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/getTraineeResults");
   }
 });
 

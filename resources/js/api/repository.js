@@ -22,6 +22,9 @@ export default {
     return api.post(`/storeQuestion`, questionData)
   },
   allColorCode () {
-    return api.get(`/allColorCode` )
+    return api.get(`/allColorCode`)
+  },
+  getTraineeResults () {
+    return api.get(`/getTraineeResults`)
   }
 }

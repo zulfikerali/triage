@@ -98,7 +98,6 @@
       ></div>
     </div>
   </div>
-
   <div
     v-if="game.state === 'priority'"
     class="
@@ -125,7 +124,7 @@
       <p
         class="
           text-2xl
-          lg:text-5xl
+          lg:text-2xl
           text-gray-500
           font-thin
           mt-4
@@ -235,7 +234,11 @@
     </div>
   </div>
   <div v-if="game.state === 'result'">
-    <Result :result="game.resultData" :episode="questionsData[0].episode_id" :traineeId='evaluation.traineeID'/>
+    <Result
+      :result="game.resultData"
+      :episode="questionsData[0].episode_id"
+      :traineeId="evaluation.traineeID"
+    />
   </div>
 </template>
 <script setup>
@@ -243,8 +246,8 @@ import { ref, onMounted, reactive } from "vue";
 import { useRoute } from "vue-router";
 import Result from "../pages/ResultReport.vue";
 // import axios from 'axios'
-import repository from "../../api/repository"
-const route = useRoute()
+import repository from "../../api/repository";
+const route = useRoute();
 const evaluation = reactive({
   traineeID: null,
   result: [],
@@ -253,21 +256,18 @@ const evaluation = reactive({
     correct: 0,
     wrong: 0,
     marks: 0,
+    totalMarks: 0,
     questions: 0,
   },
-})
-const questionsData = ref([])
-const videoPlayer = ref(null)
-const isOpen = ref(false)
-const nextPage = ref(true)
-const video = document.getElementById("video")
-
+});
+const questionsData = ref([]);
+const videoPlayer = ref(null);
+const isOpen = ref(false);
+const nextPage = ref(true);
+const video = document.getElementById("video");
 const game = reactive({
   current: 0,
   state: "video",
-  minutes: 0,
-  seconds: 0,
-  timer: null,
   questionAnswer: {
     questionID: null,
     selectedColorCode: null,
@@ -276,6 +276,10 @@ const game = reactive({
     correctPriority: null,
   },
   resultData: [],
+  minutes: 0,
+  seconds: 0,
+  timer: null
+
 });
 const gameStart = () => {
     let countDownDate = new Date().getTime() + 122000
@@ -305,6 +309,19 @@ const gameEnd = () => {
             console.log(err);
         });
     console.log(evaluation);
+    //  evaluation.traineeID = route.query.traineeID;
+    // evaluation.resultValue.questions = questionsData.value.length;
+    // repository
+    //   .storeResult({ evaluation: evaluation })
+    //   .then((res) => {
+    //     let resData = { ...evaluation.resultValue };
+    //     game.resultData = resData;
+    //     game.state = "result";
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    console.log(evaluation);
     // return
 }
 const onended = () => {
@@ -315,13 +332,15 @@ const selectedColorCode = (code) => {
   evaluation.resultValue.attempt++;
   if (code == questionsData.value[game.current].color_code) {
     evaluation.resultValue.correct++;
-    evaluation.resultValue.marks += questionsData.value[game.current].color_code_marks;
+    evaluation.resultValue.marks +=
+      questionsData.value[game.current].color_code_marks;
   } else {
     evaluation.resultValue.wrong++;
   }
   game.questionAnswer.questionID = questionsData.value[game.current].id;
   game.questionAnswer.selectedColorCode = code;
-  game.questionAnswer.correctColorCode = questionsData.value[game.current].color_code;
+  game.questionAnswer.correctColorCode =
+    questionsData.value[game.current].color_code;
   game.state = "priority";
 };
 
@@ -329,7 +348,8 @@ const selectedPriority = (code) => {
   evaluation.resultValue.attempt++;
   if (code == questionsData.value[game.current].priority) {
     evaluation.resultValue.correct++;
-    evaluation.resultValue.marks += questionsData.value[game.current].priority_marks;
+    evaluation.resultValue.marks +=
+      questionsData.value[game.current].priority_marks;
   } else {
     evaluation.resultValue.wrong++;
   }
@@ -340,7 +360,8 @@ const selectedPriority = (code) => {
   evaluation.result.push(clone);
   game.current++;
   if (questionsData.value.length == game.current) {
-      gameEnd()
+    gameEnd()
+    // return
   }
   game.state = "video";
 };
@@ -358,12 +379,20 @@ onMounted(() => {
     .questions()
     .then((res) => {
       questionsData.value = res.data;
-      console.log(res.data);
+      evaluation.resultValue.totalMarks = sumTotal(res.data)
     })
     .catch((err) => {
       console.log(err.message);
     });
 });
+const sumTotal = (array) => {
+  let sum = 0;
+
+  for (let i = 0; i < array.length; i++) {
+    sum += array[i].color_code_marks + array[i].priority_marks;
+  }
+  return sum;
+};
 </script>
 
 <style scoped>

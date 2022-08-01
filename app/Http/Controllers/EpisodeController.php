@@ -82,4 +82,8 @@ class EpisodeController extends Controller
     {
         return ColorCode::all();
     }
+    public function getTraineeResults()
+    {
+        return Episode::with('results:id,trainee_id,episode_id')->whereHas('results')->get();
+    }
 }

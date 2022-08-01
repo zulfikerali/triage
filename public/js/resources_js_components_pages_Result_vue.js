@@ -2242,7 +2242,7 @@ var _hoisted_2 = {
   "class": "w-3/5 bg-white shadow-lg watermark"
 };
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-center p-4 gap-2\" data-v-40a8d3c7><div class=\"p-2 flex border-r-2 border-indigo-200 gap-4\" data-v-40a8d3c7><div class=\"mb-4 w-20 h-20\" data-v-40a8d3c7><img src=\"/logos/first.jpeg\" class=\"max-w-full h-auto rounded-full\" alt=\"\" data-v-40a8d3c7></div><div class=\"mb-4 w-20 h-20\" data-v-40a8d3c7><img src=\"/logos/second.jpeg\" class=\"max-w-full h-auto rounded-full\" alt=\"\" data-v-40a8d3c7></div></div><div data-v-40a8d3c7><h1 class=\"text-3xl font-extrabold text-indigo-500\" data-v-40a8d3c7> Army Medical Corps Center &amp; School </h1><p class=\"text-base\" data-v-40a8d3c7> Shaheed Salahuddin Cantonment, Ghatail, Tangail, Bangladesh </p></div></div><div class=\"w-full h-0.5 bg-indigo-300\" data-v-40a8d3c7></div>", 2);
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-center p-4 gap-6\" data-v-40a8d3c7><div class=\"p-2 flex border-r-2 border-indigo-200 gap-4\" data-v-40a8d3c7><div class=\"mb-4 w-20 h-20\" data-v-40a8d3c7><img src=\"/logos/first.jpeg\" class=\"max-w-full h-auto rounded-full\" alt=\"\" data-v-40a8d3c7></div></div><div data-v-40a8d3c7><h1 class=\"text-3xl font-extrabold text-indigo-500\" data-v-40a8d3c7> Army Medical Corps Center &amp; School </h1><p class=\"text-base\" data-v-40a8d3c7> Shaheed Salahuddin Cantonment, Ghatail, Tangail, Bangladesh </p></div><div class=\"p-2 flex border-l-2 border-indigo-200 gap-4\" data-v-40a8d3c7><div class=\"mt-2 w-20 h-20\" data-v-40a8d3c7><img src=\"/logos/second.jpeg\" class=\"max-w-full h-auto rounded-full\" alt=\"\" data-v-40a8d3c7></div></div></div><div class=\"w-full h-0.5 bg-indigo-300\" data-v-40a8d3c7></div>", 2);
 
 var _hoisted_5 = {
   "class": "flex flex-row justify-center gap-52 items-center m-4"
@@ -2449,7 +2449,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.dateFormate()), 1
   /* TEXT */
-  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.marks), 1
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.marks) + " out of " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.totalMarks), 1
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.attempt), 1
   /* TEXT */
@@ -2570,6 +2570,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   allColorCode: function allColorCode() {
     return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/allColorCode");
+  },
+  getTraineeResults: function getTraineeResults() {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/getTraineeResults");
   }
 });
 
@@ -2592,7 +2595,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.watermark[data-v-40a8d3c7] {\n  background-image: url(\"/logos/watermark.png\");\n  background-repeat: no-repeat;\n  background-attachment: fixed;\n  background-position: center;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.watermark[data-v-40a8d3c7] {\r\n  background-image: url(\"/logos/watermark.png\");\r\n  background-repeat: no-repeat;\r\n  background-attachment: fixed;\r\n  background-position: center;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

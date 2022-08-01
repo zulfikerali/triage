@@ -2128,7 +2128,9 @@ __webpack_require__.r(__webpack_exports__);
         questionData.value.colorCode = "";
         questionData.value.colorCodeMark = null;
         questionData.value.priority = "";
-        questionData.value.prioritMark = null; //   console.log(res.data);
+        questionData.value.prioritMark = null;
+        videosrc.value = null;
+        selecItem.value = "Select Color Code"; //   console.log(res.data);
       })["catch"](function (err) {
         console.log(err);
       });
@@ -2328,66 +2330,65 @@ var _hoisted_34 = {
 var _hoisted_35 = {
   "class": "h-10 bg-white flex border border-gray-200 rounded items-center"
 };
-var _hoisted_36 = ["value"];
 
-var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_36 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "cursor-pointer outline-none focus:outline-none transition-all text-gray-300 hover:text-gray-600"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("polyline", {
+var _hoisted_37 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("polyline", {
   points: "18 15 12 9 6 15"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_39 = [_hoisted_38];
-var _hoisted_40 = {
+var _hoisted_38 = [_hoisted_37];
+var _hoisted_39 = {
   key: 0,
   "class": "absolute rounded shadow bg-white overflow-hidden peer-checked:flex flex-col w-full mt-1 border border-gray-200"
 };
-var _hoisted_41 = ["onClick"];
-var _hoisted_42 = {
+var _hoisted_40 = ["onClick"];
+var _hoisted_41 = {
   "class": "w-full md:w-full px-1 mb-6"
 };
 
-var _hoisted_43 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "colorcodemarks",
   "class": "block text-sm font-medium text-gray-700 mb-1"
 }, "Color Code Marks", -1
 /* HOISTED */
 );
 
-var _hoisted_44 = {
+var _hoisted_43 = {
   "class": "w-full flex items-center justify-between px-1 mb-3"
 };
-var _hoisted_45 = {
+var _hoisted_44 = {
   "class": "w-full md:w-full px-3 mb-6"
 };
 
-var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_45 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "priority",
   "class": "block text-sm font-medium text-gray-700"
 }, "Priority", -1
 /* HOISTED */
 );
 
-var _hoisted_47 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"\" disabled>Select Priority</option><option value=\"1\">One</option><option value=\"2\">Two</option><option value=\"3\">Three</option><option value=\"4\">Four</option>", 5);
+var _hoisted_46 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<option value=\"\" disabled>Select Priority</option><option value=\"1\">One</option><option value=\"2\">Two</option><option value=\"3\">Three</option><option value=\"4\">Four</option>", 5);
 
-var _hoisted_52 = [_hoisted_47];
-var _hoisted_53 = {
+var _hoisted_51 = [_hoisted_46];
+var _hoisted_52 = {
   "class": "w-full md:w-full px-1 mb-6"
 };
 
-var _hoisted_54 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_53 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "for": "prioritymarks",
   "class": "block text-sm font-medium text-gray-700 mb-1"
 }, "Priority Marks", -1
 /* HOISTED */
 );
 
-var _hoisted_55 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_54 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "w-full md:w-full px-1 mb-6"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   type: "submit",
@@ -2429,16 +2430,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
   }, _hoisted_30, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.questionData.episode]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <label\r\n              for=\"colorcode\"\r\n              class=\"block text-sm font-medium text-gray-700\"\r\n              >Color Code</label\r\n            >\r\n            <select\r\n              id=\"colorcode\"\r\n              v-model=\"questionData.colorCode\"\r\n              class=\"\r\n                mt-1\r\n                block\r\n                w-full\r\n                py-2\r\n                px-3\r\n                border border-gray-300\r\n                bg-white\r\n                rounded-md\r\n                shadow-sm\r\n                sm:text-sm\r\n              \"\r\n            >\r\n              <option value=\"\" disabled>Select Color Code</option>\r\n              <option class=\"bg-red-500 text-white\" value=\"1\">Red</option>\r\n              <option class=\"bg-yellow-500 text-white\" value=\"2\">Yellow</option>\r\n              <option class=\"bg-green-500 text-white\" value=\"3\">Green</option>\r\n              <option class=\"bg-gray-500 text-white\" value=\"4\">Black</option>\r\n            </select> "), _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-    value: $setup.selecItem,
-    name: "select",
-    id: "select",
-    "class": "px-4 appearance-none outline-none text-gray-800 w-full",
-    checked: ""
-  }, null, 8
-  /* PROPS */
-  , _hoisted_36), _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.questionData.episode]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <label\r\n              for=\"colorcode\"\r\n              class=\"block text-sm font-medium text-gray-700\"\r\n              >Color Code</label\r\n            >\r\n            <select\r\n              id=\"colorcode\"\r\n              v-model=\"questionData.colorCode\"\r\n              class=\"\r\n                mt-1\r\n                block\r\n                w-full\r\n                py-2\r\n                px-3\r\n                border border-gray-300\r\n                bg-white\r\n                rounded-md\r\n                shadow-sm\r\n                sm:text-sm\r\n              \"\r\n            >\r\n              <option value=\"\" disabled>Select Color Code</option>\r\n              <option class=\"bg-red-500 text-white\" value=\"1\">Red</option>\r\n              <option class=\"bg-yellow-500 text-white\" value=\"2\">Yellow</option>\r\n              <option class=\"bg-green-500 text-white\" value=\"3\">Green</option>\r\n              <option class=\"bg-gray-500 text-white\" value=\"4\">Black</option>\r\n            </select> "), _hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input\r\n                  :value=\"selecItem\"\r\n                  name=\"select\"\r\n                  id=\"select\"\r\n                  \r\n                  disabled\r\n                  @click=\"openDropdown()\"\r\n                /> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[2] || (_cache[2] = function ($event) {
+      return $setup.openDropdown();
+    }),
+    "class": "px-4 appearance-none outline-none text-gray-800 w-full cursor-pointer"
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.selecItem), 1
+  /* TEXT */
+  ), _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+    onClick: _cache[3] || (_cache[3] = function ($event) {
       return $setup.openDropdown();
     }),
     "for": "show_more",
@@ -2451,9 +2451,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "stroke-width": "2",
     "stroke-linecap": "round",
     "stroke-linejoin": "round"
-  }, _hoisted_39, 2
+  }, _hoisted_38, 2
   /* CLASS */
-  ))])]), $setup.dropdown ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_40, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.colorCodes, function (cc) {
+  ))])]), $setup.dropdown ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_39, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.colorCodes, function (cc) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "cursor-pointer group",
       key: cc.id
@@ -2464,12 +2464,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["block p-2 border-transparent border-l-4 group-hover:border-blue-300 text-white", [$setup.bgColor(cc.id), $setup.questionData.colorCode == cc.id ? 'border-blue-300' : '']])
     }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(cc.color_code_name), 11
     /* TEXT, CLASS, PROPS */
-    , _hoisted_41)]);
+    , _hoisted_40)]);
   }), 128
   /* KEYED_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"cursor-pointer group\">\r\n                  <a\r\n                    class=\"\r\n                      block\r\n                      p-2\r\n                      border-transparent border-l-4\r\n                      bg-yellow-500\r\n                      group-hover:border-blue-300 group-hover:bg-yellow-600\r\n                      text-white\r\n                    \"\r\n                    >Yellow</a\r\n                  >\r\n                </div>\r\n                <div class=\"cursor-pointer group\">\r\n                  <a\r\n                    class=\"\r\n                      block\r\n                      p-2\r\n                      border-transparent border-l-4\r\n                      bg-green-500\r\n                      group-hover:border-blue-300 group-hover:bg-green-600\r\n                      text-white\r\n                    \"\r\n                    >Green</a\r\n                  >\r\n                </div>\r\n                <div class=\"cursor-pointer group\">\r\n                  <a\r\n                    class=\"\r\n                      block\r\n                      p-2\r\n                      border-transparent border-l-4\r\n                      bg-gray-800\r\n                      group-hover:border-blue-300 group-hover:bg-gray-900\r\n                      text-white\r\n                    \"\r\n                    >Black</a\r\n                  >\r\n                </div> ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_42, [_hoisted_43, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"cursor-pointer group\">\r\n                  <a\r\n                    class=\"\r\n                      block\r\n                      p-2\r\n                      border-transparent border-l-4\r\n                      bg-yellow-500\r\n                      group-hover:border-blue-300 group-hover:bg-yellow-600\r\n                      text-white\r\n                    \"\r\n                    >Yellow</a\r\n                  >\r\n                </div>\r\n                <div class=\"cursor-pointer group\">\r\n                  <a\r\n                    class=\"\r\n                      block\r\n                      p-2\r\n                      border-transparent border-l-4\r\n                      bg-green-500\r\n                      group-hover:border-blue-300 group-hover:bg-green-600\r\n                      text-white\r\n                    \"\r\n                    >Green</a\r\n                  >\r\n                </div>\r\n                <div class=\"cursor-pointer group\">\r\n                  <a\r\n                    class=\"\r\n                      block\r\n                      p-2\r\n                      border-transparent border-l-4\r\n                      bg-gray-800\r\n                      group-hover:border-blue-300 group-hover:bg-gray-900\r\n                      text-white\r\n                    \"\r\n                    >Black</a\r\n                  >\r\n                </div> ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [_hoisted_42, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     id: "colorcodemarks",
-    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $setup.questionData.colorCodeMark = $event;
     }),
     placeholder: "Enter color code mark",
@@ -2477,17 +2477,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "number"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.questionData.colorCodeMark]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_45, [_hoisted_46, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.questionData.colorCodeMark]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_43, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_44, [_hoisted_45, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     id: "priority",
-    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
       return $setup.questionData.priority = $event;
     }),
     "class": "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-  }, _hoisted_52, 512
+  }, _hoisted_51, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.questionData.priority]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_53, [_hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $setup.questionData.priority]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_52, [_hoisted_53, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     id: "prioritymarks",
-    "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+    "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
       return $setup.questionData.prioritMark = $event;
     }),
     placeholder: "Enter priority mark",
@@ -2495,7 +2495,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "number"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.questionData.prioritMark]])])]), _hoisted_55])], 40
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.questionData.prioritMark]])])]), _hoisted_54])], 40
   /* PROPS, HYDRATE_EVENTS */
   , _hoisted_3)])], 64
   /* STABLE_FRAGMENT */
@@ -2600,6 +2600,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   allColorCode: function allColorCode() {
     return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/allColorCode");
+  },
+  getTraineeResults: function getTraineeResults() {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/getTraineeResults");
   }
 });
 

@@ -1,18 +1,11 @@
 <template>
   <div class="flex items-center justify-center min-h-screen bg-gray-100">
     <div class="w-3/5 bg-white shadow-lg watermark">
-      <div class="flex justify-center p-4 gap-2">
+      <div class="flex justify-center p-4 gap-6">
         <div class="p-2 flex border-r-2 border-indigo-200 gap-4">
           <div class="mb-4 w-20 h-20">
             <img
               src="/logos/first.jpeg"
-              class="max-w-full h-auto rounded-full"
-              alt=""
-            />
-          </div>
-          <div class="mb-4 w-20 h-20">
-            <img
-              src="/logos/second.jpeg"
               class="max-w-full h-auto rounded-full"
               alt=""
             />
@@ -25,6 +18,15 @@
           <p class="text-base">
             Shaheed Salahuddin Cantonment, Ghatail, Tangail, Bangladesh
           </p>
+        </div>
+        <div class="p-2 flex border-l-2 border-indigo-200 gap-4">
+          <div class="mt-2 w-20 h-20">
+            <img
+              src="/logos/second.jpeg"
+              class="max-w-full h-auto rounded-full"
+              alt=""
+            />
+          </div>
         </div>
       </div>
       <div class="w-full h-0.5 bg-indigo-300"></div>
@@ -67,7 +69,7 @@
                   <div class="text-sm text-gray-900">Marks</div>
                 </td>
                 <td class="px-2 py-2 text-right">
-                  <div class="text-sm text-gray-500">{{ result.marks }}</div>
+                  <div class="text-sm text-gray-500">{{ result.marks }} out of {{result.totalMarks}}</div>
                 </td>
               </tr>
               <tr class="whitespace-nowrap">
