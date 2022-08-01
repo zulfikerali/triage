@@ -276,6 +276,10 @@ const game = reactive({
     correctPriority: null,
   },
   resultData: [],
+  minutes: 0,
+  seconds: 0,
+  timer: null
+
 });
 const gameStart = () => {
     let countDownDate = new Date().getTime() + 122000
@@ -304,6 +308,19 @@ const gameEnd = () => {
         .catch((err) => {
             console.log(err);
         });
+    console.log(evaluation);
+    //  evaluation.traineeID = route.query.traineeID;
+    // evaluation.resultValue.questions = questionsData.value.length;
+    // repository
+    //   .storeResult({ evaluation: evaluation })
+    //   .then((res) => {
+    //     let resData = { ...evaluation.resultValue };
+    //     game.resultData = resData;
+    //     game.state = "result";
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
     console.log(evaluation);
     // return
 }
@@ -343,19 +360,7 @@ const selectedPriority = (code) => {
   evaluation.result.push(clone);
   game.current++;
   if (questionsData.value.length == game.current) {
-    evaluation.traineeID = route.query.traineeID;
-    evaluation.resultValue.questions = questionsData.value.length;
-    repository
-      .storeResult({ evaluation: evaluation })
-      .then((res) => {
-        let resData = { ...evaluation.resultValue };
-        game.resultData = resData;
-        game.state = "result";
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log(evaluation);
+    gameEnd()
     // return
   }
   game.state = "video";

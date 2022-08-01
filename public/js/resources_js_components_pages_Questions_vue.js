@@ -2112,7 +2112,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         selectedPriority: null,
         correctPriority: null
       },
-      resultData: []
+      resultData: [],
+      minutes: 0,
+      seconds: 0,
+      timer: null
     });
 
     var gameStart = function gameStart() {
@@ -2144,6 +2147,19 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       })["catch"](function (err) {
         console.log(err);
       });
+      console.log(evaluation); //  evaluation.traineeID = route.query.traineeID;
+      // evaluation.resultValue.questions = questionsData.value.length;
+      // repository
+      //   .storeResult({ evaluation: evaluation })
+      //   .then((res) => {
+      //     let resData = { ...evaluation.resultValue };
+      //     game.resultData = resData;
+      //     game.state = "result";
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+
       console.log(evaluation); // return
     };
 
@@ -2186,19 +2202,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       game.current++;
 
       if (questionsData.value.length == game.current) {
-        evaluation.traineeID = route.query.traineeID;
-        evaluation.resultValue.questions = questionsData.value.length;
-        _api_repository__WEBPACK_IMPORTED_MODULE_2__["default"].storeResult({
-          evaluation: evaluation
-        }).then(function (res) {
-          var resData = _objectSpread({}, evaluation.resultValue);
-
-          game.resultData = resData;
-          game.state = "result";
-        })["catch"](function (err) {
-          console.log(err);
-        });
-        console.log(evaluation); // return
+        gameEnd(); // return
       }
 
       game.state = "video";

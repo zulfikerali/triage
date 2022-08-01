@@ -31,24 +31,7 @@
             watermark
           "
         >
-          <div class="w-full md:w-1/2">
-            <div class="mb-10 md:mb-20 text-gray-600 font-light">
-              <h1
-                class="
-                  font-black
-                  uppercase
-                  text-3xl
-                  lg:text-3xl
-                  text-yellow-500
-                  mb-10
-                "
-              >
-                ARMY MEDICAL CORPS CENTRE AND SCHOOL
-              </h1>
-              <p>SHAHEED SALAHUDDIN CANTONMENT, GHATAIL, TANGAIL, BANGLADESH</p>
-            </div>
-          </div>
-          <div class="w-full md:w-1/2">
+        <div class="w-full md:w-1/2">
             <div
               class="
                 mb-10
@@ -67,7 +50,40 @@
                   alt=""
                 />
               </div>
-              <div class="w-36">
+            </div>
+          </div>
+          <div class="w-full md:w-1/2">
+            <div class="mb-10 md:mb-10 text-gray-600">
+              <h1
+                class="
+                  font-black
+                  uppercase
+                  text-2xl
+                  lg:text-2xl
+                  text-yellow-500
+                  font-thin
+                  mb-10
+                "
+              >
+                ARMY MEDICAL CORPS CENTRE AND SCHOOL
+              </h1>
+              <p class="text-bold">SHAHEED SALAHUDDIN CANTONMENT</p>
+              <p>GHATAIL, TANGAIL, BANGLADESH</p>
+            </div>
+          </div>
+          <div class="w-full md:w-1/2">
+            <div
+              class="
+                mb-10
+                md:mb-20
+                text-gray-600
+                font-light
+                flex
+                justify-center
+                gap-4
+              "
+            >
+              <div class="w-36 mt-2">
                 <img
                   src="http://triage.test/logos/second.jpeg"
                   class="max-w-full h-auto rounded-full"
