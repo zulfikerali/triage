@@ -1,5 +1,6 @@
 const Home = () => import('../components/pages/Home.vue');
 const Questions = () => import('../components/pages/Questions.vue');
+const Game = () => import('../components/pages/Game.vue');
 const Episodes = () => import('../components/pages/Episodes.vue');
 const EpisodeQuestions = () => import('../components/pages/EpisodeQuestions.vue');
 // const EpisodeQuestion = () => import('../components/pages/EpisodeQuestions.vue');
@@ -17,6 +18,12 @@ export default [
         path: '/questions',
         component: Questions,
         name: 'Questions',
+
+    },
+    {
+        path: '/game',
+        component: Game,
+        name: 'Game',
 
     },
     {

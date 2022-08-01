@@ -1,100 +1,28 @@
 <template>
-    <h1 class="font-bold text-4xl text-center text-indigo-700 flex-none mt-5">
-        {{ currentEpisodes ? currentEpisodes.name : 'Episode' }}
-    </h1>
-    <p class="text-center text-2xl pt-2">
-        If you want to change episode to click
-        <span class="border bg-blue-100 rounded-lg px-1 py-1 text-center ring-2 mr-1"
-        >Active
-    </span>
-        button.
-    </p>
-    <div class="flex justify-center items-center mt-6">
-        <div
-            class="
-        grid grid-cols-1
-        gap-6
-        sm:grid-cols-2
-        md:grid-cols-2
-        lg:grid-cols-2
-        xl:grid-cols-2
-      "
-        >
+    <div class="container px-6 py-8 mx-auto lg:px-20">
+        <h1 v-if="currentEpisodes" class="mb-10 text-3xl font-semibold text-center text-indigo-700 capitalize lg:text-4xl dark:text-white">
+            {{  currentEpisodes.episode_name }} Questions
+        </h1>
+
+        <div class="flex flex-wrap justify-center">
             <div
-                v-for="(episode, index) in episodes"
-                :key="episode.id"
-                class="
-          bg-blue-600
-          pt-1
-          px-2
-          bg-gradient-to-b
-          from-blue-400
-          to-blue-500
-          rounded-xl
-          shadow-lg
-          w-52
-        "
+                v-if="!!currentEpisodes"
+                v-for="(question, index) in currentEpisodes.questions"
+                :key="question.id"
+                class="w-1/4 m-3 cursor-pointer border border-gray-400 rounded-lg hover:bg-green-500 hover:text-white"
+                :class="{'bg-green-500 text-white' : index === current }"
             >
-                <div class="flex justify-center">
-                    <div class="flex items-center justify-center">
-            <span class="relative inline-flex">
-              <div
-                  @click.prevent="index > 0 ? commingSoon() : activeEpisode(episode.id)"
-                  class="
-                  flex
-                  justify-center
-                  text-white
-                  p-4
-                  bg-blue-400
-                  rounded-lg
-                  shadow-l
-                  w-32
-                  cursor-pointer
-                "
-                  :class="
-                  episode.status == 1
-                    ? 'ring-2 ring-blue-300 cursor-pointer'
-                    : 'ring-2 ring-gray-200'
-                "
-                  :disabled="episode.status == 1 ? true : false"
-              >
-                {{ episode.status == 1 ? "Current" : "Active" }}
-              </div>
-              <span
-                  v-show="episode.status == 1"
-                  class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1"
-              >
-                <span
-                    class="
-                    animate-ping
-                    absolute
-                    inline-flex
-                    h-full
-                    w-full
-                    rounded-full
-                    bg-red-400
-                    opacity-75
-                  "
-                ></span>
-                <span
-                    class="relative inline-flex rounded-full h-3 w-3 bg-red-400"
-                ></span>
-              </span>
-            </span>
-                    </div>
-                </div>
-                <div class="p-4">
-                    <p class="text-white font-semibold text-center">
-                        {{ episode.episode_name }}
-                    </p>
-                    <!-- <div class="flex justify-between mt-2">
-                              <p class="text-gray-200">{{episode.questions_count}} Victims</p>
-                              <p class="text-white" >10 marks</p>
-                      </div> -->
-                </div>
+                <h1 class="text-center capitalize font-thin text-xl">Video {{ index + 1 }}</h1>
+                <video
+                    class="w-auto lg:rounded-lg p-1"
+                >
+                    <source :src="'/videos/' + question.video_path" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
             </div>
         </div>
     </div>
+
     <div class="flex justify-center mt-4">
         <div class="px-4 py-2 bg-blue-500 rounded-lg text-white cursor-pointer" @click.prevent="goToPage">
             Start Exam
@@ -108,6 +36,7 @@ import repository from "../../api/repository";
 const router = useRouter();
 const episodes = ref([]);
 const currentEpisodes = ref(null);
+const current = ref(0);
 onMounted(() => {
     repository
         .episodes()

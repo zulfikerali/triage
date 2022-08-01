@@ -1,93 +1,127 @@
 <template>
-    <div v-show="game.timer">
+    <div v-if="game.state == 'video'">
         <div class="bg-transparent text-2xl text-thin text-gray-500 absolute right-2 top-2">
-            {{ game.minutes + "m " + game.seconds + "s " }}
+            <button
+                @click="game.state = 'exam'"
+                class="px-6 py-2 bg-blue-500 text-white rounded-3xl hover:bg-blue-700"
+            >
+                START
+            </button>
+        </div>
+        <div v-for="(question, index) in questionsData" :key="question.id">
+            <div class="flex justify-center">
+                <!--@ended="onended"-->
+                <video
+                    class="w-auto max-w-7xl m-3 rounded lg:rounded-lg absolute"
+                    v-if="game.current === index"
+                    controls
+                >
+                    <source :src="'/videos/' + question.video_path" type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
+            </div>
         </div>
     </div>
-  <div v-for="(question, index) in questionsData" :key="question.id">
-    <div v-if="game.state === 'video'" class="flex justify-center">
-      <video
-        @ended="onended"
-        class="w-auto max-w-7xl m-3 rounded lg:rounded-lg absolute"
-        v-if="game.current === index"
-        autoplay
-      >
-        <source :src="'/videos/' + question.video_path" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+    <div v-if="game.state == 'exam'"
+         class="min-h-screen" >
+        <h1 class="font-bold text-4xl text-center text-indigo-700 flex-none mt-5">
+            Enter Your ID then click start button to start your test.
+        </h1>
+        <div class="flex justify-center items-center mt-6">
+            <div class="mt-4">
+                <div class="flex rounded-md overflow-hidden w-full">
+                    <input
+                        type="text"
+                        v-model="evaluation.traineeID"
+                        class="px-2 w-full border rounded-md rounded-r-none"
+                        placeholder="Enter Trainee ID"
+                        v-on:keyup.enter="game.state = 'triage'"
+                    />
+                    <button
+                        @click="game.state = 'triage'"
+                        class="
+                            bg-indigo-600
+                            text-white
+                            px-6
+                            text-lg
+                            font-semibold
+                            py-2
+                            rounded-r-md
+                          "
+                    >
+                        Start
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-  <div
-    v-if="game.state === 'triage'"
-    class="bg-white p-6 rounded-lg shadow-lg w-full h-screen"
-  >
-    <p
-      class="text-xl lg:text-5xl text-gray-500 font-thin mt-4 mb-10 text-center"
+    <div v-if="game.state === 'triage'"
+        class="bg-white p-6 rounded-lg shadow-lg w-full h-screen"
     >
-      Which color do you think about this victim?
-    </p>
-    <div class="grid grid-rows-2 grid-flow-col gap-4 justify-center p-3">
-      <div
-        @click="selectedColorCode(1)"
-        class="
-          bg-red-500
-          h-36
-          lg:h-48
-          w-36
-          lg:w-48
-          rounded-lg
-          shadow-md
-          cursor-pointer
-          hover:bg-red-700
-        "
-      ></div>
-      <div
-        @click="selectedColorCode(3)"
-        class="
-          bg-green-500
-          h-36
-          lg:h-48
-          w-36
-          lg:w-48
-          rounded-lg
-          shadow-md
-          cursor-pointer
-          hover:bg-green-700
-        "
-      ></div>
-      <div
-        @click="selectedColorCode(2)"
-        class="
-          bg-yellow-400
-          h-36
-          lg:h-48
-          w-36
-          lg:w-48
-          rounded-lg
-          shadow-md
-          cursor-pointer
-          hover:bg-yellow-600
-        "
-      ></div>
-      <div
-        @click="selectedColorCode(4)"
-        class="
-          bg-gray-800
-          h-36
-          lg:h-48
-          w-36
-          lg:w-48
-          rounded-lg
-          shadow-md
-          cursor-pointer
-          hover:bg-gray-900
-        "
-      ></div>
+        <p
+          class="text-xl lg:text-5xl text-gray-500 font-thin mt-4 mb-10 text-center"
+        >
+          Which color do you think about this victim?
+        </p>
+        <div class="grid grid-rows-2 grid-flow-col gap-4 justify-center p-3">
+          <div @click="selectedColorCode(1)"
+            class="
+              bg-red-500
+              h-36
+              lg:h-48
+              w-36
+              lg:w-48
+              rounded-lg
+              shadow-md
+              cursor-pointer
+              hover:bg-red-700
+            "
+          ></div>
+          <div @click="selectedColorCode(3)"
+            class="
+              bg-green-500
+              h-36
+              lg:h-48
+              w-36
+              lg:w-48
+              rounded-lg
+              shadow-md
+              cursor-pointer
+              hover:bg-green-700
+            "
+          ></div>
+          <div @click="selectedColorCode(2)"
+            class="
+              bg-yellow-400
+              h-36
+              lg:h-48
+              w-36
+              lg:w-48
+              rounded-lg
+              shadow-md
+              cursor-pointer
+              hover:bg-yellow-600
+            "
+          ></div>
+          <div @click="selectedColorCode(4)"
+            class="
+              bg-gray-800
+              h-36
+              lg:h-48
+              w-36
+              lg:w-48
+              rounded-lg
+              shadow-md
+              cursor-pointer
+              hover:bg-gray-900
+            "
+          ></div>
+        </div>
+        <div class="text-center">
+            <button class="px-6 py-2 bg-blue-500 text-white rounded-3xl hover:bg-blue-700">SUBMIT</button>
+        </div>
     </div>
-  </div>
-
-  <div
-    v-if="game.state === 'priority'"
+    <div v-if="game.state === 'priority'"
     class="
       antialiased
       bg-slate-200
@@ -97,7 +131,7 @@
       justify-center
       flex-col
     "
-  >
+    >
     <div
       class="
         max-w-lg
@@ -220,10 +254,10 @@
         </button>
       </div>
     </div>
-  </div>
-  <div v-if="game.state === 'result'">
-    <Result :result="game.resultData" :episode="questionsData[0].episode_id" :traineeId='evaluation.traineeID'/>
-  </div>
+    </div>
+    <div v-if="game.state === 'result'">
+        <Result :result="game.resultData" :episode="questionsData[0].episode_id" :traineeId='evaluation.traineeID'/>
+    </div>
 </template>
 <script setup>
 import { ref, onMounted, reactive } from "vue";
@@ -245,7 +279,6 @@ const evaluation = reactive({
 })
 const questionsData = ref([])
 const videoPlayer = ref(null)
-const isOpen = ref(false)
 const nextPage = ref(true)
 const video = document.getElementById("video")
 
@@ -336,11 +369,7 @@ const gotoNextPage = () => {
   nextPage.value = !nextPage.value;
 };
 onMounted(() => {
-    // document.body.style.overflow = 'hidden'
-   gameStart()
-  // playVideo()
-  // repository.questions(parseInt(route.params.episode))
-  console.log(route);
+   // gameStart()
   repository
     .questions()
     .then((res) => {

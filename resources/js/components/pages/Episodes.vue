@@ -133,8 +133,8 @@ const alrearyActive = () => {
   alert("already active!");
 };
 const goToPage = () => {
-  // router.push('/admin/episodes/questions')
-  router.push('/start-game')
+  router.push('/admin/episodes/questions')
+  // router.push('/start-game')
 }
 const commingSoon = () => {
   alert('Comming soon ..')

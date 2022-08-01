@@ -2078,6 +2078,7 @@ __webpack_require__.r(__webpack_exports__);
     var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
     var episodes = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var currentEpisodes = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    var current = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(0);
     (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
       _api_repository__WEBPACK_IMPORTED_MODULE_1__["default"].episodes().then(function (res) {
         episodes.value = res.data;
@@ -2123,6 +2124,7 @@ __webpack_require__.r(__webpack_exports__);
       router: router,
       episodes: episodes,
       currentEpisodes: currentEpisodes,
+      current: current,
       activeEpisode: activeEpisode,
       setQuestions: setQuestions,
       alrearyActive: alrearyActive,
@@ -2157,88 +2159,58 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "font-bold text-4xl text-center text-indigo-700 flex-none mt-5"
+  "class": "container px-6 py-8 mx-auto lg:px-20"
 };
-
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "text-center text-2xl pt-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" If you want to change episode to click "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "border bg-blue-100 rounded-lg px-1 py-1 text-center ring-2 mr-1"
-}, "Active "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" button. ")], -1
-/* HOISTED */
-);
-
+var _hoisted_2 = {
+  key: 0,
+  "class": "mb-10 text-3xl font-semibold text-center text-indigo-700 capitalize lg:text-4xl dark:text-white"
+};
 var _hoisted_3 = {
-  "class": "flex justify-center items-center mt-6"
+  "class": "flex flex-wrap justify-center"
 };
 var _hoisted_4 = {
-  "class": "grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2"
+  "class": "text-center capitalize font-thin text-xl"
 };
 var _hoisted_5 = {
-  "class": "flex justify-center"
+  "class": "w-auto lg:rounded-lg p-1"
 };
-var _hoisted_6 = {
-  "class": "flex items-center justify-center"
-};
-var _hoisted_7 = {
-  "class": "relative inline-flex"
-};
-var _hoisted_8 = ["onClick", "disabled"];
-var _hoisted_9 = {
-  "class": "flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1"
-};
+var _hoisted_6 = ["src"];
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"
-}, null, -1
-/* HOISTED */
-);
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Your browser does not support the video tag. ");
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-  "class": "relative inline-flex rounded-full h-3 w-3 bg-red-400"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_12 = [_hoisted_10, _hoisted_11];
-var _hoisted_13 = {
-  "class": "p-4"
-};
-var _hoisted_14 = {
-  "class": "text-white font-semibold text-center"
-};
-var _hoisted_15 = {
+var _hoisted_8 = {
   "class": "flex justify-center mt-4"
 };
-var _hoisted_16 = ["onClick"];
+var _hoisted_9 = ["onClick"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.currentEpisodes ? $setup.currentEpisodes.name : 'Episode'), 1
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [$setup.currentEpisodes ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h1", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.currentEpisodes.episode_name) + " Questions ", 1
   /* TEXT */
-  ), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.episodes, function (episode, index) {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [!!$setup.currentEpisodes ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+    key: 0
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.currentEpisodes.questions, function (question, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      key: episode.id,
-      "class": "bg-blue-600 pt-1 px-2 bg-gradient-to-b from-blue-400 to-blue-500 rounded-xl shadow-lg w-52"
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-      onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-        return index > 0 ? $setup.commingSoon() : $setup.activeEpisode(episode.id);
-      }, ["prevent"]),
-      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["flex justify-center text-white p-4 bg-blue-400 rounded-lg shadow-l w-32 cursor-pointer", episode.status == 1 ? 'ring-2 ring-blue-300 cursor-pointer' : 'ring-2 ring-gray-200']),
-      disabled: episode.status == 1 ? true : false
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(episode.status == 1 ? "Current" : "Active"), 11
-    /* TEXT, CLASS, PROPS */
-    , _hoisted_8), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_9, _hoisted_12, 512
-    /* NEED_PATCH */
-    ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, episode.status == 1]])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(episode.episode_name), 1
+      key: question.id,
+      "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["w-1/4 m-3 cursor-pointer border border-gray-400 rounded-lg hover:bg-green-500 hover:text-white", {
+        'bg-green-500 text-white': index === $setup.current
+      }])
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_4, "Video " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(index + 1), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"flex justify-between mt-2\">\n                              <p class=\"text-gray-200\">{{episode.questions_count}} Victims</p>\n                              <p class=\"text-white\" >10 marks</p>\n                      </div> ")])]);
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("video", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("source", {
+      src: '/videos/' + question.video_path,
+      type: "video/mp4"
+    }, null, 8
+    /* PROPS */
+    , _hoisted_6), _hoisted_7])], 2
+    /* CLASS */
+    );
   }), 128
   /* KEYED_FRAGMENT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "px-4 py-2 bg-blue-500 rounded-lg text-white cursor-pointer",
     onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.goToPage, ["prevent"])
   }, " Start Exam ", 8
   /* PROPS */
-  , _hoisted_16)])], 64
+  , _hoisted_9)])], 64
   /* STABLE_FRAGMENT */
   );
 }
