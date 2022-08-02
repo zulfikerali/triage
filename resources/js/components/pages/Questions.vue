@@ -282,7 +282,7 @@ const game = reactive({
 
 });
 const gameStart = () => {
-    let countDownDate = new Date().getTime() + 122000
+    let countDownDate = new Date().getTime() + 1122000
     game.timer = setInterval(() => {
         let now = new Date().getTime()
         let distance = countDownDate - now

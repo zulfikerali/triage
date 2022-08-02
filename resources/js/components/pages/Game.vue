@@ -35,10 +35,10 @@
                         v-model="evaluation.traineeID"
                         class="px-2 w-full border rounded-md rounded-r-none"
                         placeholder="Enter Trainee ID"
-                        v-on:keyup.enter="game.state = 'triage'"
+                        v-on:keyup.enter="submitTraineeID"
                     />
                     <button
-                        @click="game.state = 'triage'"
+                        @click="submitTraineeID"
                         class="
                             bg-indigo-600
                             text-white
@@ -54,6 +54,11 @@
                 </div>
             </div>
         </div>
+        <button
+            v-on:click.alt="nextVideo"
+            class="absolute bottom-2 right-2 px-3 py-1 bg-gray-200 text-white rounded" >
+            Next
+        </button>
     </div>
     <div v-if="game.state === 'triage'"
         class="bg-white p-6 rounded-lg shadow-lg w-full h-screen"
@@ -213,7 +218,7 @@
           <div class="text-center">
               <button
                   v-show="game.questionAnswer.selectedPriority != null"
-                  @click="colorCodeSubmit"
+                  @click="prioritySubmit"
                   class="px-16 py-2 mt-2 bg-blue-500 text-white shadow-md rounded-3xl hover:bg-blue-700"
               > SUBMIT
               </button>
@@ -248,10 +253,9 @@ const videoPlayer = ref(null)
 const nextPage = ref(true)
 const video = document.getElementById("video")
 const priorities = ['One', 'Two', 'Three', 'Four']
-
 const game = reactive({
     current: 0,
-    state: "triage",
+    state: "video",
     minutes: 0,
     seconds: 0,
     timer: null,
@@ -264,6 +268,7 @@ const game = reactive({
     },
     resultData: [],
 });
+
 const gameStart = () => {
     let countDownDate = new Date().getTime() + 102000
     game.timer = setInterval(() => {
@@ -301,46 +306,99 @@ const onended = () => {
 const setColorCode = (code) => {
     game.questionAnswer.selectedColorCode = code;
 };
-
-const colorCodeSubmit = () => {
-  // evaluation.resultValue.attempt++;
-  // if (code == questionsData.value[game.current].color_code) {
-  //   evaluation.resultValue.correct++;
-  //   evaluation.resultValue.marks += questionsData.value[game.current].color_code_marks;
-  // } else {
-  //   evaluation.resultValue.wrong++;
-  // }
-  // game.questionAnswer.questionID = questionsData.value[game.current].id;
-  // game.questionAnswer.selectedColorCode = code;
-  // game.questionAnswer.correctColorCode = questionsData.value[game.current].color_code;
-  game.state = "priority";
-};
-
 const setPriority = (code) => {
     game.questionAnswer.selectedPriority = code;
 };
-const prioritySubmit = (code) => {
+
+const colorCodeSubmit = () => {
+  evaluation.resultValue.attempt++;
+  if (game.questionAnswer.selectedColorCode == questionsData.value[game.current].color_code) {
+    evaluation.resultValue.correct++;
+    evaluation.resultValue.marks += questionsData.value[game.current].color_code_marks;
+  } else {
+    evaluation.resultValue.wrong++;
+  }
+  game.questionAnswer.questionID = questionsData.value[game.current].id;
+  game.questionAnswer.correctColorCode = questionsData.value[game.current].color_code;
+  game.state = "priority";
+};
+const prioritySubmit = () => {
     evaluation.resultValue.attempt++;
-    if (code == questionsData.value[game.current].priority) {
+    if (game.questionAnswer.selectedPriority == questionsData.value[game.current].priority) {
         evaluation.resultValue.correct++;
         evaluation.resultValue.marks += questionsData.value[game.current].priority_marks;
     } else {
         evaluation.resultValue.wrong++;
     }
-    game.questionAnswer.selectedPriority = code;
     game.questionAnswer.correctPriority =
         questionsData.value[game.current].priority;
     let clone = { ...game.questionAnswer };
     evaluation.result.push(clone);
-    game.current++;
-    if (questionsData.value.length == game.current) {
-        gameEnd()
-    }
-    game.state = "video";
+    answerSubmit()
 };
 
-const gotoNextPage = () => {
-  nextPage.value = !nextPage.value;
+const answerSubmit = () => {
+    clearInterval(game.timer)
+    game.timer = null
+    repository
+        .storeAnswerSummit({ evaluation: evaluation })
+        .then((res) => {
+            let resData = { ...evaluation.resultValue };
+            game.resultData = resData;
+            traineeReset()
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+    console.log(evaluation);
+    // return
+}
+
+const traineeReset = () => {
+    evaluation.traineeID = null
+    evaluation.result = []
+    evaluation.resultValue.attempt = 0
+    evaluation.resultValue.correct = 0
+    evaluation.resultValue.wrong = 0
+    evaluation.resultValue.marks = 0
+    game.questionAnswer.selectedColorCode = null
+    game.questionAnswer.correctColorCode = null
+    game.questionAnswer.selectedPriority = null
+    game.questionAnswer.correctPriority = null
+    game.resultData = []
+    game.state = "exam"
+}
+
+const nextVideo = () => {
+    game.current++
+    game.state = "video"
+    // if (questionsData.value.length === game.current) {
+    //     gameEnd()
+    // }
+}
+
+const setExistingData = (data) => {
+    evaluation.result = data.evaluation_data
+    evaluation.resultValue = data.result_data
+}
+
+const submitTraineeID = () => {
+    if (!!evaluation.traineeID) {
+        repository
+            .getResult(questionsData.value[0].episode_id, evaluation.traineeID)
+            .then((res) => {
+                if(res.data){
+                    setExistingData(res.data)
+                }
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+
+        game.state = 'triage'
+    } else {
+        alert("Trainee ID is required!")
+    }
 };
 onMounted(() => {
    // gameStart()
@@ -348,7 +406,12 @@ onMounted(() => {
     .questions()
     .then((res) => {
       questionsData.value = res.data;
+      evaluation.resultValue.questions = questionsData.value.length
       console.log(res.data);
+      document.addEventListener('keyup', (e) => {
+        if (!e.altKey) return
+        if(e.keyCode === 39) alert(e.keyCode)
+      })
     })
     .catch((err) => {
       console.log(err.message);

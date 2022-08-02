@@ -15,6 +15,9 @@ export default {
   storeResult (evaluation) {
     return api.post(`/storeResult`, evaluation)
   },
+  storeAnswerSummit (evaluation) {
+    return api.post(`/storeAnswerSummit`, evaluation)
+  },
   getResult (episodeId, traineeId) {
     return api.get(`/getResult/${episodeId}/${traineeId}`)
   },
