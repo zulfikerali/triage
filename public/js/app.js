@@ -13497,6 +13497,18 @@ var TraineeResults = function TraineeResults() {
   return __webpack_require__.e(/*! import() */ "resources_js_components_pages_TraineeResults_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/pages/TraineeResults.vue */ "./resources/js/components/pages/TraineeResults.vue"));
 };
 
+var VictimQuestion = function VictimQuestion() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_pages_VictimQuestion_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/pages/VictimQuestion.vue */ "./resources/js/components/pages/VictimQuestion.vue"));
+};
+
+var ResultEpisodes = function ResultEpisodes() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_pages_ResultEpisodes_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/pages/ResultEpisodes.vue */ "./resources/js/components/pages/ResultEpisodes.vue"));
+};
+
+var TraineeResultEpisodes = function TraineeResultEpisodes() {
+  return __webpack_require__.e(/*! import() */ "resources_js_components_pages_TraineeResultEpisodes_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../components/pages/TraineeResultEpisodes.vue */ "./resources/js/components/pages/TraineeResultEpisodes.vue"));
+};
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ([{
   path: '/start-game',
   component: Home,
@@ -13513,6 +13525,14 @@ var TraineeResults = function TraineeResults() {
   path: '/admin/episodes',
   component: Episodes,
   name: 'Episodes'
+}, {
+  path: '/result/episodes',
+  component: ResultEpisodes,
+  name: 'ResultEpisodes'
+}, {
+  path: '/result-report/:episode_id',
+  component: TraineeResultEpisodes,
+  name: 'TraineeResultEpisodes'
 }, {
   path: '/admin/episodes/questions',
   component: EpisodeQuestions,
@@ -13538,6 +13558,10 @@ var TraineeResults = function TraineeResults() {
   path: '/create-question',
   component: CreateQuestion,
   name: 'CreateQuestion'
+}, {
+  path: '/create-victim-question',
+  component: VictimQuestion,
+  name: 'VictimQuestion'
 } // {
 //     path: '/:pathMatch(.*)*',
 //     redirect: '/',
@@ -24288,7 +24312,7 @@ function useRoute() {
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_components_pages_Home_vue":1,"resources_js_components_pages_Questions_vue":1,"resources_js_components_pages_Game_vue":1,"resources_js_components_pages_Episodes_vue":1,"resources_js_components_pages_EpisodeQuestions_vue":1,"resources_js_components_pages_Intro_vue":1,"resources_js_components_pages_Result_vue":1,"resources_js_components_pages_CreateQuestion_vue":1,"resources_js_components_pages_TraineeResults_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_pages_Home_vue":1,"resources_js_components_pages_Questions_vue":1,"resources_js_components_pages_Game_vue":1,"resources_js_components_pages_Episodes_vue":1,"resources_js_components_pages_EpisodeQuestions_vue":1,"resources_js_components_pages_Intro_vue":1,"resources_js_components_pages_Result_vue":1,"resources_js_components_pages_CreateQuestion_vue":1,"resources_js_components_pages_TraineeResults_vue":1,"resources_js_components_pages_VictimQuestion_vue":1,"resources_js_components_pages_ResultEpisodes_vue":1,"resources_js_components_pages_TraineeResultEpisodes_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

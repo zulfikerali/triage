@@ -7,6 +7,7 @@ use App\Models\Episode;
 use App\Models\Result;
 use App\Models\Question;
 use App\Models\ColorCode;
+use App\Models\VictimQuestion;
 use Owenoj\LaravelGetId3\GetId3;
 
 class EpisodeController extends Controller
@@ -22,7 +23,8 @@ class EpisodeController extends Controller
     }
     public function getQuestions()
     {
-        return Episode::where('status', 1)->first()->questions;
+        return Episode::where('status', 1)->first()->questions()->with('victimQuestions')->get();
+        // return Episode::with('questions.victimQuestions')->where('status', 1)->first();
         //()->inRandomOrder()->get();
     }
     public function activeEpisode(Request $request)
@@ -85,5 +87,23 @@ class EpisodeController extends Controller
     public function getTraineeResults()
     {
         return Episode::with('results:id,trainee_id,episode_id')->whereHas('results')->get();
+    }
+    public function questionsByEpisode(Episode $episode)
+    {
+       return $episode->questions;
+    }
+    public function storeVictimQuestion(Request $request)
+    {
+        VictimQuestion::create([
+            'question_id' => $request->questionData['question'],
+            'paramedic_question' => $request->questionData['paramedicQues'],
+            'victim_answer' => $request->questionData['victimQues'],
+        ]);
+        return 'success';
+    }
+    public function getTrainee(Episode $episode)
+    {
+       return $episode->with('results')->first();
+    //    Result::where('episode_id', $episode)->get();
     }
 }

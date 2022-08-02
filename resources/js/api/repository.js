@@ -26,5 +26,14 @@ export default {
   },
   getTraineeResults () {
     return api.get(`/getTraineeResults`)
+  },
+  getQuestionsByEpisode (episode) {
+    return api.get(`/questionsByEpisode/${episode}`)
+  },
+  storeVictimQuestion (data) {
+    return api.post(`/storeVictimQuestion`, data)
+  },
+  getTrainees (episodeId) {
+    return api.get(`/getTrainee/${episodeId}`)
   }
 }

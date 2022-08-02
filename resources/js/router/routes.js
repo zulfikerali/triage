@@ -8,6 +8,9 @@ const Introduction = () => import('../components/pages/Intro.vue');
 const Result = () => import('../components/pages/Result.vue');
 const CreateQuestion = () => import('../components/pages/CreateQuestion.vue');
 const TraineeResults = () => import('../components/pages/TraineeResults.vue');
+const VictimQuestion = () => import('../components/pages/VictimQuestion.vue');
+const ResultEpisodes = () => import('../components/pages/ResultEpisodes.vue');
+const TraineeResultEpisodes = () => import('../components/pages/TraineeResultEpisodes.vue');
 export default [
     {
         path: '/start-game',
@@ -31,6 +34,18 @@ export default [
         path: '/admin/episodes',
         component: Episodes,
         name: 'Episodes',
+
+    },
+    {
+        path: '/result/episodes',
+        component: ResultEpisodes,
+        name: 'ResultEpisodes',
+
+    },
+    {
+        path: '/result-report/:episode_id',
+        component: TraineeResultEpisodes,
+        name: 'TraineeResultEpisodes',
 
     },
     {
@@ -65,6 +80,12 @@ export default [
         path: '/create-question',
         component: CreateQuestion,
         name: 'CreateQuestion',
+
+    },
+    {
+        path: '/create-victim-question',
+        component: VictimQuestion,
+        name: 'VictimQuestion',
 
     },
     // {

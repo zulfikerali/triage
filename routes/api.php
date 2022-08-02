@@ -27,3 +27,6 @@ Route::get('getResult/{episodeId}/{traineeId}', [EpisodeController::class, 'getR
 Route::post('storeQuestion', [EpisodeController::class, 'storeQuestion']);
 Route::get('allColorCode', [EpisodeController::class, 'allColorCode']);
 Route::get('getTraineeResults', [EpisodeController::class, 'getTraineeResults']);
+Route::get('questionsByEpisode/{episode}', [EpisodeController::class, 'questionsByEpisode']);
+Route::post('storeVictimQuestion', [EpisodeController::class, 'storeVictimQuestion']);
+Route::get('getTrainee/{episode}', [EpisodeController::class, 'getTrainee']);

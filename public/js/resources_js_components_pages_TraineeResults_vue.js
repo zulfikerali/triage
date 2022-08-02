@@ -2278,6 +2278,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   getTraineeResults: function getTraineeResults() {
     return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/getTraineeResults");
+  },
+  getQuestionsByEpisode: function getQuestionsByEpisode(episode) {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/questionsByEpisode/".concat(episode));
+  },
+  storeVictimQuestion: function storeVictimQuestion(data) {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post("/storeVictimQuestion", data);
+  },
+  getTrainees: function getTrainees(episodeId) {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/getTrainee/".concat(episodeId));
   }
 });
 
