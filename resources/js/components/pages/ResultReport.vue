@@ -121,12 +121,12 @@
           >
             Print
           </button>
-          <router-link
+          <!-- <router-link
             to="/start-game"
             class="px-4 py-2 text-sm text-blue-600 bg-blue-100"
           >
             Home
-          </router-link>
+          </router-link> -->
         </div>
       </div>
     </div>

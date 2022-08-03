@@ -101,9 +101,9 @@ class EpisodeController extends Controller
         ]);
         return 'success';
     }
-    public function getTrainee(Episode $episode)
+    public function getTrainee($episode)
     {
-       return $episode->with('results')->first();
+       return Episode::with('results')->where('id', $episode)->first();
     //    Result::where('episode_id', $episode)->get();
     }
 }

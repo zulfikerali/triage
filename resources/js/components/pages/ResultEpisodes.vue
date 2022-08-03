@@ -1,6 +1,6 @@
 <template>
   <h1 class="font-bold text-4xl text-center text-indigo-700 flex-none mt-5">
-    Triage Episodes
+    Triage Episodes Result
   </h1>
   <div class="flex justify-center items-center mt-6">
     <div
@@ -82,6 +82,11 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="flex justify-center mt-4">
+    <router-link to="/" class="px-4 py-2 text-red-500 underline cursor-pointer">
+      Go Back
+    </router-link>
   </div>
 </template>
 <script setup>
