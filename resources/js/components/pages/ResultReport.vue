@@ -1,7 +1,7 @@
 <template>
-  <div class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="w-3/5 bg-white shadow-lg watermark">
-      <div class="flex justify-center p-4 gap-6">
+  <div class="flex min-h-screen bg-gray-100">
+    <div class="w-full bg-white watermark ">
+      <div class="flex items-center justify-between p-4 gap-6">
         <div class="p-2 flex border-r-2 border-indigo-200 gap-4">
           <div class="mb-4 w-20 h-20">
             <img
@@ -12,7 +12,7 @@
           </div>
         </div>
         <div>
-          <h1 class="text-3xl font-extrabold text-indigo-500">
+          <h1 class="text-2xl font-extrabold text-indigo-500">
             Army Medical Corps Center & School
           </h1>
           <p class="text-base">
@@ -62,14 +62,17 @@
           </tbody>
         </table>
         <div class="py-4">
-          <table class="border border-gray-400">
+          <table>
             <tbody>
               <tr class="whitespace-nowrap">
                 <td class="px-2 py-2">
                   <div class="text-sm text-gray-900">Marks</div>
                 </td>
                 <td class="px-2 py-2 text-right">
-                  <div class="text-sm text-gray-500">{{ result.marks }} out of {{result.totalMarks}}</div>
+                  <div class="text-sm text-gray-500">
+                    {{ result.marks }} 
+                    <!-- out of {{ result.totalMarks }} -->
+                  </div>
                 </td>
               </tr>
               <tr class="whitespace-nowrap">
@@ -110,23 +113,27 @@
           </table>
         </div>
       </div>
-     <div class="w-full h-0.5 bg-indigo-300"></div>
-
-      <div class="p-4">
-        <div class="flex items-center justify-center">Thank you.</div>
-        <div class="flex items-end justify-end space-x-3">
+      <div class="w-full h-0.5 bg-indigo-300 printFooterLine2"></div>
+      <div>
+        <div class="w-full h-0.5 bg-indigo-300 printFooterLine hidden"></div>
+        <div class="flex items-center justify-center printFooter">
+          This is computer generated report.
+        </div>
+      </div>
+       <div class="p-4">
+        <div class="flex items-end justify-center space-x-3 noPrint">
           <button
             onclick="window.print()"
             class="px-4 py-2 text-sm text-green-600 bg-green-100"
           >
             Print
           </button>
-          <router-link
-            to="/start-game"
+          <button
+            @click="backToResult"
             class="px-4 py-2 text-sm text-blue-600 bg-blue-100"
           >
-            Home
-          </router-link>
+            Back To Result Page
+          </button>
         </div>
       </div>
     </div>
@@ -134,6 +141,9 @@
 </template>
 
 <script setup>
+import { useRoute, useRouter } from "vue-router";
+const route = useRoute();
+const router = useRouter();
 const props = defineProps({
   result: {
     type: Object,
@@ -173,6 +183,9 @@ const dateFormate = () => {
   var yyyy = date.getFullYear();
   return dd + "/" + mm + "/" + yyyy;
 };
+const backToResult = () => {
+  router.push(`/result-report/${route.params.episodeId}`);
+};
 </script>
 
 <style scoped>
@@ -181,5 +194,50 @@ const dateFormate = () => {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+}
+@page {
+  size: A4;
+  margin: 0;
+  background: #fff;
+}
+@media print {
+  .page {
+    margin: 0;
+    border: initial;
+    border-radius: initial;
+    width: initial;
+    min-height: initial;
+    box-shadow: initial;
+    background: initial;
+    page-break-after: always;
+  }
+  .noPrint {
+    display: none;
+  }
+  .printFooter {
+    position: absolute;
+    bottom: 5%;
+    left: 35%;
+  }
+  .tbl{
+    width: 100%;
+    background-color: brown;
+  }
+  .mainDiv{
+    width: 100%;
+    height: 100%;
+  }
+  .watermark {
+  background-position: 85% 100%;
+}
+.printFooterLine{
+   position: absolute;
+    bottom: 10%;
+    left: 0%;
+    display: block;
+}
+.printFooterLine2{
+  display: none
+}
 }
 </style>

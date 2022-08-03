@@ -14,6 +14,7 @@
             {{traineeResultData.episode_name}} Trainee Results
           </div>
         </div>
+        <router-link to="/result/episodes" class="underline text-red-600">Go Back</router-link>
         <div class="flex items-center space-x-8">
           <button
             class="
@@ -31,7 +32,7 @@
         </div>
       </div>
 
-      <div class="mt-4 mb-6 flex flex-wrap justify-center items-center">
+      <div class="mt-4 mb-6 flex flex-wrap justify-center items-center" v-if="traineeResultData.results.length > 0">
         <div class="m-3" v-for="r in traineeResultData.results" :key="r.id">
           <router-link
             :to="`/result-report/${r.episode_id}/${r.trainee_id}`"
@@ -65,6 +66,9 @@
             </div> -->
           </router-link>
         </div>
+      </div>
+      <div class="flex justify-center mt-4 mb-4" v-else>
+        No data found..
       </div>
     </div>
   </div>

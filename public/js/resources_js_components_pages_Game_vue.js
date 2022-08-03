@@ -2303,6 +2303,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.mjs");
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'ResultReport',
   props: {
@@ -2327,6 +2329,8 @@ __webpack_require__.r(__webpack_exports__);
     var expose = _ref.expose;
     expose();
     var props = __props;
+    var route = (0,vue_router__WEBPACK_IMPORTED_MODULE_0__.useRoute)();
+    var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_0__.useRouter)();
 
     function hasOneDigit(val) {
       if (String(Math.abs(val)).charAt(0) == val) {
@@ -2354,10 +2358,19 @@ __webpack_require__.r(__webpack_exports__);
       return dd + "/" + mm + "/" + yyyy;
     };
 
+    var backToResult = function backToResult() {
+      router.push("/result-report/".concat(route.params.episodeId));
+    };
+
     var __returned__ = {
+      route: route,
+      router: router,
       props: props,
       hasOneDigit: hasOneDigit,
-      dateFormate: dateFormate
+      dateFormate: dateFormate,
+      backToResult: backToResult,
+      useRoute: vue_router__WEBPACK_IMPORTED_MODULE_0__.useRoute,
+      useRouter: vue_router__WEBPACK_IMPORTED_MODULE_0__.useRouter
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {
       enumerable: false,
@@ -2532,37 +2545,34 @@ var _hoisted_32 = {
   "class": "p-4"
 };
 var _hoisted_33 = {
-  "class": "text-gray-500 border p-2 rounded mb-4"
-};
-var _hoisted_34 = {
   "class": "px-1 text-sm pb-2"
 };
 
-var _hoisted_35 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_34 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "প্যারামেডিক :", -1
   /* HOISTED */
   );
 });
 
-var _hoisted_36 = {
+var _hoisted_35 = {
   "class": "px-1 text-sm"
 };
 
-var _hoisted_37 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_36 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "আক্রান্ত :", -1
   /* HOISTED */
   );
 });
 
-var _hoisted_38 = {
+var _hoisted_37 = {
   key: 3,
   "class": "antialiased bg-slate-200 w-full h-screen flex justify-center flex-col"
 };
-var _hoisted_39 = {
+var _hoisted_38 = {
   "class": "max-w-lg mx-3 md:mx-auto bg-white p-8 rounded-xl shadow shadow-slate-300"
 };
 
-var _hoisted_40 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_39 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
     "class": "text-2xl text-gray-500 font-thin mt-4 mb-10 text-center"
   }, " আক্রান্তের প্রায়োরিটি কি হবে ? ", -1
@@ -2570,21 +2580,21 @@ var _hoisted_40 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_41 = {
+var _hoisted_40 = {
   "class": "my-5"
 };
-var _hoisted_42 = ["onClick"];
-var _hoisted_43 = {
+var _hoisted_41 = ["onClick"];
+var _hoisted_42 = {
   "class": "absolute right-2"
 };
-var _hoisted_44 = {
+var _hoisted_43 = {
   key: 0,
   "class": "h-8 w-8",
   viewBox: "0 0 448 512",
   fill: "white"
 };
 
-var _hoisted_45 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_44 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
     d: "M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"
   }, null, -1
@@ -2592,18 +2602,18 @@ var _hoisted_45 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_46 = [_hoisted_45];
-var _hoisted_47 = {
+var _hoisted_45 = [_hoisted_44];
+var _hoisted_46 = {
   "class": "text-lg lg:text-xl"
 };
-var _hoisted_48 = {
+var _hoisted_47 = {
   "class": "text-center"
 };
-var _hoisted_49 = {
+var _hoisted_48 = {
   "class": "max-w-md absolute right-10 top-32 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
 };
 
-var _hoisted_50 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_49 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "flex items-center px-6 py-3 bg-gray-900"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
@@ -2613,33 +2623,30 @@ var _hoisted_50 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_51 = {
+var _hoisted_50 = {
   "class": "p-4"
 };
-var _hoisted_52 = {
-  "class": "text-gray-500 border p-2 rounded mb-4"
-};
-var _hoisted_53 = {
+var _hoisted_51 = {
   "class": "px-1 text-sm pb-2"
 };
 
-var _hoisted_54 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_52 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "প্যারামেডিক :", -1
   /* HOISTED */
   );
 });
 
-var _hoisted_55 = {
+var _hoisted_53 = {
   "class": "px-1 text-sm"
 };
 
-var _hoisted_56 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_54 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "আক্রান্ত :", -1
   /* HOISTED */
   );
 });
 
-var _hoisted_57 = {
+var _hoisted_55 = {
   key: 4
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
@@ -2707,42 +2714,49 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, " SUBMIT ", 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.game.questionAnswer.selectedColorCode != null]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.questionsData[$setup.game.current].victim_questions, function (vq) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_34, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vq.paramedic_question), 1
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: vq.id,
+      "class": "text-gray-500 border p-2 rounded mb-4"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_33, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vq.paramedic_question), 1
     /* TEXT */
-    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_36, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vq.victim_answer), 1
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_35, [_hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vq.victim_answer), 1
     /* TEXT */
     )])]);
-  }), 256
-  /* UNKEYED_FRAGMENT */
-  ))])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'priority' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.priorities, function (priority, index) {
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'priority' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_37, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [_hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.priorities, function (priority, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+      key: index,
       onClick: function onClick($event) {
         return $setup.setPriority(index + 1);
       },
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
         'bg-green-500 text-white': $setup.game.questionAnswer.selectedPriority == index + 1
       }, "relative w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg hover:bg-green-500 hover:text-white hover:shadow transition duration-150"])
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_43, [$setup.game.questionAnswer.selectedPriority == index + 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_44, _hoisted_46)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_47, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(priority), 1
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_42, [$setup.game.questionAnswer.selectedPriority == index + 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_43, _hoisted_45)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_46, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(priority), 1
     /* TEXT */
     )], 10
     /* CLASS, PROPS */
-    , _hoisted_42);
+    , _hoisted_41);
   }), 64
   /* STABLE_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_47, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: $setup.prioritySubmit,
     "class": "px-16 py-2 mt-2 bg-blue-500 text-white shadow-md rounded-3xl hover:bg-blue-700"
   }, " SUBMIT ", 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.game.questionAnswer.selectedPriority != null]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [_hoisted_50, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.questionsData[$setup.game.current].victim_questions, function (vq) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_52, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_53, [_hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vq.paramedic_question), 1
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.game.questionAnswer.selectedPriority != null]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_48, [_hoisted_49, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_50, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.questionsData[$setup.game.current].victim_questions, function (vq) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: vq.id,
+      "class": "text-gray-500 border p-2 rounded mb-4"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_51, [_hoisted_52, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vq.paramedic_question), 1
     /* TEXT */
-    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_55, [_hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vq.victim_answer), 1
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_53, [_hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vq.victim_answer), 1
     /* TEXT */
     )])]);
-  }), 256
-  /* UNKEYED_FRAGMENT */
-  ))])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'result' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_57, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Result"], {
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'result' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_55, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Result"], {
     result: $setup.game.resultData,
     episode: $setup.questionsData[0].episode_id,
     traineeId: $setup.evaluation.traineeID
@@ -2774,13 +2788,13 @@ var _withScopeId = function _withScopeId(n) {
 };
 
 var _hoisted_1 = {
-  "class": "flex items-center justify-center min-h-screen bg-gray-100"
+  "class": "flex min-h-screen bg-gray-100"
 };
 var _hoisted_2 = {
-  "class": "w-3/5 bg-white shadow-lg watermark"
+  "class": "w-full bg-white watermark"
 };
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex justify-center p-4 gap-6\" data-v-40a8d3c7><div class=\"p-2 flex border-r-2 border-indigo-200 gap-4\" data-v-40a8d3c7><div class=\"mb-4 w-20 h-20\" data-v-40a8d3c7><img src=\"/logos/first.jpeg\" class=\"max-w-full h-auto rounded-full\" alt=\"\" data-v-40a8d3c7></div></div><div data-v-40a8d3c7><h1 class=\"text-3xl font-extrabold text-indigo-500\" data-v-40a8d3c7> Army Medical Corps Center &amp; School </h1><p class=\"text-base\" data-v-40a8d3c7> Shaheed Salahuddin Cantonment, Ghatail, Tangail, Bangladesh </p></div><div class=\"p-2 flex border-l-2 border-indigo-200 gap-4\" data-v-40a8d3c7><div class=\"mt-2 w-20 h-20\" data-v-40a8d3c7><img src=\"/logos/second.jpeg\" class=\"max-w-full h-auto rounded-full\" alt=\"\" data-v-40a8d3c7></div></div></div><div class=\"w-full h-0.5 bg-indigo-300\" data-v-40a8d3c7></div>", 2);
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"flex items-center justify-between p-4 gap-6\" data-v-40a8d3c7><div class=\"p-2 flex border-r-2 border-indigo-200 gap-4\" data-v-40a8d3c7><div class=\"mb-4 w-20 h-20\" data-v-40a8d3c7><img src=\"/logos/first.jpeg\" class=\"max-w-full h-auto rounded-full\" alt=\"\" data-v-40a8d3c7></div></div><div data-v-40a8d3c7><h1 class=\"text-2xl font-extrabold text-indigo-500\" data-v-40a8d3c7> Army Medical Corps Center &amp; School </h1><p class=\"text-base\" data-v-40a8d3c7> Shaheed Salahuddin Cantonment, Ghatail, Tangail, Bangladesh </p></div><div class=\"p-2 flex border-l-2 border-indigo-200 gap-4\" data-v-40a8d3c7><div class=\"mt-2 w-20 h-20\" data-v-40a8d3c7><img src=\"/logos/second.jpeg\" class=\"max-w-full h-auto rounded-full\" alt=\"\" data-v-40a8d3c7></div></div></div><div class=\"w-full h-0.5 bg-indigo-300\" data-v-40a8d3c7></div>", 2);
 
 var _hoisted_5 = {
   "class": "flex flex-row justify-center gap-52 items-center m-4"
@@ -2840,13 +2854,10 @@ var _hoisted_15 = {
   "class": "py-4"
 };
 var _hoisted_16 = {
-  "class": "border border-gray-400"
-};
-var _hoisted_17 = {
   "class": "whitespace-nowrap"
 };
 
-var _hoisted_18 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_17 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
     "class": "px-2 py-2"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -2856,17 +2867,17 @@ var _hoisted_18 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_19 = {
+var _hoisted_18 = {
   "class": "px-2 py-2 text-right"
 };
-var _hoisted_20 = {
+var _hoisted_19 = {
   "class": "text-sm text-gray-500"
 };
-var _hoisted_21 = {
+var _hoisted_20 = {
   "class": "whitespace-nowrap"
 };
 
-var _hoisted_22 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_21 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
     "class": "px-2 py-2"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -2876,17 +2887,17 @@ var _hoisted_22 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_23 = {
+var _hoisted_22 = {
   "class": "px-2 py-2 text-right"
 };
-var _hoisted_24 = {
+var _hoisted_23 = {
   "class": "text-sm text-gray-500"
 };
-var _hoisted_25 = {
+var _hoisted_24 = {
   "class": "whitespace-nowrap"
 };
 
-var _hoisted_26 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_25 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
     "class": "px-2 py-2"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -2896,17 +2907,17 @@ var _hoisted_26 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_27 = {
+var _hoisted_26 = {
   "class": "px-2 py-2 text-right"
 };
-var _hoisted_28 = {
+var _hoisted_27 = {
   "class": "text-sm text-gray-500"
 };
-var _hoisted_29 = {
+var _hoisted_28 = {
   "class": "whitespace-nowrap"
 };
 
-var _hoisted_30 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_29 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
     "class": "px-2 py-2"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -2916,17 +2927,17 @@ var _hoisted_30 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_31 = {
+var _hoisted_30 = {
   "class": "px-2 py-2 text-right"
 };
-var _hoisted_32 = {
+var _hoisted_31 = {
   "class": "text-sm text-gray-500"
 };
-var _hoisted_33 = {
+var _hoisted_32 = {
   "class": "whitespace-nowrap"
 };
 
-var _hoisted_34 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_33 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", {
     "class": "px-2 py-2"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -2936,38 +2947,32 @@ var _hoisted_34 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_35 = {
+var _hoisted_34 = {
   "class": "px-2 py-2 text-right"
 };
-var _hoisted_36 = {
+var _hoisted_35 = {
   "class": "text-sm text-gray-500"
 };
 
-var _hoisted_37 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_36 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "w-full h-0.5 bg-indigo-300"
+    "class": "w-full h-0.5 bg-indigo-300 printFooterLine2"
   }, null, -1
   /* HOISTED */
   );
 });
 
-var _hoisted_38 = {
-  "class": "p-4"
-};
-
-var _hoisted_39 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-    "class": "flex items-center justify-center"
-  }, "Thank you.", -1
+var _hoisted_37 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "w-full h-0.5 bg-indigo-300 printFooterLine hidden"
+  }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "flex items-center justify-center printFooter"
+  }, " This is computer generated report. ")], -1
   /* HOISTED */
   );
 });
 
-var _hoisted_40 = {
-  "class": "flex items-end justify-end space-x-3"
-};
-
-var _hoisted_41 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_38 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onclick: "window.print()",
     "class": "px-4 py-2 text-sm text-green-600 bg-green-100"
@@ -2976,38 +2981,31 @@ var _hoisted_41 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_42 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Home ");
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_router_link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-link");
-
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.traineeId), 1
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.episode), 1
   /* TEXT */
   )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", null, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.dateFormate()), 1
   /* TEXT */
-  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.marks) + " out of " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.totalMarks), 1
+  )])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tbody", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.marks), 1
   /* TEXT */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.attempt), 1
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" out of {{ result.totalMarks }} ")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_20, [_hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.attempt), 1
   /* TEXT */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_25, [_hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_28, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.correct), 1
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_24, [_hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.correct), 1
   /* TEXT */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_29, [_hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.wrong), 1
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_28, [_hoisted_29, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.wrong), 1
   /* TEXT */
-  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_33, [_hoisted_34, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_35, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_36, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.questions * 2), 1
+  )])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", _hoisted_32, [_hoisted_33, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_34, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.result.questions * 2), 1
   /* TEXT */
-  )])])])])])]), _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_38, [_hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [_hoisted_41, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_link, {
-    to: "/start-game",
+  )])])])])])]), _hoisted_36, _hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "p-4"
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "flex items-end justify-center space-x-3 noPrint"
+  }, [_hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: $setup.backToResult,
     "class": "px-4 py-2 text-sm text-blue-600 bg-blue-100"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_42];
-    }),
-    _: 1
-    /* STABLE */
-
-  })])])])]);
+  }, " Back To Result Page ")])])])]);
 }
 
 /***/ }),
@@ -3145,7 +3143,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.bg-red[data-v-5eb23588] {\n  background-color: #ff0000;\n}\n.bg-yellow[data-v-5eb23588] {\n  background-color: #ffff00;\n}\n.bg-green[data-v-5eb23588] {\n  background-color: #00ff00;\n}\n.bg-black[data-v-5eb23588] {\n  background-color: #000000;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.bg-red[data-v-5eb23588] {\r\n  background-color: #ff0000;\n}\n.bg-yellow[data-v-5eb23588] {\r\n  background-color: #ffff00;\n}\n.bg-green[data-v-5eb23588] {\r\n  background-color: #00ff00;\n}\n.bg-black[data-v-5eb23588] {\r\n  background-color: #000000;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3169,7 +3167,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.watermark[data-v-40a8d3c7] {\r\n  background-image: url(\"/logos/watermark.png\");\r\n  background-repeat: no-repeat;\r\n  background-attachment: fixed;\r\n  background-position: center;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.watermark[data-v-40a8d3c7] {\r\n  background-image: url(\"/logos/watermark.png\");\r\n  background-repeat: no-repeat;\r\n  background-attachment: fixed;\r\n  background-position: center;\n}\n@page {\r\n  size: A4;\r\n  margin: 0;\r\n  background: #fff;\n}\n@media print {\n.page[data-v-40a8d3c7] {\r\n    margin: 0;\r\n    border: initial;\r\n    border-radius: initial;\r\n    width: initial;\r\n    min-height: initial;\r\n    box-shadow: initial;\r\n    background: initial;\r\n    page-break-after: always;\n}\n.noPrint[data-v-40a8d3c7] {\r\n    display: none;\n}\n.printFooter[data-v-40a8d3c7] {\r\n    position: absolute;\r\n    bottom: 5%;\r\n    left: 35%;\n}\n.tbl[data-v-40a8d3c7]{\r\n    width: 100%;\r\n    background-color: brown;\n}\n.mainDiv[data-v-40a8d3c7]{\r\n    width: 100%;\r\n    height: 100%;\n}\n.watermark[data-v-40a8d3c7] {\r\n  background-position: 85% 100%;\n}\n.printFooterLine[data-v-40a8d3c7]{\r\n   position: absolute;\r\n    bottom: 10%;\r\n    left: 0%;\r\n    display: block;\n}\n.printFooterLine2[data-v-40a8d3c7]{\r\n  display: none\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3444,7 +3442,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Game_vue_vue_type_template_id_5eb23588_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Game.vue?vue&type=template&id=5eb23588&scoped=true */ "./resources/js/components/pages/Game.vue?vue&type=template&id=5eb23588&scoped=true");
 /* harmony import */ var _Game_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Game.vue?vue&type=script&setup=true&lang=js */ "./resources/js/components/pages/Game.vue?vue&type=script&setup=true&lang=js");
 /* harmony import */ var _Game_vue_vue_type_style_index_0_id_5eb23588_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Game.vue?vue&type=style&index=0&id=5eb23588&scoped=true&lang=css */ "./resources/js/components/pages/Game.vue?vue&type=style&index=0&id=5eb23588&scoped=true&lang=css");
-/* harmony import */ var C_laragon_www_triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var C_laragon_www_Triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -3452,7 +3450,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,C_laragon_www_triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Game_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Game_vue_vue_type_template_id_5eb23588_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-5eb23588"],['__file',"resources/js/components/pages/Game.vue"]])
+const __exports__ = /*#__PURE__*/(0,C_laragon_www_Triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Game_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Game_vue_vue_type_template_id_5eb23588_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-5eb23588"],['__file',"resources/js/components/pages/Game.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -3475,7 +3473,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ResultReport_vue_vue_type_template_id_40a8d3c7_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ResultReport.vue?vue&type=template&id=40a8d3c7&scoped=true */ "./resources/js/components/pages/ResultReport.vue?vue&type=template&id=40a8d3c7&scoped=true");
 /* harmony import */ var _ResultReport_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ResultReport.vue?vue&type=script&setup=true&lang=js */ "./resources/js/components/pages/ResultReport.vue?vue&type=script&setup=true&lang=js");
 /* harmony import */ var _ResultReport_vue_vue_type_style_index_0_id_40a8d3c7_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ResultReport.vue?vue&type=style&index=0&id=40a8d3c7&scoped=true&lang=css */ "./resources/js/components/pages/ResultReport.vue?vue&type=style&index=0&id=40a8d3c7&scoped=true&lang=css");
-/* harmony import */ var C_laragon_www_triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var C_laragon_www_Triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -3483,7 +3481,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,C_laragon_www_triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_ResultReport_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_ResultReport_vue_vue_type_template_id_40a8d3c7_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-40a8d3c7"],['__file',"resources/js/components/pages/ResultReport.vue"]])
+const __exports__ = /*#__PURE__*/(0,C_laragon_www_Triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_ResultReport_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_ResultReport_vue_vue_type_template_id_40a8d3c7_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-40a8d3c7"],['__file',"resources/js/components/pages/ResultReport.vue"]])
 /* hot reload */
 if (false) {}
 

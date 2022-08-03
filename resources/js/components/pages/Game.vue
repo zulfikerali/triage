@@ -162,6 +162,7 @@
             <div class="p-4">
                 <div
                     v-for="vq in questionsData[game.current].victim_questions"
+                    :key="vq.id"
                     class="text-gray-500 border p-2 rounded mb-4"
                 >
                     <h1 class="px-1 text-sm pb-2"><b>প্যারামেডিক :</b> {{ vq.paramedic_question }}</h1>
@@ -208,6 +209,7 @@
       <div class="my-5">
         <button
             v-for="(priority, index) in priorities"
+            :key="index"
             @click="setPriority(index + 1)"
             :class="{'bg-green-500 text-white': game.questionAnswer.selectedPriority == (index + 1) }"
             class="relative
@@ -250,6 +252,7 @@
             <div class="p-4">
                 <div
                     v-for="vq in questionsData[game.current].victim_questions"
+                    :key="vq.id"
                     class="text-gray-500 border p-2 rounded mb-4"
                 >
                     <h1 class="px-1 text-sm pb-2"><b>প্যারামেডিক :</b> {{ vq.paramedic_question }}</h1>
