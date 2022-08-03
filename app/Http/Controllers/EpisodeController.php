@@ -50,6 +50,33 @@ class EpisodeController extends Controller
         return 'success';
 
     }
+    public function storeAnswerSummit(Request $request)
+    {
+        $episodeId = Episode::where('status', 1)->first()->id;
+
+        Result::updateOrCreate(
+            [ 'trainee_id' => $request->evaluation['traineeID'], 'episode_id' => $episodeId ],
+            [
+                'trainee_id' => $request->evaluation['traineeID'],
+                'episode_id' => $episodeId,
+                'evaluation_data' => $request->evaluation['result'],
+                'result_data' => $request->evaluation['resultValue']
+            ]
+        );
+//       return Result::create([
+//            'trainee_id' => $request->evaluation['traineeID'],
+//            'episode_id' => $episodeId,
+//            'evaluation_data' => $request->evaluation['result'],
+//            'result_data' => $request->evaluation['resultValue'],
+//            'question_id' => 1,
+//            'correct_priority' => 1,
+//            'correct_color_code' => '1',
+//            'selected_priority' => 2,
+//            'selected_color_code' => 1
+//        ]);
+        return 'success';
+
+    }
     public function getResult($episodeId, $traineeId)
     {
         // $episodeId = Episode::where('status', 1)->first()->id;

@@ -2119,7 +2119,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
 
     var gameStart = function gameStart() {
-      var countDownDate = new Date().getTime() + 122000;
+      var countDownDate = new Date().getTime() + 1122000;
       game.timer = setInterval(function () {
         var now = new Date().getTime();
         var distance = countDownDate - now;
@@ -2858,6 +2858,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   storeResult: function storeResult(evaluation) {
     return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post("/storeResult", evaluation);
+  },
+  storeAnswerSummit: function storeAnswerSummit(evaluation) {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post("/storeAnswerSummit", evaluation);
   },
   getResult: function getResult(episodeId, traineeId) {
     return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/getResult/".concat(episodeId, "/").concat(traineeId));

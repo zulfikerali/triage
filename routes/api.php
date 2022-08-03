@@ -23,6 +23,7 @@ Route::get('getActiveEpisode', [EpisodeController::class, 'getActiveEpisode']);
 Route::get('getQuestions', [EpisodeController::class, 'getQuestions']);
 Route::post('activeEpisode', [EpisodeController::class, 'activeEpisode']);
 Route::post('storeResult', [EpisodeController::class, 'storeResult']);
+Route::post('storeAnswerSummit', [EpisodeController::class, 'storeAnswerSummit']);
 Route::get('getResult/{episodeId}/{traineeId}', [EpisodeController::class, 'getResult']);
 Route::post('storeQuestion', [EpisodeController::class, 'storeQuestion']);
 Route::get('allColorCode', [EpisodeController::class, 'allColorCode']);

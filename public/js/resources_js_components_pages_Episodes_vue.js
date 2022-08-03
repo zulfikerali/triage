@@ -2323,6 +2323,9 @@ __webpack_require__.r(__webpack_exports__);
   storeResult: function storeResult(evaluation) {
     return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post("/storeResult", evaluation);
   },
+  storeAnswerSummit: function storeAnswerSummit(evaluation) {
+    return _api__WEBPACK_IMPORTED_MODULE_0__["default"].post("/storeAnswerSummit", evaluation);
+  },
   getResult: function getResult(episodeId, traineeId) {
     return _api__WEBPACK_IMPORTED_MODULE_0__["default"].get("/getResult/".concat(episodeId, "/").concat(traineeId));
   },
