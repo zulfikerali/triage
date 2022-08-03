@@ -62,7 +62,7 @@
         <button
             v-on:click="nextVideo"
             class="absolute bottom-2 right-2 px-3 py-1 bg-gray-500 text-white rounded" >
-            Next Video
+            {{ questionsData.length == (game.current + 1) ? 'Show Result' : 'Next Video'}}
         </button>
     </div>
     <div v-if="game.state === 'triage'"
