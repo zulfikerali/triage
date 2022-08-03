@@ -82,7 +82,7 @@ var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "w-36"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "http://triage.test/logos/first.jpeg",
+    src: "/logos/first.jpeg",
     "class": "max-w-full h-auto rounded-full",
     alt: ""
   })])])], -1
@@ -112,7 +112,7 @@ var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "w-36 mt-2"
   }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    src: "http://triage.test/logos/second.jpeg",
+    src: "/logos/second.jpeg",
     "class": "max-w-full h-auto rounded-full",
     alt: ""
   })])])], -1

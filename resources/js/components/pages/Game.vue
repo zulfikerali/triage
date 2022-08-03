@@ -1,4 +1,9 @@
 <template>
+    <div v-show="game.timer">
+        <div class="bg-transparent text-2xl text-thin text-gray-500 absolute right-2 top-2">
+            {{ game.minutes + "m " + game.seconds + "s " }}
+        </div>
+    </div>
     <div v-if="game.state == 'video'">
         <div class="bg-transparent text-2xl text-thin text-gray-500 absolute right-2 top-2">
             <button
@@ -55,18 +60,18 @@
             </div>
         </div>
         <button
-            v-on:click.alt="nextVideo"
-            class="absolute bottom-2 right-2 px-3 py-1 bg-gray-200 text-white rounded" >
-            Next
+            v-on:click="nextVideo"
+            class="absolute bottom-2 right-2 px-3 py-1 bg-gray-500 text-white rounded" >
+            Next Video
         </button>
     </div>
     <div v-if="game.state === 'triage'"
         class="bg-white p-6 rounded-lg shadow-lg w-full h-screen"
     >
         <p
-          class="text-xl lg:text-5xl text-gray-500 font-thin mt-4 mb-10 text-center"
+          class="text-xl lg:text-2xl text-gray-500 font-thin mt-4 mb-10 text-center"
         >
-          Which color do you think about this victim?
+            আক্রান্তের কালার কোড কি হবে ?
         </p>
         <div class="grid grid-rows-2 grid-flow-col gap-4 justify-center p-3">
           <div @click="setColorCode(1)"
@@ -150,6 +155,21 @@
             > SUBMIT
             </button>
         </div>
+        <div class="max-w-md absolute right-10 top-32 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+            <div class="flex items-center px-6 py-3 bg-gray-900">
+                <h1 class="mx-3 text-lg font-semibold text-white">ট্রায়েজ প্রশ্ন</h1>
+            </div>
+            <div class="p-4">
+                <div
+                    v-for="vq in questionsData[game.current].victim_questions"
+                    :key="vq.id"
+                    class="text-gray-500 border p-2 rounded mb-4"
+                >
+                    <h1 class="px-1 text-sm pb-2"><b>প্যারামেডিক :</b> {{ vq.paramedic_question }}</h1>
+                    <h1 class="px-1 text-sm"><b>আক্রান্ত :</b> {{ vq.victim_answer }}</h1>
+                </div>
+            </div>
+        </div>
     </div>
     <div v-if="game.state === 'priority'"
         class="
@@ -183,7 +203,7 @@
           text-center
         "
       >
-        What the priority for this victim?
+          আক্রান্তের প্রায়োরিটি কি হবে ?
       </p>
 
       <div class="my-5">
@@ -225,6 +245,21 @@
               </button>
           </div>
       </div>
+      <div class="max-w-md absolute right-10 top-32 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+            <div class="flex items-center px-6 py-3 bg-gray-900">
+                <h1 class="mx-3 text-lg font-semibold text-white">ট্রায়েজ প্রশ্ন</h1>
+            </div>
+            <div class="p-4">
+                <div
+                    v-for="vq in questionsData[game.current].victim_questions"
+                    :key="vq.id"
+                    class="text-gray-500 border p-2 rounded mb-4"
+                >
+                    <h1 class="px-1 text-sm pb-2"><b>প্যারামেডিক :</b> {{ vq.paramedic_question }}</h1>
+                    <h1 class="px-1 text-sm"><b>আক্রান্ত :</b> {{ vq.victim_answer }}</h1>
+                </div>
+            </div>
+        </div>
     </div>
     </div>
     <div v-if="game.state === 'result'">
@@ -233,11 +268,12 @@
 </template>
 <script setup>
 import { ref, onMounted, reactive } from "vue";
-import { useRoute } from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import Result from "../pages/ResultReport.vue";
 // import axios from 'axios'
 import repository from "../../api/repository"
 const route = useRoute()
+const router = useRouter()
 const evaluation = reactive({
   traineeID: null,
   result: [],
@@ -253,7 +289,7 @@ const questionsData = ref([])
 const videoPlayer = ref(null)
 const nextPage = ref(true)
 const video = document.getElementById("video")
-const priorities = ['One', 'Two', 'Three', 'Four']
+const priorities = ['এক', 'দুই', 'তিন', 'চার']
 const game = reactive({
     current: 0,
     state: "video",
@@ -271,38 +307,17 @@ const game = reactive({
 });
 
 const gameStart = () => {
-    let countDownDate = new Date().getTime() + 102000
+    let countDownDate = new Date().getTime() + 31000
     game.timer = setInterval(() => {
         let now = new Date().getTime()
         let distance = countDownDate - now
         game.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
         game.seconds = Math.floor((distance % (1000 * 60)) / 1000)
         if (distance < 0) {
-            gameEnd()
+            answerSubmit()
         }
     }, 1000)
 }
-const gameEnd = () => {
-    clearInterval(game.timer)
-    game.timer = null
-    evaluation.traineeID = route.query.traineeID;
-    evaluation.resultValue.questions = questionsData.value.length;
-    repository
-        .storeResult({ evaluation: evaluation })
-        .then((res) => {
-            let resData = { ...evaluation.resultValue };
-            game.resultData = resData;
-            game.state = "result";
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-    console.log(evaluation);
-    // return
-}
-const onended = () => {
-  game.state = "triage";
-};
 
 const setColorCode = (code) => {
     game.questionAnswer.selectedColorCode = code;
@@ -310,7 +325,6 @@ const setColorCode = (code) => {
 const setPriority = (code) => {
     game.questionAnswer.selectedPriority = code;
 };
-
 const colorCodeSubmit = () => {
   evaluation.resultValue.attempt++;
   if (game.questionAnswer.selectedColorCode == questionsData.value[game.current].color_code) {
@@ -324,6 +338,10 @@ const colorCodeSubmit = () => {
   game.state = "priority";
 };
 const prioritySubmit = () => {
+    answerSubmit()
+};
+
+const answerSubmit = () => {
     evaluation.resultValue.attempt++;
     if (game.questionAnswer.selectedPriority == questionsData.value[game.current].priority) {
         evaluation.resultValue.correct++;
@@ -335,10 +353,6 @@ const prioritySubmit = () => {
         questionsData.value[game.current].priority;
     let clone = { ...game.questionAnswer };
     evaluation.result.push(clone);
-    answerSubmit()
-};
-
-const answerSubmit = () => {
     clearInterval(game.timer)
     game.timer = null
     repository
@@ -367,15 +381,18 @@ const traineeReset = () => {
     game.questionAnswer.selectedPriority = null
     game.questionAnswer.correctPriority = null
     game.resultData = []
+    game.minutes = 0
+    game.seconds = 0
     game.state = "exam"
 }
 
 const nextVideo = () => {
+    console.log(' Router push',game.current, questionsData.value.length)
+    if ((game.current + 1) == questionsData.value.length) {
+        router.push(`/result-report/${questionsData.value[0].episode_id}`)
+    }
     game.current++
     game.state = "video"
-    // if (questionsData.value.length === game.current) {
-    //     gameEnd()
-    // }
 }
 
 const setExistingData = (data) => {
@@ -395,12 +412,13 @@ const submitTraineeID = () => {
             .catch((err) => {
                 console.log(err.message);
             });
-
+        gameStart()
         game.state = 'triage'
     } else {
         alert("Trainee ID is required!")
     }
 };
+
 onMounted(() => {
    // gameStart()
   repository
@@ -408,10 +426,12 @@ onMounted(() => {
     .then((res) => {
       questionsData.value = res.data;
       evaluation.resultValue.questions = questionsData.value.length
+      clearInterval(game.timer)
+      game.timer = null
       console.log(res.data);
       document.addEventListener('keyup', (e) => {
         if (!e.altKey) return
-        if(e.keyCode === 39) alert(e.keyCode)
+        if(e.keyCode === 39) nextVideo()
       })
     })
     .catch((err) => {

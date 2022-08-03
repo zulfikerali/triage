@@ -64,7 +64,7 @@
             >
               <div class="w-36">
                 <img
-                  src="http://triage.test/logos/first.jpeg"
+                  src="/logos/first.jpeg"
                   class="max-w-full h-auto rounded-full"
                   alt=""
                 />
@@ -104,7 +104,7 @@
             >
               <div class="w-36 mt-2">
                 <img
-                  src="http://triage.test/logos/second.jpeg"
+                  src="/logos/second.jpeg"
                   class="max-w-full h-auto rounded-full"
                   alt=""
                 />
