@@ -24,16 +24,15 @@
         v-for="(episode, index) in episodes"
         :key="episode.id"
         class="
-          bg-blue-600
+          
           pt-1
           px-2
-          bg-gradient-to-b
-          from-blue-400
-          to-blue-500
+          
           rounded-xl
           shadow-lg
           w-52
         "
+        :class="[episode.status == 1?'bg-red-500':'bg-blue-600 bg-gradient-to-b from-blue-400 to-blue-500']"
       >
         <div class="flex justify-center">
           <div class="flex items-center justify-center">
@@ -44,8 +43,8 @@
                   flex
                   justify-center
                   text-white
-                  p-4
-                  bg-blue-400
+                  py-2
+                  mt-1
                   rounded-lg
                   shadow-l
                   w-32
@@ -53,14 +52,14 @@
                 "
                 :class="
                   episode.status == 1
-                    ? 'ring-2 ring-blue-300 cursor-pointer'
+                    ? 'ring-2 ring-white cursor-pointer'
                     : 'ring-2 ring-gray-200'
                 "
                 :disabled="episode.status == 1 ? true : false"
               >
                 {{ episode.status == 1 ? "Current" : "Active" }}
               </div>
-              <span
+              <!-- <span
                 v-show="episode.status == 1"
                 class="flex absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1"
               >
@@ -79,7 +78,7 @@
                 <span
                   class="relative inline-flex rounded-full h-3 w-3 bg-red-400"
                 ></span>
-              </span>
+              </span> -->
             </span>
           </div>
         </div>
@@ -97,7 +96,7 @@
   </div>
   <div class="flex justify-center mt-4">
     <div class="px-4 py-2 bg-blue-500 rounded-lg text-white cursor-pointer" @click.prevent="goToPage">
- Start Exam
+      Click to show
     </div>
   </div>
 </template>

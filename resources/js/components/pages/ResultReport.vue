@@ -1,7 +1,7 @@
 <template>
   <div class="flex min-h-screen bg-gray-100">
     <div class="w-full bg-white watermark ">
-      <div class="flex items-center justify-between p-4 gap-6">
+      <div class="flex items-center justify-center p-4 gap-6">
         <div class="p-2 flex border-r-2 border-indigo-200 gap-4">
           <div class="mb-4 w-20 h-20">
             <img
@@ -66,7 +66,20 @@
             <tbody>
               <tr class="whitespace-nowrap">
                 <td class="px-2 py-2">
-                  <div class="text-sm text-gray-900">Marks</div>
+                  <div class="text-sm text-gray-900">Total Questions</div>
+                </td>
+                <td class="px-2 py-2 text-right">
+                  <div class="text-sm text-gray-500">
+                    {{ result.questions * 2 }}
+                  </div>
+                </td>
+              </tr>
+              <tr class="whitespace-nowrap">
+                <td class="px-2 py-2">
+                  <div class="text-sm text-gray-900">
+                    Marks 
+                    <span class="tinyTxt">(Color Code - {{result.ccm}}, Priority - {{result.pm}})</span>
+                  </div>
                 </td>
                 <td class="px-2 py-2 text-right">
                   <div class="text-sm text-gray-500">
@@ -99,16 +112,6 @@
                   <div class="text-sm text-gray-500">{{ result.wrong }}</div>
                 </td>
               </tr>
-              <tr class="whitespace-nowrap">
-                <td class="px-2 py-2">
-                  <div class="text-sm text-gray-900">Total Questions</div>
-                </td>
-                <td class="px-2 py-2 text-right">
-                  <div class="text-sm text-gray-500">
-                    {{ result.questions * 2 }}
-                  </div>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>
@@ -121,19 +124,19 @@
         </div>
       </div>
        <div class="p-4">
-        <div class="flex items-end justify-center space-x-3 noPrint">
+        <div class="flex items-end justify-end space-x-3 noPrint">
           <button
             onclick="window.print()"
             class="px-4 py-2 text-sm text-green-600 bg-green-100"
           >
             Print
           </button>
-          <button
+          <!-- <button
             @click="backToResult"
             class="px-4 py-2 text-sm text-blue-600 bg-blue-100"
           >
             Back To Result Page
-          </button>
+          </button> -->
         </div>
       </div>
     </div>
@@ -194,6 +197,9 @@ const backToResult = () => {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+}
+.tinyTxt{
+  font-size: 12px;
 }
 @page {
   size: A4;
