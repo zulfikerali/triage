@@ -29,16 +29,16 @@
     </div>
     <div v-if="game.state == 'exam'"
          class="min-h-screen" >
-        <h1 class="font-bold text-4xl text-center text-indigo-700 flex-none mt-5">
-            Enter Your ID then click start button to start your test.
+        <h1 class="font-bold text-2xl lg:text-4xl text-center text-indigo-700 flex-none mt-5">
+            Enter Your ID then click start button to start your exam.
         </h1>
         <div class="flex justify-center items-center mt-6">
             <div class="mt-4">
-                <div class="flex rounded-md overflow-hidden w-full">
+                <div class="flex rounded-md overflow-hidden w-80">
                     <input
                         type="text"
                         v-model="evaluation.traineeID"
-                        class="px-2 w-full border rounded-md rounded-r-none"
+                        class="px-2 w-2/3 border rounded-md rounded-r-none"
                         placeholder="Enter Trainee ID"
                         v-on:keyup.enter="submitTraineeID"
                     />
@@ -47,14 +47,14 @@
                         class="
                             bg-indigo-600
                             text-white
-                            px-6
+                            px-3
                             text-lg
                             font-semibold
                             py-2
                             rounded-r-md
                           "
                     >
-                        Start
+                        Start Test
                     </button>
                 </div>
             </div>
@@ -69,7 +69,7 @@
         class="bg-white p-6 rounded-lg shadow-lg w-full h-screen"
     >
         <p
-          class="text-xl lg:text-2xl text-gray-500 font-thin mt-4 mb-10 text-center"
+          class="text-xl lg:text-4xl text-gray-500 font-thin mt-4 mb-10 text-center"
         >
             আক্রান্তের কালার কোড কি হবে ?
         </p>
@@ -155,7 +155,7 @@
             > SUBMIT
             </button>
         </div>
-        <div class="max-w-md absolute right-10 top-32 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+        <div class="max-w-md absolute left-10 top-32 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
             <div class="flex items-center px-6 py-3 bg-gray-900">
                 <h1 class="mx-3 text-lg font-semibold text-white">ট্রায়েজ প্রশ্ন</h1>
             </div>
@@ -245,7 +245,7 @@
               </button>
           </div>
       </div>
-      <div class="max-w-md absolute right-10 top-32 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
+      <div class="max-w-md absolute left-10 top-32 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
             <div class="flex items-center px-6 py-3 bg-gray-900">
                 <h1 class="mx-3 text-lg font-semibold text-white">ট্রায়েজ প্রশ্ন</h1>
             </div>
@@ -283,6 +283,8 @@ const evaluation = reactive({
     wrong: 0,
     marks: 0,
     questions: 0,
+    ccm: 0,
+    pm: 0
   },
 })
 const questionsData = ref([])
@@ -328,6 +330,7 @@ const setPriority = (code) => {
 const colorCodeSubmit = () => {
   evaluation.resultValue.attempt++;
   if (game.questionAnswer.selectedColorCode == questionsData.value[game.current].color_code) {
+    evaluation.resultValue.ccm += questionsData.value[game.current].color_code_marks;
     evaluation.resultValue.correct++;
     evaluation.resultValue.marks += questionsData.value[game.current].color_code_marks;
   } else {
@@ -345,6 +348,7 @@ const answerSubmit = () => {
     evaluation.resultValue.attempt++;
     if (game.questionAnswer.selectedPriority == questionsData.value[game.current].priority) {
         evaluation.resultValue.correct++;
+        evaluation.resultValue.pm += questionsData.value[game.current].priority_marks;
         evaluation.resultValue.marks += questionsData.value[game.current].priority_marks;
     } else {
         evaluation.resultValue.wrong++;

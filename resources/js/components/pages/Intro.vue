@@ -163,8 +163,8 @@
       <div class="container flex items-center justify-end mx-auto text-gray-600 capitalize dark:text-gray-300 gap-4">
             <!-- <a href="#" class="text-gray-800 transition-colors duration-200 transform dark:text-gray-200 border-b-2 border-blue-500 mx-1.5 sm:mx-6">home</a> -->
             <!-- <a href="#" class="border-b-2 border-transparent hover:text-gray-800 transition-colors duration-200 transform dark:hover:text-gray-200 hover:border-blue-500 mx-1.5 sm:mx-6">Results</a> -->
-            <router-link class="cursor-pointer text-orange-800 border px-3 py-2 rounded-lg" to="/result/episodes">Go to Result page</router-link>
-            <span class="cursor-pointer text-blue-800 border px-3 py-2 rounded-lg" @click="goToPage">Go to Episode page →</span>
+            <!-- <router-link class="cursor-pointer text-orange-800 border px-3 py-2 rounded-lg" to="/result/episodes">Go to Result page</router-link> -->
+            <span class="cursor-pointer text-blue-800 border px-3 py-2 rounded-lg" @click="goToPage">Go to Episode page</span>
         </div>
     </div>
     </transition>

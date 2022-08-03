@@ -83,11 +83,11 @@
       </div>
     </div>
   </div>
-  <div class="flex justify-center mt-4">
+  <!-- <div class="flex justify-center mt-4">
     <router-link to="/" class="px-4 py-2 text-red-500 underline cursor-pointer">
       Go Back
     </router-link>
-  </div>
+  </div> -->
 </template>
 <script setup>
 import { ref, onMounted } from "vue";

@@ -1,7 +1,7 @@
 <template>
   <!-- component -->
   <div class="text-center mt-5 mb-5">
-    <h2 class="text-4xl tracking-tight">Create Paramedic/Victim Question</h2>
+    <h2 class="text-4xl tracking-tight">Create Conversation</h2>
   </div>
   <div class="flex justify-center my-2 mx-4 md:mx-0">
     <form
@@ -148,7 +148,7 @@
               hover:bg-blue-500
             "
           >
-            Create Question
+            Create Conversation
           </button>
         </div>
       </div>

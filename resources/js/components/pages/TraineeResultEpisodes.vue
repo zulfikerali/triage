@@ -14,7 +14,7 @@
             {{traineeResultData.episode_name}} Trainee Results
           </div>
         </div>
-        <router-link to="/result/episodes" class="underline text-red-600">Go Back</router-link>
+        <!-- <router-link to="/result/episodes" class="underline text-red-600">Go Back</router-link> -->
         <div class="flex items-center space-x-8">
           <button
             class="
