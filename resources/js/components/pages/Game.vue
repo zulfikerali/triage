@@ -5,10 +5,10 @@
         </div>
     </div>
     <div v-if="game.state == 'video'">
-        <div class="bg-transparent text-2xl text-thin text-gray-500 absolute right-2 top-2">
+        <div class="bg-transparent absolute right-2 top-2">
             <button
                 @click="game.state = 'exam'"
-                class="px-6 py-2 bg-blue-500 text-white rounded-3xl hover:bg-blue-700"
+                class="px-4 py-1 bg-blue-500 text-white rounded-3xl hover:bg-blue-700"
             >
                 START
             </button>
@@ -17,7 +17,7 @@
             <div class="flex justify-center">
                 <!--@ended="onended"-->
                 <video
-                    class="w-auto max-w-7xl m-3 rounded lg:rounded-lg absolute"
+                    class="w-auto max-w-5xl 2xl:max-w-7xl m-3 rounded lg:rounded-lg absolute"
                     v-if="game.current === index"
                     controls
                 >

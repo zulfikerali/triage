@@ -2848,13 +2848,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Result_vue_vue_type_template_id_726f9cb3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Result.vue?vue&type=template&id=726f9cb3 */ "./resources/js/components/pages/Result.vue?vue&type=template&id=726f9cb3");
 /* harmony import */ var _Result_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Result.vue?vue&type=script&setup=true&lang=js */ "./resources/js/components/pages/Result.vue?vue&type=script&setup=true&lang=js");
-/* harmony import */ var C_laragon_www_Triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var C_laragon_www_triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,C_laragon_www_Triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Result_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Result_vue_vue_type_template_id_726f9cb3__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/pages/Result.vue"]])
+const __exports__ = /*#__PURE__*/(0,C_laragon_www_triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Result_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Result_vue_vue_type_template_id_726f9cb3__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/pages/Result.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -2877,7 +2877,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ResultReport_vue_vue_type_template_id_40a8d3c7_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ResultReport.vue?vue&type=template&id=40a8d3c7&scoped=true */ "./resources/js/components/pages/ResultReport.vue?vue&type=template&id=40a8d3c7&scoped=true");
 /* harmony import */ var _ResultReport_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ResultReport.vue?vue&type=script&setup=true&lang=js */ "./resources/js/components/pages/ResultReport.vue?vue&type=script&setup=true&lang=js");
 /* harmony import */ var _ResultReport_vue_vue_type_style_index_0_id_40a8d3c7_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ResultReport.vue?vue&type=style&index=0&id=40a8d3c7&scoped=true&lang=css */ "./resources/js/components/pages/ResultReport.vue?vue&type=style&index=0&id=40a8d3c7&scoped=true&lang=css");
-/* harmony import */ var C_laragon_www_Triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var C_laragon_www_triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -2885,7 +2885,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,C_laragon_www_Triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_ResultReport_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_ResultReport_vue_vue_type_template_id_40a8d3c7_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-40a8d3c7"],['__file',"resources/js/components/pages/ResultReport.vue"]])
+const __exports__ = /*#__PURE__*/(0,C_laragon_www_triage_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_ResultReport_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_ResultReport_vue_vue_type_template_id_40a8d3c7_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render],['__scopeId',"data-v-40a8d3c7"],['__file',"resources/js/components/pages/ResultReport.vue"]])
 /* hot reload */
 if (false) {}
 
