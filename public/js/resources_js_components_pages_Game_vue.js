@@ -2085,6 +2085,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var expose = _ref.expose;
     expose();
     var route = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.useRoute)();
+    var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_3__.useRouter)();
     var evaluation = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       traineeID: null,
       result: [],
@@ -2100,7 +2101,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var videoPlayer = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
     var nextPage = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(true);
     var video = document.getElementById("video");
-    var priorities = ['One', 'Two', 'Three', 'Four'];
+    var priorities = ['এক', 'দুই', 'তিন', 'চার'];
     var game = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
       current: 0,
       state: "video",
@@ -2118,7 +2119,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
 
     var gameStart = function gameStart() {
-      var countDownDate = new Date().getTime() + 102000;
+      var countDownDate = new Date().getTime() + 31000;
       game.timer = setInterval(function () {
         var now = new Date().getTime();
         var distance = countDownDate - now;
@@ -2126,31 +2127,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         game.seconds = Math.floor(distance % (1000 * 60) / 1000);
 
         if (distance < 0) {
-          gameEnd();
+          answerSubmit();
         }
       }, 1000);
-    };
-
-    var gameEnd = function gameEnd() {
-      clearInterval(game.timer);
-      game.timer = null;
-      evaluation.traineeID = route.query.traineeID;
-      evaluation.resultValue.questions = questionsData.value.length;
-      _api_repository__WEBPACK_IMPORTED_MODULE_2__["default"].storeResult({
-        evaluation: evaluation
-      }).then(function (res) {
-        var resData = _objectSpread({}, evaluation.resultValue);
-
-        game.resultData = resData;
-        game.state = "result";
-      })["catch"](function (err) {
-        console.log(err);
-      });
-      console.log(evaluation); // return
-    };
-
-    var onended = function onended() {
-      game.state = "triage";
     };
 
     var setColorCode = function setColorCode(code) {
@@ -2177,6 +2156,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     };
 
     var prioritySubmit = function prioritySubmit() {
+      answerSubmit();
+    };
+
+    var answerSubmit = function answerSubmit() {
       evaluation.resultValue.attempt++;
 
       if (game.questionAnswer.selectedPriority == questionsData.value[game.current].priority) {
@@ -2191,10 +2174,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var clone = _objectSpread({}, game.questionAnswer);
 
       evaluation.result.push(clone);
-      answerSubmit();
-    };
-
-    var answerSubmit = function answerSubmit() {
       clearInterval(game.timer);
       game.timer = null;
       _api_repository__WEBPACK_IMPORTED_MODULE_2__["default"].storeAnswerSummit({
@@ -2222,14 +2201,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       game.questionAnswer.selectedPriority = null;
       game.questionAnswer.correctPriority = null;
       game.resultData = [];
+      game.minutes = 0;
+      game.seconds = 0;
       game.state = "exam";
     };
 
     var nextVideo = function nextVideo() {
+      console.log(' Router push', game.current, questionsData.value.length);
+
+      if (game.current + 1 == questionsData.value.length) {
+        router.push("/result-report/".concat(questionsData.value[0].episode_id));
+      }
+
       game.current++;
-      game.state = "video"; // if (questionsData.value.length === game.current) {
-      //     gameEnd()
-      // }
+      game.state = "video";
     };
 
     var setExistingData = function setExistingData(data) {
@@ -2246,6 +2231,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         })["catch"](function (err) {
           console.log(err.message);
         });
+        gameStart();
         game.state = 'triage';
       } else {
         alert("Trainee ID is required!");
@@ -2257,10 +2243,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       _api_repository__WEBPACK_IMPORTED_MODULE_2__["default"].questions().then(function (res) {
         questionsData.value = res.data;
         evaluation.resultValue.questions = questionsData.value.length;
+        clearInterval(game.timer);
+        game.timer = null;
         console.log(res.data);
         document.addEventListener('keyup', function (e) {
           if (!e.altKey) return;
-          if (e.keyCode === 39) alert(e.keyCode);
+          if (e.keyCode === 39) nextVideo();
         });
       })["catch"](function (err) {
         console.log(err.message);
@@ -2268,6 +2256,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     });
     var __returned__ = {
       route: route,
+      router: router,
       evaluation: evaluation,
       questionsData: questionsData,
       videoPlayer: videoPlayer,
@@ -2276,8 +2265,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       priorities: priorities,
       game: game,
       gameStart: gameStart,
-      gameEnd: gameEnd,
-      onended: onended,
       setColorCode: setColorCode,
       setPriority: setPriority,
       colorCodeSubmit: colorCodeSubmit,
@@ -2291,6 +2278,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       onMounted: vue__WEBPACK_IMPORTED_MODULE_0__.onMounted,
       reactive: vue__WEBPACK_IMPORTED_MODULE_0__.reactive,
       useRoute: vue_router__WEBPACK_IMPORTED_MODULE_3__.useRoute,
+      useRouter: vue_router__WEBPACK_IMPORTED_MODULE_3__.useRouter,
       Result: _pages_ResultReport_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
       repository: _api_repository__WEBPACK_IMPORTED_MODULE_2__["default"]
     };
@@ -2400,29 +2388,32 @@ var _withScopeId = function _withScopeId(n) {
 };
 
 var _hoisted_1 = {
-  key: 0
-};
-var _hoisted_2 = {
   "class": "bg-transparent text-2xl text-thin text-gray-500 absolute right-2 top-2"
 };
+var _hoisted_2 = {
+  key: 0
+};
 var _hoisted_3 = {
-  "class": "flex justify-center"
+  "class": "bg-transparent text-2xl text-thin text-gray-500 absolute right-2 top-2"
 };
 var _hoisted_4 = {
+  "class": "flex justify-center"
+};
+var _hoisted_5 = {
   key: 0,
   "class": "w-auto max-w-7xl m-3 rounded lg:rounded-lg absolute",
   controls: ""
 };
-var _hoisted_5 = ["src"];
+var _hoisted_6 = ["src"];
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Your browser does not support the video tag. ");
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Your browser does not support the video tag. ");
 
-var _hoisted_7 = {
+var _hoisted_8 = {
   key: 1,
   "class": "min-h-screen"
 };
 
-var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_9 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
     "class": "font-bold text-4xl text-center text-indigo-700 flex-none mt-5"
   }, " Enter Your ID then click start button to start your test. ", -1
@@ -2430,17 +2421,16 @@ var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_9 = {
+var _hoisted_10 = {
   "class": "flex justify-center items-center mt-6"
 };
-var _hoisted_10 = {
+var _hoisted_11 = {
   "class": "mt-4"
 };
-var _hoisted_11 = {
+var _hoisted_12 = {
   "class": "flex rounded-md overflow-hidden w-full"
 };
-var _hoisted_12 = ["onKeyup"];
-var _hoisted_13 = ["onClick"];
+var _hoisted_13 = ["onKeyup"];
 var _hoisted_14 = {
   key: 2,
   "class": "bg-white p-6 rounded-lg shadow-lg w-full h-screen"
@@ -2448,8 +2438,8 @@ var _hoisted_14 = {
 
 var _hoisted_15 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-    "class": "text-xl lg:text-5xl text-gray-500 font-thin mt-4 mb-10 text-center"
-  }, " Which color do you think about this victim? ", -1
+    "class": "text-xl lg:text-2xl text-gray-500 font-thin mt-4 mb-10 text-center"
+  }, " আক্রান্তের কালার কোড কি হবে ? ", -1
   /* HOISTED */
   );
 });
@@ -2525,36 +2515,76 @@ var _hoisted_29 = {
   "class": "text-center"
 };
 var _hoisted_30 = {
-  key: 3,
-  "class": "antialiased bg-slate-200 w-full h-screen flex justify-center flex-col"
-};
-var _hoisted_31 = {
-  "class": "max-w-lg mx-3 md:mx-auto bg-white p-8 rounded-xl shadow shadow-slate-300"
+  "class": "max-w-md absolute right-10 top-32 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
 };
 
-var _hoisted_32 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-    "class": "text-2xl text-gray-500 font-thin mt-4 mb-10 text-center"
-  }, " What the priority for this victim? ", -1
+var _hoisted_31 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "flex items-center px-6 py-3 bg-gray-900"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+    "class": "mx-3 text-lg font-semibold text-white"
+  }, "ট্রায়েজ প্রশ্ন")], -1
   /* HOISTED */
   );
 });
 
+var _hoisted_32 = {
+  "class": "p-4"
+};
 var _hoisted_33 = {
+  "class": "text-gray-500 border p-2 rounded mb-4"
+};
+var _hoisted_34 = {
+  "class": "px-1 text-sm pb-2"
+};
+
+var _hoisted_35 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "প্যারামেডিক :", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_36 = {
+  "class": "px-1 text-sm"
+};
+
+var _hoisted_37 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "আক্রান্ত :", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_38 = {
+  key: 3,
+  "class": "antialiased bg-slate-200 w-full h-screen flex justify-center flex-col"
+};
+var _hoisted_39 = {
+  "class": "max-w-lg mx-3 md:mx-auto bg-white p-8 rounded-xl shadow shadow-slate-300"
+};
+
+var _hoisted_40 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+    "class": "text-2xl text-gray-500 font-thin mt-4 mb-10 text-center"
+  }, " আক্রান্তের প্রায়োরিটি কি হবে ? ", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_41 = {
   "class": "my-5"
 };
-var _hoisted_34 = ["onClick"];
-var _hoisted_35 = {
+var _hoisted_42 = ["onClick"];
+var _hoisted_43 = {
   "class": "absolute right-2"
 };
-var _hoisted_36 = {
+var _hoisted_44 = {
   key: 0,
   "class": "h-8 w-8",
   viewBox: "0 0 448 512",
   fill: "white"
 };
 
-var _hoisted_37 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_45 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
     d: "M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"
   }, null, -1
@@ -2562,18 +2592,62 @@ var _hoisted_37 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_38 = [_hoisted_37];
-var _hoisted_39 = {
+var _hoisted_46 = [_hoisted_45];
+var _hoisted_47 = {
   "class": "text-lg lg:text-xl"
 };
-var _hoisted_40 = {
+var _hoisted_48 = {
   "class": "text-center"
 };
-var _hoisted_41 = {
+var _hoisted_49 = {
+  "class": "max-w-md absolute right-10 top-32 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800"
+};
+
+var _hoisted_50 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "flex items-center px-6 py-3 bg-gray-900"
+  }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+    "class": "mx-3 text-lg font-semibold text-white"
+  }, "ট্রায়েজ প্রশ্ন")], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_51 = {
+  "class": "p-4"
+};
+var _hoisted_52 = {
+  "class": "text-gray-500 border p-2 rounded mb-4"
+};
+var _hoisted_53 = {
+  "class": "px-1 text-sm pb-2"
+};
+
+var _hoisted_54 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "প্যারামেডিক :", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_55 = {
+  "class": "px-1 text-sm"
+};
+
+var _hoisted_56 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "আক্রান্ত :", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_57 = {
   key: 4
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [$setup.game.state == 'video' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($setup.game.minutes + "m " + $setup.game.seconds + "s "), 1
+  /* TEXT */
+  )], 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.game.timer]]), $setup.game.state == 'video' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $setup.game.state = 'exam';
     }),
@@ -2581,15 +2655,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, " START ")]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.questionsData, function (question, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: question.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("@ended=\"onended\""), $setup.game.current === index ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("video", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("source", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("@ended=\"onended\""), $setup.game.current === index ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("video", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("source", {
       src: '/videos/' + question.video_path,
       type: "video/mp4"
     }, null, 8
     /* PROPS */
-    , _hoisted_5), _hoisted_6])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
+    , _hoisted_6), _hoisted_7])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state == 'exam' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state == 'exam' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $setup.evaluation.traineeID = $event;
@@ -2599,15 +2673,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onKeyup: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)($setup.submitTraineeID, ["enter"])
   }, null, 40
   /* PROPS, HYDRATE_EVENTS */
-  , _hoisted_12), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.evaluation.traineeID]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  , _hoisted_13), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $setup.evaluation.traineeID]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: $setup.submitTraineeID,
     "class": "bg-indigo-600 text-white px-6 text-lg font-semibold py-2 rounded-r-md"
   }, " Start ")])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.nextVideo, ["alt"]),
-    "class": "absolute bottom-2 right-2 px-3 py-1 bg-gray-200 text-white rounded"
-  }, " Next ", 8
-  /* PROPS */
-  , _hoisted_13)])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'triage' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    onClick: $setup.nextVideo,
+    "class": "absolute bottom-2 right-2 px-3 py-1 bg-gray-500 text-white rounded"
+  }, " Next Video ")])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'triage' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     onClick: _cache[2] || (_cache[2] = function ($event) {
       return $setup.setColorCode(1);
     }),
@@ -2632,7 +2704,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": "px-16 py-2 mt-2 bg-blue-500 text-white shadow-md rounded-3xl hover:bg-blue-700"
   }, " SUBMIT ", 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.game.questionAnswer.selectedColorCode != null]])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'priority' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_30, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_31, [_hoisted_32, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_33, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.priorities, function (priority, index) {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.game.questionAnswer.selectedColorCode != null]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_30, [_hoisted_31, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_32, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.questionsData[$setup.game.current].victim_questions, function (vq) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_33, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_34, [_hoisted_35, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vq.paramedic_question), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_36, [_hoisted_37, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vq.victim_answer), 1
+    /* TEXT */
+    )])]);
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  ))])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'priority' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_38, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_41, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.priorities, function (priority, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       onClick: function onClick($event) {
         return $setup.setPriority(index + 1);
@@ -2640,19 +2720,27 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
         'bg-green-500 text-white': $setup.game.questionAnswer.selectedPriority == index + 1
       }, "relative w-full text-center py-3 my-3 border flex space-x-2 items-center justify-center border-slate-200 rounded-lg hover:bg-green-500 hover:text-white hover:shadow transition duration-150"])
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_35, [$setup.game.questionAnswer.selectedPriority == index + 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_36, _hoisted_38)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_39, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(priority), 1
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_43, [$setup.game.questionAnswer.selectedPriority == index + 1 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", _hoisted_44, _hoisted_46)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_47, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(priority), 1
     /* TEXT */
     )], 10
     /* CLASS, PROPS */
-    , _hoisted_34);
+    , _hoisted_42);
   }), 64
   /* STABLE_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_40, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_48, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     onClick: $setup.prioritySubmit,
     "class": "px-16 py-2 mt-2 bg-blue-500 text-white shadow-md rounded-3xl hover:bg-blue-700"
   }, " SUBMIT ", 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.game.questionAnswer.selectedPriority != null]])])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'result' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_41, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Result"], {
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vShow, $setup.game.questionAnswer.selectedPriority != null]])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_49, [_hoisted_50, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_51, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.questionsData[$setup.game.current].victim_questions, function (vq) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_52, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_53, [_hoisted_54, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vq.paramedic_question), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_55, [_hoisted_56, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(vq.victim_answer), 1
+    /* TEXT */
+    )])]);
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  ))])])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.game.state === 'result' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_57, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["Result"], {
     result: $setup.game.resultData,
     episode: $setup.questionsData[0].episode_id,
     traineeId: $setup.evaluation.traineeID

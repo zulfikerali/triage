@@ -11,7 +11,7 @@
       <div class="flex w-full items-center justify-between border-b pb-3">
         <div class="flex items-center space-x-3">
           <div class="text-lg font-bold text-slate-700">
-            {{traineeResultData.episode_name}}
+            {{traineeResultData.episode_name}} Trainee Results
           </div>
         </div>
         <div class="flex items-center space-x-8">
