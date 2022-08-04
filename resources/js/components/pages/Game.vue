@@ -17,7 +17,7 @@
             <div class="flex justify-center">
                 <!--@ended="onended"-->
                 <video
-                    class="w-auto max-w-5xl 2xl:max-w-7xl m-3 rounded lg:rounded-lg absolute"
+                    class="w-auto max-w-5xl 2xl:max-w-6xl m-3 rounded lg:rounded-lg absolute"
                     v-if="game.current === index"
                     controls
                 >
@@ -27,8 +27,7 @@
             </div>
         </div>
     </div>
-    <div v-if="game.state == 'exam'"
-         class="min-h-screen" >
+    <div v-if="game.state == 'exam'">
         <h1 class="font-bold text-2xl lg:text-4xl text-center text-indigo-700 flex-none mt-5">
             Enter Your ID then click start button to start your exam.
         </h1>
@@ -66,7 +65,7 @@
         </button>
     </div>
     <div v-if="game.state === 'triage'"
-        class="bg-white p-6 rounded-lg shadow-lg w-full h-screen"
+        class="bg-white p-6 rounded-lg shadow-lg w-full h-[calc(100vh-60px)]"
     >
         <p
           class="text-xl lg:text-4xl text-gray-500 font-thin mt-4 mb-10 text-center"
@@ -176,7 +175,7 @@
           antialiased
           bg-slate-200
           w-full
-          h-screen
+          h-[calc(100vh-60px)]
           flex
           justify-center
           flex-col
@@ -283,6 +282,12 @@ const evaluation = reactive({
     wrong: 0,
     marks: 0,
     questions: 0,
+    color_code_attempt: 0,
+    color_code_correct: 0,
+    color_code_wrong: 0,
+    priority_attempt: 0,
+    priority_correct: 0,
+    priority_wrong: 0,
     ccm: 0,
     pm: 0
   },
@@ -329,11 +334,14 @@ const setPriority = (code) => {
 };
 const colorCodeSubmit = () => {
   evaluation.resultValue.attempt++;
+  evaluation.resultValue.color_code_attempt++;
   if (game.questionAnswer.selectedColorCode == questionsData.value[game.current].color_code) {
     evaluation.resultValue.ccm += questionsData.value[game.current].color_code_marks;
+    evaluation.resultValue.color_code_correct++;
     evaluation.resultValue.correct++;
     evaluation.resultValue.marks += questionsData.value[game.current].color_code_marks;
   } else {
+    evaluation.resultValue.color_code_wrong++;
     evaluation.resultValue.wrong++;
   }
   game.questionAnswer.questionID = questionsData.value[game.current].id;
@@ -346,11 +354,14 @@ const prioritySubmit = () => {
 
 const answerSubmit = () => {
     evaluation.resultValue.attempt++;
+    evaluation.resultValue.priority_attempt++;
     if (game.questionAnswer.selectedPriority == questionsData.value[game.current].priority) {
         evaluation.resultValue.correct++;
         evaluation.resultValue.pm += questionsData.value[game.current].priority_marks;
+        evaluation.resultValue.priority_correct++;
         evaluation.resultValue.marks += questionsData.value[game.current].priority_marks;
     } else {
+        evaluation.resultValue.priority_wrong++;
         evaluation.resultValue.wrong++;
     }
     game.questionAnswer.correctPriority =
