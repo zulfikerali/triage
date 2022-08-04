@@ -14,8 +14,8 @@ jobs:
     #- name: NPM Install
     #  run: npm install
       
-    #- name: NPM Production
-    #  run: npm run prod
+    #- name: NPM Development
+      #run: npm run dev
     
     - name: Deployment
       uses: appleboy/ssh-action@master
@@ -29,5 +29,6 @@ jobs:
           cd /var/www/html/triage/
           git checkout -f 
           git pull
+          npm run dev
 
 
