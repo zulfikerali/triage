@@ -21,7 +21,7 @@
     <div v-if="game.state === 'video'" class="flex justify-center">
       <video
         @ended="onended"
-        class="w-auto max-w-7xl m-3 rounded lg:rounded-lg absolute"
+        class="w-auto max-w-5xl 2xl:max-w-6xl m-3 rounded lg:rounded-lg absolute"
         v-if="game.current === index"
         autoplay
       >
