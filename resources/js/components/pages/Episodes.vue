@@ -24,10 +24,10 @@
         v-for="(episode, index) in episodes"
         :key="episode.id"
         class="
-          
+
           pt-1
           px-2
-          
+
           rounded-xl
           shadow-lg
           w-52
@@ -94,10 +94,13 @@
       </div>
     </div>
   </div>
-  <div class="flex justify-center mt-4">
-    <div class="px-4 py-2 bg-blue-500 rounded-lg text-white cursor-pointer" @click.prevent="goToPage">
-      Click to show
-    </div>
+    <div class="flex justify-between mt-4 mx-auto max-w-md">
+        <button type="button" class="text-white bg-blue-600 hover:bg-blue-800 font-thin rounded-full px-5 py-2.5 text-center mr-2 mb-2" @click.prevent="goToPage('/start-game')">
+            New Mode
+        </button>
+        <button class="text-white bg-blue-600 hover:bg-blue-800 font-thin rounded-full px-5 py-2.5 text-center mr-2 mb-2" @click.prevent="goToPage('/game')">
+          Click to show
+        </button>
   </div>
 </template>
 <script setup>
@@ -131,9 +134,9 @@ const activeEpisode = (id) => {
 const alrearyActive = () => {
   alert("already active!");
 };
-const goToPage = () => {
+const goToPage = (game) => {
   // router.push('/admin/episodes/questions')
-  router.push('/game')
+  router.push(game)
   // router.push('/start-game')
 }
 const commingSoon = () => {
