@@ -82,7 +82,7 @@
           <label
             for="colorcodemarks"
             class="block text-sm font-medium text-gray-700 mb-1"
-            >Paramedic/Medical Assistent Question</label
+            >First Responder Question</label
           >
           <input
             id="colorcodemarks"

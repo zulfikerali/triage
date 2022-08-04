@@ -10,7 +10,7 @@
                 @click="game.state = 'exam'"
                 class="px-4 py-1 bg-blue-500 text-white rounded-3xl hover:bg-blue-700"
             >
-                START
+                Start
             </button>
         </div>
         <div v-for="(question, index) in questionsData" :key="question.id">
@@ -165,7 +165,7 @@
                     :key="vq.id"
                     class="text-gray-500 border p-2 rounded mb-4"
                 >
-                    <h1 class="px-1 text-sm pb-2"><b>প্যারামেডিক :</b> {{ vq.paramedic_question }}</h1>
+                    <h1 class="px-1 text-sm pb-2"><b>ফার্স্ট রেস্পন্ডার :</b> {{ vq.paramedic_question }}</h1>
                     <h1 class="px-1 text-sm"><b>আক্রান্ত :</b> {{ vq.victim_answer }}</h1>
                 </div>
             </div>

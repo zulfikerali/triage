@@ -124,12 +124,9 @@
             "
           >
             <option value="" disabled>Select Episode</option>
-            <option value="1">Episode 1</option>
-            <option value="2">Episode 2</option>
-            <option value="3">Episode 3</option>
-            <option value="4">Episode 4</option>
-            <option value="5">Episode 5</option>
-            <option value="6">Episode 6</option>
+
+            <option v-show="allEpisode.length > 0" v-for="episode in allEpisode" :key="episode.id" :value="episode.id">{{episode.episode_name}}</option>
+            <option v-show="allEpisode.length == 0" disabled>No Data..</option>
           </select>
         </div>
 
@@ -322,7 +319,6 @@
                 w-full
                 bg-white
                 text-gray-900
-                font-medium
                 border border-gray-400
                 rounded-lg
                 py-2
@@ -381,7 +377,6 @@
                 w-full
                 bg-white
                 text-gray-900
-                font-medium
                 border border-gray-400
                 rounded-lg
                 py-2
@@ -433,6 +428,7 @@ const dropdown = ref(false);
 const selecItem = ref("Select Color Code");
 const colorCodes = ref([]);
 const videosrc = ref(null);
+const allEpisode = ref([])
 const onFileChange = (e) => {
   if (e.target.files[0]) {
     name.value = e.target.files[0].name;
@@ -522,7 +518,17 @@ const removeFile = () => {
     questionData.value.file = null
     videosrc.value = null
 }
+const getAllEpisodes = () => {
+  repository.episodes()
+  .then((res) => {
+    allEpisode.value = res.data
+  })
+  .catch((err) => {
+    console.log(err)
+  })
+}
 onMounted(() => {
+  getAllEpisodes()
   allColorCode();
 });
 </script>
