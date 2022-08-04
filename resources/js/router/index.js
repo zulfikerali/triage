@@ -4,7 +4,8 @@ import routes from './routes.js'
   
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  linkActiveClass: 'activeLink'
 })
 
 // router.beforeEach((to, from, next) => {

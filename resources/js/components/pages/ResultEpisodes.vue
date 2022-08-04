@@ -17,16 +17,13 @@
         v-for="episode in episodes"
         :key="episode.id"
         class="
-          bg-cyan-600
           pt-1
           px-2
-          bg-gradient-to-b
-          from-cyan-400
-          to-cyan-500
           rounded-xl
           shadow-lg
           w-52
         "
+        :class="episode.status == 1 ? 'bg-cyan-600 bg-gradient-to-b from-cyan-400 to-cyan-500' : 'bg-gray-600 bg-gradient-to-b from-gray-200 to-gray-400'"
       >
         <div class="flex justify-center">
           <div class="flex items-center justify-center">
@@ -37,13 +34,12 @@
                   flex
                   justify-center
                   text-white
-                  p-4
-                  bg-cyan-400
+                  px-1
+                  py-3
                   rounded-lg
-                  shadow-l
                   w-32
                   cursor-pointer
-                  ring-2 ring-cyan-300
+                  ring-2 ring-white
                 "
               >
                 Results
@@ -73,7 +69,7 @@
         </div>
         <div class="p-4">
           <p class="text-white font-semibold text-center">
-            {{ episode.episode_name }}
+            {{ episode.episode_name }} <span v-if="episode.status == 1">(<span class="text-sm">{{episode.status == 1 ? 'current':''}}</span>)</span>
           </p>
           <!-- <div class="flex justify-between mt-2">
                     <p class="text-gray-200">{{episode.questions_count}} Victims</p>

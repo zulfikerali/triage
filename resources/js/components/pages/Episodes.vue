@@ -109,12 +109,13 @@ import { useRouter } from "vue-router";
 import repository from "../../api/repository";
 const router = useRouter();
 const episodes = ref([]);
+console.log('full Path',router.currentRoute.value.path)
 onMounted(() => {
   repository
     .episodes()
     .then((res) => {
       episodes.value = res.data;
-      console.log(res.data);
+      // console.log(res.data);
     })
     .catch((err) => {
       console.log(err.message);
