@@ -1,6 +1,4 @@
 <template>
-  <!-- component -->
-  <!-- This is an example component -->
   <div
     v-if="traineeResultData != null"
     class="flex items-center justify-center min-h-screen"
@@ -15,6 +13,9 @@
           </div>
         </div>
         <!-- <router-link to="/result/episodes" class="underline text-red-600">Go Back</router-link> -->
+         <div>
+          <router-link to="/result/episodes" class="cursor-pointer text-blue-500 hover:underline">Go to Episode result</router-link>
+        </div>
         <div class="flex items-center space-x-8">
           <button
             class="
