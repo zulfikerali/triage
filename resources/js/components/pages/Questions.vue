@@ -148,12 +148,12 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted, reactive } from "vue";
-import { useRoute } from "vue-router";
-import Result from "../pages/ResultReport.vue";
-// import axios from 'axios'
+import { ref, onMounted, reactive, inject } from "vue";
+import { useRoute, useRouter } from "vue-router";
+const swal = inject('$swal')
 import repository from "../../api/repository";
 const route = useRoute();
+const router = useRouter();
 const evaluation = reactive({
   traineeID: null,
   result: [],
@@ -172,7 +172,7 @@ const isOpen = ref(false);
 const nextPage = ref(true);
 const video = document.getElementById("video");
 const game = reactive({
-  current: 1,
+  current: 0,
   state: "video",
   questionAnswer: {
     questionID: null,
@@ -215,21 +215,15 @@ const gameEnd = () => {
         .catch((err) => {
             console.log(err);
         });
-    console.log(evaluation);
-    //  evaluation.traineeID = route.query.traineeID;
-    // evaluation.resultValue.questions = questionsData.value.length;
-    // repository
-    //   .storeResult({ evaluation: evaluation })
-    //   .then((res) => {
-    //     let resData = { ...evaluation.resultValue };
-    //     game.resultData = resData;
-    //     game.state = "result";
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-    console.log(evaluation);
-    // return
+    swal.fire({
+        icon: 'warning',
+        title: 'Exam Ended',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+    })
 }
 const onended = () => {
   game.state = "triage"
@@ -250,7 +244,7 @@ const startTimer = () => {
 }
 const endTimer = () => {
     clearInterval(game.timer)
-    game.sec = 6
+    game.sec = 5
     game.timer = null
 }
 
@@ -290,10 +284,15 @@ const selectedPriority = (code) => {
   let clone = { ...game.questionAnswer };
   evaluation.result.push(clone);
   game.current++;
+  game.state = "video";
   if (questionsData.value.length == game.current) {
     gameEnd()
+      setTimeout(()=>{
+          router.push(`/`)
+      }, 5000);
+
   }
-  game.state = "video";
+
 };
 
 const gotoNextPage = () => {
