@@ -29,7 +29,6 @@ jobs:
           cd /var/www/html/triage/
           git checkout -f 
           git pull
-          #npm install
           npm run dev
 
 
