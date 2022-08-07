@@ -12,5 +12,7 @@
     <body class="antialiased text-gray-700 bg-gray-50">
     <div id="app"></div>
     <script src="{{mix('js/app.js')}}"></script>
+    <!-- <script async defer src="https://buttons.github.io/buttons.js"></script>
+<script src="https://demo.themesberg.com/windster/app.bundle.js"></script> -->
     </body>
 </html>

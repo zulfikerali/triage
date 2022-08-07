@@ -1,7 +1,8 @@
 <template>
+<Layout>
   <div
     v-if="traineeResultData != null"
-    class="flex items-center justify-center min-h-screen"
+    class="flex items-center justify-center"
   >
     <div
       class="rounded-xl border p-5 shadow-md w-9/12 bg-white"
@@ -14,7 +15,7 @@
         </div>
         <!-- <router-link to="/result/episodes" class="underline text-red-600">Go Back</router-link> -->
          <div>
-          <router-link to="/result/episodes" class="cursor-pointer text-blue-500 hover:underline">Go to Episode result</router-link>
+          <router-link to="/result/episodes" class="cursor-pointer text-blue-500 hover:underline">Back to Episode result</router-link>
         </div>
         <div class="flex items-center space-x-8">
           <button
@@ -73,12 +74,14 @@
       </div>
     </div>
   </div>
+  </Layout>
 </template>
 
 <script setup>
 import { ref, onMounted } from "vue";
-import repository from "../../api/repository";
 import {useRoute} from 'vue-router'
+import repository from "../../../../api/repository";
+import Layout from "../../Admin/Layout.vue";
 const route = useRoute()
 const traineeResultData = ref(null);
 // console.log(route.params.episode_id)

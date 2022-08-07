@@ -1,6 +1,5 @@
 <template>
-  <div class="flex bg-gray-100 h-[calc(100vh-60px)]">
-    <div class="w-full bg-white watermark">
+    <div class="w-full bg-white h-[calc(100vh-65px)]">
       <div class="flex items-center justify-center p-4 gap-6">
         <div class="p-2 flex border-r-2 border-indigo-200 gap-4">
           <div class="mb-4 w-20 h-20">
@@ -209,7 +208,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script setup>

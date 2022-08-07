@@ -38,5 +38,17 @@ export default {
   },
   getTrainees (episodeId) {
     return api.get(`/getTrainee/${episodeId}`)
+  },
+  registration(user) {
+    return api.post('/register', user)
+  },
+  login(user) {
+    return api.post('/login', user)
+  },
+  logout() {
+    return api.post('/logout')
+  },
+  updateProfile(user) {
+    return api.post('/update-profile', user)
   }
 }
