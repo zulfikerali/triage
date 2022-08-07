@@ -1,26 +1,8 @@
 <template>
-<!--    <div class="container mx-auto h-screen w-screen">-->
-<!--        <div class="flex items-center justify-center h-full">-->
-<!--            <div class="bg-white shadow-2xl p-6 rounded-2xl border-2 border-gray-50">-->
-<!--                <div class="flex flex-col">-->
-<!--                    <button type="button" class="inline-flex h-16 items-center px-4 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white bg-purple-600 hover:bg-rose-500 focus:border-rose-700 active:bg-rose-700 transition ease-in-out duration-150 cursor-not-allowed" disabled="">-->
-<!--                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>-->
-<!--                        Processing-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-
-    <div v-show="game.timer">
-        <div class="bg-transparent text-2xl text-thin text-gray-500 absolute right-2 top-2">
-            {{ game.minutes + "m " + game.seconds + "s " }}
-        </div>
-    </div>
   <div v-for="(question, index) in questionsData" :key="question.id">
     <div v-if="game.state === 'video'" class="flex justify-center">
       <video
-        @ended="onended"
+        @ended="startTriage"
         class="w-auto max-w-5xl 2xl:max-w-6xl m-3 rounded lg:rounded-lg absolute"
         v-if="game.current === index"
         autoplay
@@ -30,15 +12,19 @@
       </video>
     </div>
   </div>
-  <div
-    v-if="game.state === 'triage'"
+  <div v-if="game.state === 'triage'"
     class="bg-white p-6 rounded-lg shadow-lg w-full h-screen"
   >
-    <p
-      class="text-xl lg:text-5xl text-gray-500 font-thin mt-4 mb-10 text-center"
-    >
-      Which color do you think about this victim?
-    </p>
+      <p
+          class="text-xl lg:text-3xl text-gray-500 font-thin mt-4  text-center"
+      >
+          রোগী স্থানান্তরের কালার কোড কি হবে ?
+      </p>
+      <div class="flex mx-auto justify-center mt-2" >
+          <div class="bg-red-500 text-white text-xl w-12 h-12 p-2 rounded-full text-center">
+              {{ game.sec }}
+          </div>
+      </div>
     <div class="grid grid-rows-2 grid-flow-col gap-4 justify-center p-3">
       <div
         @click="selectedColorCode(1)"
@@ -98,8 +84,7 @@
       ></div>
     </div>
   </div>
-  <div
-    v-if="game.state === 'priority'"
+  <div v-if="game.state === 'priority'"
     class="
       antialiased
       bg-slate-200
@@ -110,125 +95,46 @@
       flex-col
     "
   >
-    <div
-      class="
-        max-w-lg
-        mx-3
-        md:mx-auto
-        bg-white
-        p-8
-        rounded-xl
-        shadow shadow-slate-300
-      "
-    >
-      <p
-        class="
-          text-2xl
-          lg:text-2xl
-          text-gray-500
-          font-thin
-          mt-4
-          mb-10
-          text-center
-        "
-      >
-        What the priority for this victim?
-      </p>
+    <div class="max-w-lg mx-3 md:mx-auto bg-white p-5 rounded-xl shadow shadow-slate-300 " >
+        <p class="text-xl lg:text-2xl text-gray-500 font-thin mt-4 text-center">
+            চিকিৎসার প্রায়রিটি কি হবে ?
+        </p>
+        <div class="flex mx-auto justify-center mt-2" >
+            <div class="bg-red-500 text-white text-xl w-9 h-9 p-1 rounded-full text-center">
+                {{ game.sec }}
+            </div>
+        </div>
 
       <div class="my-5">
         <button
           @click="selectedPriority(1)"
-          class="
-            w-full
-            text-center
-            py-3
-            my-3
-            border
-            flex
-            space-x-2
-            items-center
-            justify-center
-            border-slate-200
-            rounded-lg
-            text-slate-700
-            hover:bg-green-500 hover:text-white hover:shadow
-            transition
-            duration-150
-          "
+          class="selected-priority"
         >
-          <span class="text-lg lg:text-xl">One</span>
+          <span class="text-lg lg:text-xl">এক</span>
         </button>
       </div>
       <div class="my-5">
         <button
           @click="selectedPriority(2)"
-          class="
-            w-full
-            text-center
-            py-3
-            my-3
-            border
-            flex
-            space-x-2
-            items-center
-            justify-center
-            border-slate-200
-            rounded-lg
-            text-slate-700
-            hover:bg-green-500 hover:text-white hover:shadow
-            transition
-            duration-150
-          "
+          class="selected-priority"
         >
-          <span class="text-lg lg:text-xl">Two</span>
+          <span class="text-lg lg:text-xl">দুই</span>
         </button>
       </div>
       <div class="my-5">
         <button
           @click="selectedPriority(3)"
-          class="
-            w-full
-            text-center
-            py-3
-            my-3
-            border
-            flex
-            space-x-2
-            items-center
-            justify-center
-            border-slate-200
-            rounded-lg
-            text-slate-700
-            hover:bg-green-500 hover:text-white hover:shadow
-            transition
-            duration-150
-          "
+          class="selected-priority"
         >
-          <span class="text-lg lg:text-xl">Three</span>
+          <span class="text-lg lg:text-xl">তিন</span>
         </button>
       </div>
       <div class="my-5">
         <button
           @click="selectedPriority(4)"
-          class="
-            w-full
-            text-center
-            py-3
-            my-3
-            border
-            flex
-            space-x-2
-            items-center
-            justify-center
-            border-slate-200
-            rounded-lg
-            text-slate-700
-            hover:bg-green-500 hover:text-white hover:shadow
-            transition
-            duration-150
-          "
+          class="selected-priority"
         >
-          <span class="text-lg lg:text-xl">Four</span>
+          <span class="text-lg lg:text-xl">চার</span>
         </button>
       </div>
     </div>
@@ -266,7 +172,7 @@ const isOpen = ref(false);
 const nextPage = ref(true);
 const video = document.getElementById("video");
 const game = reactive({
-  current: 0,
+  current: 1,
   state: "video",
   questionAnswer: {
     questionID: null,
@@ -278,6 +184,7 @@ const game = reactive({
   resultData: [],
   minutes: 0,
   seconds: 0,
+  sec: 5,
   timer: null
 
 });
@@ -325,8 +232,27 @@ const gameEnd = () => {
     // return
 }
 const onended = () => {
-  game.state = "triage";
+  game.state = "triage"
 };
+const startTriage = () => {
+  game.state = "triage"
+    startTimer()
+};
+
+const startTimer = () => {
+    game.timer = setInterval(() => {
+        if(game.sec == 0){
+            if(game.state === 'priority') { selectedPriority(0) }
+            if(game.state === 'triage') { selectedColorCode(0) }
+        }
+        game.sec --
+    },1000)
+}
+const endTimer = () => {
+    clearInterval(game.timer)
+    game.sec = 6
+    game.timer = null
+}
 
 const selectedColorCode = (code) => {
   evaluation.resultValue.attempt++;
@@ -341,10 +267,15 @@ const selectedColorCode = (code) => {
   game.questionAnswer.selectedColorCode = code;
   game.questionAnswer.correctColorCode =
     questionsData.value[game.current].color_code;
+    // priorityTimer()
   game.state = "priority";
+    endTimer()
+    startTimer()
 };
 
 const selectedPriority = (code) => {
+    endTimer()
+    console.log('selectedPriority =' + code)
   evaluation.resultValue.attempt++;
   if (code == questionsData.value[game.current].priority) {
     evaluation.resultValue.correct++;
@@ -361,7 +292,6 @@ const selectedPriority = (code) => {
   game.current++;
   if (questionsData.value.length == game.current) {
     gameEnd()
-    // return
   }
   game.state = "video";
 };
@@ -371,7 +301,7 @@ const gotoNextPage = () => {
 };
 onMounted(() => {
     // document.body.style.overflow = 'hidden'
-   gameStart()
+   // gameStart()
   // playVideo()
   // repository.questions(parseInt(route.params.episode))
   console.log(route);
