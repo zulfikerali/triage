@@ -7,6 +7,16 @@ const router = createRouter({
   routes,
   linkActiveClass: 'activeLink'
 })
+router.beforeEach((to, from, next) => {
+  if (localStorage.getItem("user") != null) {
+    if (to.matched.some(route => route.meta.guard === 'guest')) next({ name: 'home' })
+    else next();
+    
+  } else {
+    if (to.matched.some(route => route.meta.guard === 'auth')) next({ name: 'Login' })
+    else next();
+  }
+})
 
 // router.beforeEach((to, from, next) => {
  

@@ -12,10 +12,10 @@ instance.interceptors.request.use((request) => {
   request.headers.common['X-Requested-With'] = 'XMLHttpRequest'
   // request.headers.common['Access-Control-Allow-Origin'] = '*'
 
-//   const userToken = sessionStorage.getItem('user')
-//   if (userToken) {
-//     request.headers.common.Authorization = `Bearer ${JSON.parse(userToken)[0].token}`
-//   }
+  const userToken = localStorage.getItem('user')
+  if (userToken != null) {
+    request.headers.common.Authorization = `Bearer ${JSON.parse(userToken).access_token}`
+  }
   return request
 })
 

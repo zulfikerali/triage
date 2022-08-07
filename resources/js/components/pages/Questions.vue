@@ -335,7 +335,6 @@ const gameEnd = () => {
 const onended = () => {
   game.state = "triage";
 };
-
 const selectedColorCode = (code) => {
   evaluation.resultValue.attempt++;
   evaluation.resultValue.color_code_attempt++;
