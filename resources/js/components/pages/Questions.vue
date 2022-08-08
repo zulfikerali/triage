@@ -225,8 +225,10 @@ const endTimer = () => {
 }
 
 const selectedColorCode = (code) => {
-  evaluation.resultValue.attempt++;
-  evaluation.resultValue.color_code_attempt++;
+  if(code != 0) {
+    evaluation.resultValue.attempt++;
+    evaluation.resultValue.color_code_attempt++;
+  }
   if (code == questionsData.value[game.current].color_code) {
     evaluation.resultValue.ccm += questionsData.value[game.current].color_code_marks;
     evaluation.resultValue.correct++;
@@ -249,9 +251,10 @@ const selectedColorCode = (code) => {
 
 const selectedPriority = (code) => {
   endTimer()
-  console.log('selectedPriority =' + code)
-  evaluation.resultValue.attempt++;
-  evaluation.resultValue.priority_attempt++;
+  if(code != 0) {
+    evaluation.resultValue.attempt++;
+    evaluation.resultValue.priority_attempt++;
+  }
   if (code == questionsData.value[game.current].priority) {
     evaluation.resultValue.pm += questionsData.value[game.current].priority_marks;
     evaluation.resultValue.correct++;
