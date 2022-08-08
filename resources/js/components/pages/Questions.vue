@@ -75,7 +75,7 @@
     ">
     <div class="max-w-lg mx-3 md:mx-auto bg-white p-5 rounded-xl shadow shadow-slate-300 ">
       <p class="text-xl lg:text-2xl text-gray-500 font-thin mt-4 text-center">
-        চিকিৎসার প্রায়রিটি কি হবে ?
+        চিকিৎসার প্রায়োরিটি কি হবে ?
       </p>
       <div class="flex mx-auto justify-center mt-2">
         <div class="bg-red-500 text-white text-xl w-9 h-9 p-1 rounded-full text-center">
