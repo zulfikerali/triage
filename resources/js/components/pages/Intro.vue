@@ -207,7 +207,8 @@ const logout = () => {
     })
     .catch((err) => {
       console.log(err)
-      isAuthenticated.value = localStorage.getItem('user') != null
+      localStorage.removeItem('user');
+      isAuthenticated.value = false
     })
 }
 </script>

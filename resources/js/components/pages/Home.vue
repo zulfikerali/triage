@@ -7,7 +7,7 @@
       <div class="mt-4">
         <div class="flex rounded-md overflow-hidden w-80">
           <input type="text" v-model="traineeId" class="px-2 w-2/3 border rounded-md rounded-r-none"
-            placeholder="Enter Trainee ID" v-on:keyup.enter="goToQuestionPage" />
+            placeholder="Enter Trainee ID" v-on:keyup.enter="goToQuestionPage" required/>
           <button @click="goToQuestionPage" class="
               bg-indigo-600
               text-white
@@ -71,13 +71,26 @@ const goToQuestionPage = () => {
         // } else {
         //   router.push({ path: `/questions`, query: { traineeID: traineeId.value } });
         // }
-          router.push({ path: `/questions`, query: { traineeID: traineeId.value } });
+        router.push({ path: `/questions`, query: { traineeID: traineeId.value } });
       })
       .catch((err) => {
         console.log(err)
       })
   } else {
-    alert("Feild is required!");
+    swal.fire({
+      icon: 'warning',
+      title: 'Field must be required',
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', swal.stopTimer)
+        toast.addEventListener('mouseleave', swal.resumeTimer)
+      }
+    })
+    return
   }
 };
 </script>

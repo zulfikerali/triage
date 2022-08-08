@@ -160,6 +160,7 @@ const logout = () => {
       })
       .catch((err) => {
          console.log(err)
+         localStorage.removeItem('user');
          router.push('/')
       })
 }
