@@ -132,6 +132,14 @@ const evaluation = reactive({
     marks: 0,
     totalMarks: 0,
     questions: 0,
+    color_code_attempt: 0,
+    color_code_correct: 0,
+    color_code_wrong: 0,
+    priority_attempt: 0,
+    priority_correct: 0,
+    priority_wrong: 0,
+    ccm: 0,
+    pm: 0
   },
 });
 const questionsData = ref([]);
@@ -218,12 +226,16 @@ const endTimer = () => {
 
 const selectedColorCode = (code) => {
   evaluation.resultValue.attempt++;
+  evaluation.resultValue.color_code_attempt++;
   if (code == questionsData.value[game.current].color_code) {
+    evaluation.resultValue.ccm += questionsData.value[game.current].color_code_marks;
     evaluation.resultValue.correct++;
+    evaluation.resultValue.color_code_correct++;
     evaluation.resultValue.marks +=
       questionsData.value[game.current].color_code_marks;
   } else {
     evaluation.resultValue.wrong++;
+    evaluation.resultValue.color_code_wrong++;
   }
   game.questionAnswer.questionID = questionsData.value[game.current].id;
   game.questionAnswer.selectedColorCode = code;
@@ -239,12 +251,16 @@ const selectedPriority = (code) => {
   endTimer()
   console.log('selectedPriority =' + code)
   evaluation.resultValue.attempt++;
+  evaluation.resultValue.priority_attempt++;
   if (code == questionsData.value[game.current].priority) {
+    evaluation.resultValue.pm += questionsData.value[game.current].priority_marks;
     evaluation.resultValue.correct++;
+    evaluation.resultValue.priority_correct++;
     evaluation.resultValue.marks +=
       questionsData.value[game.current].priority_marks;
   } else {
     evaluation.resultValue.wrong++;
+    evaluation.resultValue.priority_wrong++;
   }
   game.questionAnswer.selectedPriority = code;
   game.questionAnswer.correctPriority =
