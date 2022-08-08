@@ -20,8 +20,8 @@ use App\Http\Controllers\AuthController;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     //     return $request->user();
     // });
-Route::post('/login', [AuthController::class, 'login']);
-Route::post('/register', RegistrationController::class);
+Route::post('login', [AuthController::class, 'login']);
+Route::post('register', RegistrationController::class);
 Route::get('getEpisodes', [EpisodeController::class, 'getEpisodes']);
 Route::get('getActiveEpisode', [EpisodeController::class, 'getActiveEpisode']);
 Route::get('getQuestions', [EpisodeController::class, 'getQuestions']);
@@ -35,13 +35,13 @@ Route::get('getTraineeResults', [EpisodeController::class, 'getTraineeResults'])
 Route::get('questionsByEpisode/{episode}', [EpisodeController::class, 'questionsByEpisode']);
 Route::post('storeVictimQuestion', [EpisodeController::class, 'storeVictimQuestion']);
 Route::get('getTrainee/{episode}', [EpisodeController::class, 'getTrainee']);
-Route::get('getTrainee/{episode}', [EpisodeController::class, 'getTrainee']);
+// Route::get('getTrainee/{episode}', [EpisodeController::class, 'getTrainee']);
 Route::middleware('auth:sanctum')->group(function () {
     // Route::patch('/profile', ProfileController::class);
     // Route::patch('/password', PasswordController::class);
 
-    Route::post('/logout', [AuthController::class, 'logout']);
-    Route::post('/update-profile', [AuthController::class, 'updateProfile']);
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('update-profile', [AuthController::class, 'updateProfile']);
 
     // in app verification
     // Route::post('/verify-email/{id}/{hash}', [VerificationController::class, 'verify'])->name('verify');
