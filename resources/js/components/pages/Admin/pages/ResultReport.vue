@@ -61,71 +61,16 @@
           </tbody>
         </table>
         <div class="py-4">
-          <!-- <table>
-            <tbody>
-              <tr class="whitespace-nowrap">
-                <td class="px-2 py-2">
-                  <div class="text-sm text-gray-900">Total Questions</div>
-                </td>
-                <td class="px-2 py-2 text-right">
-                  <div class="text-sm text-gray-500">
-                    {{ result.questions * 2 }}
-                  </div>
-                </td>
-              </tr>
-              <tr class="whitespace-nowrap">
-                <td class="px-2 py-2">
-                  <div class="text-sm text-gray-900">
-                    Marks
-                    <span class="tinyTxt"
-                      >(Color Code - {{ result.ccm }}, Priority -
-                      {{ result.pm }})</span
-                    >
-                  </div>
-                </td>
-                <td class="px-2 py-2 text-right">
-                  <div class="text-sm text-gray-500">
-                    {{ result.marks }}
-                  </div>
-                </td>
-              </tr>
-              <tr class="whitespace-nowrap">
-                <td class="px-2 py-2">
-                  <div class="text-sm text-gray-900">Total Attempted</div>
-                </td>
-                <td class="px-2 py-2 text-right">
-                  <div class="text-sm text-gray-500">{{ result.attempt }}</div>
-                </td>
-              </tr>
-              <tr class="whitespace-nowrap">
-                <td class="px-2 py-2">
-                  <div class="text-sm text-gray-900">Correct Answer</div>
-                </td>
-                <td class="px-2 py-2 text-right">
-                  <div class="text-sm text-gray-500">{{ result.correct }}</div>
-                </td>
-              </tr>
-              <tr class="whitespace-nowrap">
-                <td class="px-2 py-2">
-                  <div class="text-sm text-gray-900">Wrong Answer</div>
-                </td>
-                <td class="px-2 py-2 text-right">
-                  <div class="text-sm text-gray-500">{{ result.wrong }}</div>
-                </td>
-              </tr>
-            </tbody>
-          </table> -->
-          <!-- <table> -->
           <table class="w-full border">
             <tbody>
               <tr
                 class="text-center border-b text-sm text-gray-600"
               >
                 <td class="p-2 border-r" colspan="2">
-                  Total Questions
+                  Total Patient
                 </td>
                 <td class="p-2 border-r">
-                  {{ result.questions * 2 }}
+                  {{ result.questions }}
                 </td>
               </tr>
               <tr
@@ -192,7 +137,7 @@
         </div>
       </div>
       <div class="p-4">
-        <div class="flex items-end justify-end space-x-3 noPrint">
+        <div class="flex items-center justify-center space-x-3 noPrint">
           <button
             onclick="window.print()"
             class="px-4 py-2 text-sm text-green-600 bg-green-100"
@@ -276,7 +221,10 @@ const backToResult = () => {
   background: #fff;
 }
 @media print {
-  .page {
+  /* html, body {
+    height: 99%;
+  } */
+  /* .page {
     margin: 0;
     border: initial;
     border-radius: initial;
@@ -285,18 +233,18 @@ const backToResult = () => {
     box-shadow: initial;
     background: initial;
     page-break-after: always;
-  }
+  } */
   .noPrint {
     display: none;
   }
   .printFooter {
     position: absolute;
-    bottom: 5%;
+    bottom: 11%;
     left: 35%;
   }
   .printFooter2 {
     position: absolute;
-    bottom: 2%;
+    bottom: 7%;
     left: 34%;
     display: block;
   }

@@ -1,7 +1,6 @@
 <template>
   <div class="
       bg-blue-100
-      flex
       h-[calc(100vh-60px)]
       items-center
       p-5
@@ -9,17 +8,37 @@
       overflow-hidden
       relative
     ">
+    <div class="flex justify-center mb-4">
+      <!-- <div class="text-blue-600 mb-4">
+        <span class="cursor-pointer text-blue-800 border border-blue-500 px-3 py-2 rounded-lg" @click="goToPage">Start
+          Test</span>
+      </div> -->
+      <a @click="goToPage"
+        class="flex bg-blue-500 rounded-full font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6 cursor-pointer">
+        Start
+        <svg xmlns="http://www.w3.org/2000/svg" class="inline ml-2 w-6 stroke-current text-white stroke-2"
+          viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
     <div class="absolute top-0 right-0 z-20 p-4 noPrint">
       <span v-if="isAuthenticated">
-        <router-link to="/dashboard" class="py-2 px-2 border border-2 border-blue-800 rounded-lg mr-2">Dashboard
+        <router-link to="/dashboard" class="py-2 px-2 border border-blue-800 rounded-lg mr-2">Dashboard
         </router-link>
-        <button @click="logout" class="py-2 px-2 border border-2 border-red-500 rounded-lg">Logout</button>
+        <button @click="logout" class="py-2 px-2 border border-red-500 rounded-lg">Logout</button>
       </span>
       <span v-if="!isAuthenticated">
-        <router-link to="/login" class="py-2 px-2 border border-2 border-gray-800 rounded-lg">Log In
+        <router-link to="/login" class="py-2 px-2 border border-gray-800 rounded-lg">Log In
         </router-link>
       </span>
     </div>
+    <!-- <div class="absolute top-0 right-100 z-20 p-4 noPrint">
+      <div class="container flex items-center mx-auto text-blue-600 capitalize dark:text-gray-300 gap-4">
+        <span class="cursor-pointer text-blue-800 border border-blue-500 px-3 py-2 rounded-lg" @click="goToPage">Start Test</span>
+      </div>
+    </div> -->
     <transition name="slide-fade">
       <div v-show="slide == 1" class="
             flex
@@ -128,9 +147,6 @@
               </p>
             </div>
           </div>
-        </div>
-        <div class="container flex items-center justify-end mx-auto text-gray-600 capitalize dark:text-gray-300 gap-4">
-          <span class="cursor-pointer text-blue-800 border px-3 py-2 rounded-lg" @click="goToPage">Start Test</span>
         </div>
       </div>
     </transition>
