@@ -28,8 +28,8 @@
           </div>
         </div>
       </div>
-      <!-- <div class="w-full h-0.5 border border-indigo-300"></div> -->
-      <hr>
+      <div class="w-full h-0.5 border border-indigo-300"></div>
+      <!-- <hr> -->
       <div class="flex flex-row justify-center gap-52 items-center m-4">
         <table>
           <tbody>
@@ -127,8 +127,8 @@
           <!-- </table> -->
         </div>
       </div>
-      <!-- <div class="w-full h-0.5 border border-indigo-300 printFooterLine2"></div> -->
-      <hr class="printFooterLine2">
+      <div class="w-full h-0.5 border border-indigo-300 printFooterLine2"></div>
+      <!-- <hr class="printFooterLine2"> -->
       <div>
         <div class="w-full h-0.5 bg-indigo-300 printFooterLine hidden"></div>
         <div class="flex flex-col items-center justify-center printFooter">
@@ -268,7 +268,10 @@ const backToResult = () => {
     display: block;
   }
   .printFooterLine2 {
-    display: none;
+    display: block;
+    position: absolute;
+    bottom: 10%;
+    left: 0%;
   }
 }
 </style>
