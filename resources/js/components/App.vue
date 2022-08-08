@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="bg-white">
     <!-- <div class="absolute top-0 left-0 z-20 p-4 noPrint">
       <div class="relative inline-block">
         <button
@@ -170,14 +170,16 @@
          <router-view></router-view>
       </div>
       <div>
-        <footer class="noPrint flex flex-col items-center justify-center px-6 py-1 bg-white dark:bg-gray-800 sm:flex-row gap-2">
+        <footer class="noPrint flex flex-col items-center justify-center px-6 py-1 bg-white sm:flex-row gap-2">
             <a href="https://www.darcoltd.com">
               Developed by:
             </a>
-            <a href="https://www.darcoltd.com" class="text-xl font-bold text-gray-800 dark:text-white hover:text-gray-700 dark:hover:text-gray-300">
+            <a href="https://www.darcoltd.com" class="text-xl font-bold text-gray-800  hover:text-gray-700">
               <img src="/logos/logo.png" class="w-12 h-auto rounded-full" alt=""/>
             </a>
-            <a href="https://www.darcoltd.com" class="py-2 text-gray-800 dark:text-white sm:py-0"><span class="text-blue-500 text-l hover:underline">Darco Technologies Limited</span></a>
+            <a href="https://www.darcoltd.com" class="py-2 text-gray-800 sm:py-0">
+                <span class="text-blue-500 text-l hover:underline">Darco Technologies Limited</span>
+            </a>
         </footer>
       </div>
     </div>
