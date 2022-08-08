@@ -39,9 +39,9 @@ export default [
         path: '/start-game',
         component: Home,
         name: 'Home',
-        meta: {
-            guard: 'guest'
-        }
+        // meta: {
+        //     guard: 'guest'
+        // }
 
     },
     {

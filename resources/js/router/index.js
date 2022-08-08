@@ -9,7 +9,7 @@ const router = createRouter({
 })
 router.beforeEach((to, from, next) => {
   if (localStorage.getItem("user") != null) {
-    if (to.matched.some(route => route.meta.guard === 'guest')) next({ name: 'home' })
+    if (to.matched.some(route => route.meta.guard === 'guest')) next({ name: 'Dashboard' })
     else next();
     
   } else {
