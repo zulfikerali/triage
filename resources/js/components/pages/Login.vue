@@ -162,7 +162,6 @@ const login = () => {
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data));
         router.push({ name: "Dashboard" });
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);

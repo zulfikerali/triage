@@ -198,9 +198,9 @@ const goToPage = () => {
   router.push("/start-game");
 };
 const logout = () => {
-  localStorage.removeItem('user');
   repository.logout()
     .then((res) => {
+      localStorage.removeItem('user');
       isAuthenticated.value = localStorage.getItem('user') != null
       // isAuthenticated = false
       // router.push('/')
