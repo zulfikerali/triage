@@ -153,15 +153,15 @@ import repository from "../../../api/repository.js";
 const router = useRouter()
 const open = ref(false)
 const logout = () => {
-   console.log('click')
+   localStorage.removeItem('user');
    repository.logout()
       .then((res) => {
          console.log(res.data)
-         localStorage.removeItem('user');
          router.push('/')
       })
       .catch((err) => {
          console.log(err)
+         router.push('/')
       })
 }
 </script>
