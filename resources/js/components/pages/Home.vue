@@ -1,21 +1,14 @@
 <template>
   <div class="min-h-screen">
-    <h1 class="font-bold text-4xl text-center text-indigo-700 flex-none mt-5">
+    <h1 class="font-bold text-xl md:text-4xl text-center text-indigo-700 flex-none mt-5">
       Enter Your ID then click start button to start your exam.
     </h1>
     <div class="flex justify-center items-center mt-6">
       <div class="mt-4">
         <div class="flex rounded-md overflow-hidden w-80">
-          <input
-            type="text"
-            v-model="traineeId"
-            class="px-2 w-2/3 border rounded-md rounded-r-none"
-            placeholder="Enter Trainee ID"
-            v-on:keyup.enter="goToQuestionPage"
-          />
-          <button
-            @click="goToQuestionPage"
-            class="
+          <input type="text" v-model="traineeId" class="px-2 w-2/3 border rounded-md rounded-r-none"
+            placeholder="Enter Trainee ID" v-on:keyup.enter="goToQuestionPage" />
+          <button @click="goToQuestionPage" class="
               bg-indigo-600
               text-white
               px-3
@@ -23,8 +16,7 @@
               font-semibold
               py-2
               rounded-r-md
-            "
-          >
+            ">
             Start Test
           </button>
         </div>
@@ -33,9 +25,10 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, inject } from "vue";
 import { useRouter } from "vue-router";
 import repository from "../../api/repository";
+const swal = inject('$swal')
 const router = useRouter();
 const activeEp = ref(null);
 const traineeId = ref(null);
@@ -58,7 +51,31 @@ onMounted(() => {
 });
 const goToQuestionPage = () => {
   if (traineeId.value != null) {
-    router.push({ path: `/questions`, query: { traineeID: traineeId.value } });
+    repository.examDone(traineeId.value)
+      .then((res) => {
+        // if (res.data == 1) {
+        //   swal.fire({
+        //     icon: 'warning',
+        //     title: 'Already exam done',
+        //     toast: true,
+        //     position: 'top-end',
+        //     showConfirmButton: false,
+        //     timer: 3000,
+        //     timerProgressBar: true,
+        //     didOpen: (toast) => {
+        //       toast.addEventListener('mouseenter', swal.stopTimer)
+        //       toast.addEventListener('mouseleave', swal.resumeTimer)
+        //     }
+        //   })
+        //   return
+        // } else {
+        //   router.push({ path: `/questions`, query: { traineeID: traineeId.value } });
+        // }
+          router.push({ path: `/questions`, query: { traineeID: traineeId.value } });
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   } else {
     alert("Feild is required!");
   }

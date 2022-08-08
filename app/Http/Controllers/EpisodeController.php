@@ -133,4 +133,10 @@ class EpisodeController extends Controller
        return Episode::with('results')->where('id', $episode)->first();
     //    Result::where('episode_id', $episode)->get();
     }
+    public function examDone($traineeId)
+    {
+       $episodeId = Episode::where('status', 1)->first()->id;
+       $exam =  Result::where('trainee_id', $traineeId)->where('episode_id', $episodeId)->count();
+       return $exam;
+    }
 }

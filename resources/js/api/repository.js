@@ -50,5 +50,8 @@ export default {
   },
   updateProfile(user) {
     return api.post('/update-profile', user)
+  },
+  examDone(traineeId) {
+    return api.get(`/exam-done/${traineeId}`)
   }
 }

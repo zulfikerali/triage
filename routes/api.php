@@ -35,7 +35,7 @@ Route::get('getTraineeResults', [EpisodeController::class, 'getTraineeResults'])
 Route::get('questionsByEpisode/{episode}', [EpisodeController::class, 'questionsByEpisode']);
 Route::post('storeVictimQuestion', [EpisodeController::class, 'storeVictimQuestion']);
 Route::get('getTrainee/{episode}', [EpisodeController::class, 'getTrainee']);
-// Route::get('getTrainee/{episode}', [EpisodeController::class, 'getTrainee']);
+Route::get('exam-done/{traineeId}', [EpisodeController::class, 'examDone']);
 Route::middleware('auth:sanctum')->group(function () {
     // Route::patch('/profile', ProfileController::class);
     // Route::patch('/password', PasswordController::class);
