@@ -48,9 +48,9 @@ export default [
         path: '/questions',
         component: Questions,
         name: 'Questions',
-        meta: {
-            guard: 'guest'
-        }
+        // meta: {
+        //     guard: 'guest'
+        // }
 
     },
     {
