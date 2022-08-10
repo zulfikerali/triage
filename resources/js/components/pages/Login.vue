@@ -124,7 +124,7 @@
         <div class="mt-4">
           <div>
             <label class="block" for="email">Email</label>
-            <input type="email" v-model="user.email" placeholder="Email"
+            <input autofocus type="email" v-model="user.email" placeholder="Email"
               class="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required>
             <!-- <span class="text-xs tracking-wide text-red-600">Email field is required </span> -->
           </div>
