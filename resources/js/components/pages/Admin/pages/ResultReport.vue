@@ -201,7 +201,7 @@ const dateFormate = () => {
   return dd + "/" + mm + "/" + yyyy;
 };
 const backToResult = () => {
-  const epId = props.episode == '' ? route.params.episodeId : parseInt(props.episode)   
+  const epId = props.episode == '' ? route.params.episodeId : parseInt(props.episode)
   console.log(epId)
   router.push(`/result-report/${epId}`);
 };

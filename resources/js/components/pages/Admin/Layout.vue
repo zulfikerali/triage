@@ -1,5 +1,5 @@
 <template>
-   <div>
+   <div class="min-h-[calc(100vh-65px)] bg-gray-50">
       <nav class="bg-white border-b border-gray-200 fixed z-30 w-full noPrint">
          <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center justify-between">
@@ -137,7 +137,7 @@
          <div class="bg-gray-900 opacity-50 hidden fixed inset-0 z-10" id="sidebarBackdrop"></div>
          <div id="main-content" class="h-full w-full bg-gray-50 relative overflow-y-auto lg:ml-64">
             <main>
-               <div class="pt-6 px-4 nopm">
+               <div class="pt-6 px-4 nopm ">
                   <slot></slot>
                </div>
             </main>
