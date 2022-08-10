@@ -17,7 +17,7 @@
                     <div>
                         <router-link to="/result/episodes" class="cursor-pointer text-blue-500 hover:underline">Back to Episode result</router-link>
                     </div>
-                    <div class="flex items-center space-x-8">
+                    <div class="flex items-center space-x-8" v-if="traineeResultData.results.length > 1 ">
                         <button @click="printAll"  class="rounded-2xl border bg-neutral-100 px-3 py-1 text-xs font-semibold ">
                             Print All
                         </button>
@@ -66,7 +66,7 @@
     </Layout>
     <div id="printDiv"
          v-if="traineeResultData != null"
-         class="hidden print:block"
+         class=" print:block"
     >
         <div
             v-for="result in traineeResultData.results" :key="result.id"
@@ -199,15 +199,9 @@
                     <!-- </table> -->
                 </div>
             </div>
-            <div class="w-full h-0.5 border border-indigo-300 printFooterLine2"></div>
-            <div>
-                <div class="w-full h-0.5 border border-indigo-300 printFooterLine "></div>
-                <div class="flex flex-col items-center justify-center printFooter">
-                    This is computer generated report.
-                </div>
-                <div class="flex bg-white text-sm flex-col items-center justify-center printFooter2 ">
-                    Developed by: Darco Technologies Limited
-                </div>
+            <div class="text-sm absolute bottom-2 divide-y divide-blue-300 w-full text-center">
+                <div class="py-2">This is computer generated report.</div>
+                <div class="py-2">Developed by: Darco Technologies Limited</div>
             </div>
         </div>
     </div>
@@ -265,51 +259,15 @@ onMounted(() => {
 }
 @media print {
     .page {
-  margin: 0;
-  border: initial;
-  border-radius: initial;
-  width: initial;
-  min-height: initial;
-  box-shadow: initial;
-  background: initial;
-  page-break-after: always;
-}
-    .noPrint {
-        display: none;
+      margin: 0;
+      border: initial;
+      border-radius: initial;
+      width: initial;
+      min-height: initial;
+      box-shadow: initial;
+      background: initial;
+      page-break-after: always;
     }
-    .printFooter {
-        position: absolute;
-        bottom: 11%;
-        left: 35%;
-    }
-    .printFooter2 {
-        position: absolute;
-        bottom: 7%;
-        left: 34%;
-        display: block;
-    }
-    .tbl {
-        width: 100%;
-        background-color: brown;
-    }
-    .mainDiv {
-        width: 100%;
-        height: 100%;
-    }
-    .watermark {
-        background-position: 85% 100%;
-    }
-    .printFooterLine {
-        position: absolute;
-        bottom: 10%;
-        left: 0%;
-        display: block;
-    }
-    .printFooterLine2 {
-        display: block;
-        position: absolute;
-        bottom: 10%;
-        left: 0%;
-    }
+
 }
 </style>
