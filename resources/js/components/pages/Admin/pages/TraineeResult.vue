@@ -66,7 +66,7 @@
     </Layout>
     <div id="printDiv"
          v-if="traineeResultData != null"
-         class=" print:block"
+         class="hidden print:block"
     >
         <div
             v-for="result in traineeResultData.results" :key="result.id"
@@ -199,9 +199,9 @@
                     <!-- </table> -->
                 </div>
             </div>
-            <div class="text-sm absolute bottom-2 divide-y divide-blue-300 w-full text-center">
+            <div class="text-sm absolute bottom-2 w-full text-center bf">
                 <div class="py-2">This is computer generated report.</div>
-                <div class="py-2">Developed by: Darco Technologies Limited</div>
+                <div class="py-2 border-t border-indigo-300">Developed by: Darco Technologies Limited</div>
             </div>
         </div>
     </div>
@@ -252,6 +252,11 @@ onMounted(() => {
 </script>
 
 <style scoped>
+@-moz-document url-prefix() {
+    .bf {
+        bottom: -100px;
+    }
+}
 @page {
     size: A4;
     margin: 0;
