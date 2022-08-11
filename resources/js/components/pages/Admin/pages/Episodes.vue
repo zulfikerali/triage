@@ -18,7 +18,7 @@
           :class="episode.status == 1 ? 'bg-red-500' : 'bg-blue-500'">{{ episode.episode_name }}</div>
         <div class="p-4 flex-auto w-32 rounded-lg flex items-center justify-center shadow-lg cursor-pointer"
           :class="episode.status == 1 ? 'bg-red-500' : 'bg-blue-500'"
-          @click.prevent="index > 0 ? commingSoon() : activeEpisode(episode.id)">{{ episode.status == 1 ? 'Current' :
+          @click.prevent="episode.published == 1 ? activeEpisode(episode.id) : commingSoon()">{{ episode.status == 1 ? 'Current' :
               'Active'
           }}</div>
       </div>
@@ -41,7 +41,7 @@ const Toast = () => {
     toast: true,
     position: 'top-end',
     showConfirmButton: false,
-    timer: 3000,
+    timer: 1000,
     timerProgressBar: true,
     didOpen: (toast) => {
       toast.addEventListener('mouseenter', swal.stopTimer)

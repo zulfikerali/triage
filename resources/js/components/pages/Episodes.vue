@@ -18,7 +18,7 @@
         lg:grid-cols-2
         xl:grid-cols-2
       ">
-      <div v-for="(episode, index) in episodes" :key="episode.id" class="
+      <div v-for="(episode) in episodes" :key="episode.id" class="
           bg-blue-600 
           bg-gradient-to-b 
           from-blue-400 
@@ -32,7 +32,7 @@
         <div class="flex justify-center">
           <div class="flex items-center justify-center">
             <span class="relative inline-flex">
-              <div @click.prevent="index > 0 ? commingSoon() : activeEpisode(episode.id)" class="
+              <div @click.prevent="episode.published == 1 ? activeEpisode(episode.id) : commingSoon() " class="
                   flex
                   justify-center
                   text-white
@@ -94,9 +94,10 @@
   </div> -->
 </template>
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, inject } from "vue";
 import { useRouter } from "vue-router";
 import repository from "../../api/repository";
+const swal = inject('$swal')
 const router = useRouter();
 const episodes = ref([]);
 // console.log('full Path', router.currentRoute.value.path)
@@ -132,6 +133,18 @@ const goToPage = (game) => {
   // router.push('/start-game')
 }
 const commingSoon = () => {
-  alert('Comming soon ..')
+  swal.fire({
+    icon: 'warning',
+    title: 'Coming soon',
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', swal.stopTimer)
+      toast.addEventListener('mouseleave', swal.resumeTimer)
+    }
+  })
 }
 </script>
