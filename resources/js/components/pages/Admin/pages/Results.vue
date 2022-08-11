@@ -18,13 +18,13 @@
         v-for="episode in episodes"
         :key="episode.id"
         class="
+        bg-blue-600 bg-gradient-to-b from-blue-500 to-blue-700
           pt-1
           px-2
           rounded-xl
           shadow-lg
           w-52
         "
-        :class="episode.status == 1 ? 'bg-red-500' : 'bg-blue-600 bg-gradient-to-b from-blue-500 to-blue-700'"
       >
         <div class="flex justify-center">
           <div class="flex items-center justify-center">
@@ -70,7 +70,8 @@
         </div>
         <div class="p-4">
           <p class="text-white font-semibold text-center">
-            {{ episode.episode_name }} <span v-if="episode.status == 1">(<span class="text-sm">{{episode.status == 1 ? 'current':''}}</span>)</span>
+            {{ episode.episode_name }} 
+            <!-- <span v-if="episode.status == 1">(<span class="text-sm">{{episode.status == 1 ? 'current':''}}</span>)</span> -->
           </p>
           <!-- <div class="flex justify-between mt-2">
                     <p class="text-gray-200">{{episode.questions_count}} Victims</p>
