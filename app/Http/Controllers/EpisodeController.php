@@ -27,6 +27,12 @@ class EpisodeController extends Controller
         // return Episode::with('questions.victimQuestions')->where('status', 1)->first();
         //()->inRandomOrder()->get();
     }
+    public function getQuestionsbyEpisodeId($id)
+    {
+        return Episode::find($id)->questions()->with('victimQuestions')->get();
+        // return Episode::with('questions.victimQuestions')->where('status', 1)->first();
+        //()->inRandomOrder()->get();
+    }
     public function activeEpisode(Request $request)
     {
         Episode::where('status', 1)->update([

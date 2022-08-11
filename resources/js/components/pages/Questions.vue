@@ -225,7 +225,7 @@ const endTimer = () => {
 }
 
 const selectedColorCode = (code) => {
-  if(code != 0) {
+  if (code != 0) {
     evaluation.resultValue.attempt++;
     evaluation.resultValue.color_code_attempt++;
   }
@@ -251,7 +251,7 @@ const selectedColorCode = (code) => {
 
 const selectedPriority = (code) => {
   endTimer()
-  if(code != 0) {
+  if (code != 0) {
     evaluation.resultValue.attempt++;
     evaluation.resultValue.priority_attempt++;
   }
@@ -274,8 +274,12 @@ const selectedPriority = (code) => {
   game.state = "video";
   if (questionsData.value.length == game.current) {
     gameEnd()
+    if ('episodeId' in route.query) {
+        router.push('/game-episodes')
+        return
+      }
     setTimeout(() => {
-      router.push(`/`)
+     router.push(`/`)
     }, 5000);
 
   }
@@ -290,16 +294,29 @@ onMounted(() => {
   // gameStart()
   // playVideo()
   // repository.questions(parseInt(route.params.episode))
-  console.log(route);
-  repository
-    .questions()
-    .then((res) => {
-      questionsData.value = res.data;
-      evaluation.resultValue.totalMarks = sumTotal(res.data)
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
+  console.log('multi...', 'episodeId' in route.query)
+  if ('episodeId' in route.query) {
+    repository
+      .getQuestionsbyEpisodeId(route.query.episodeId)
+      .then((res) => {
+        questionsData.value = res.data;
+        evaluation.resultValue.totalMarks = sumTotal(res.data)
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  } else {
+    repository
+      .questions()
+      .then((res) => {
+        questionsData.value = res.data;
+        evaluation.resultValue.totalMarks = sumTotal(res.data)
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+
 });
 const sumTotal = (array) => {
   let sum = 0;

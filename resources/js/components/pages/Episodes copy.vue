@@ -2,37 +2,44 @@
   <h1 class="font-bold text-4xl text-center text-indigo-700 flex-none mt-5">
     Triage Episodes
   </h1>
-  <!-- <p class="text-center text-2xl pt-2">
+  <p class="text-center text-2xl pt-2">
     If you want to change episode to click
     <span class="border bg-blue-100 rounded-lg px-1 py-1 text-center ring-2 mr-1"
       >Active
     </span>
     button.
-  </p> -->
+  </p>
   <div class="flex justify-center items-center mt-6">
-    <div class="
+    <div
+      class="
         grid grid-cols-1
         gap-6
         sm:grid-cols-2
         md:grid-cols-2
         lg:grid-cols-2
         xl:grid-cols-2
-      ">
-      <div v-for="(episode, index) in episodes" :key="episode.id" class="
-          bg-blue-600 
-          bg-gradient-to-b 
-          from-blue-400 
-          to-blue-500
+      "
+    >
+      <div
+        v-for="(episode, index) in episodes"
+        :key="episode.id"
+        class="
+
           pt-1
           px-2
+
           rounded-xl
           shadow-lg
           w-52
-        " :class="[episode.status == 1 ? 'bg-red-500' : 'bg-blue-600 bg-gradient-to-b from-blue-400 to-blue-500']">
+        "
+        :class="[episode.status == 1 ? 'bg-red-500':'bg-blue-600 bg-gradient-to-b from-blue-400 to-blue-500']"
+      >
         <div class="flex justify-center">
           <div class="flex items-center justify-center">
             <span class="relative inline-flex">
-              <div @click.prevent="index > 0 ? commingSoon() : activeEpisode(episode.id)" class="
+              <div
+                @click.prevent="index > 0 ? commingSoon() : activeEpisode(episode.id)"
+                class="
                   flex
                   justify-center
                   text-white
@@ -42,12 +49,15 @@
                   shadow-l
                   w-32
                   cursor-pointer
-                " :class="
+                "
+                :class="
                   episode.status == 1
                     ? 'ring-2 ring-white cursor-pointer'
                     : 'ring-2 ring-gray-200'
-                " :disabled="episode.status == 1 ? true : false">
-                Start
+                "
+                :disabled="episode.status == 1 ? true : false"
+              >
+                {{ episode.status == 1 ? "Current" : "Active" }}
               </div>
               <!-- <span
                 v-show="episode.status == 1"
@@ -84,14 +94,14 @@
       </div>
     </div>
   </div>
-  <!-- <div class="flex justify-between mt-4 mx-auto max-w-md">
+    <div class="flex justify-between mt-4 mx-auto max-w-md">
         <button type="button" class="text-white bg-blue-600 hover:bg-blue-800 font-thin rounded-full px-5 py-2.5 text-center mr-2 mb-2" @click.prevent="goToPage('/start-game')">
             New Mode
         </button>
         <button class="text-white bg-blue-600 hover:bg-blue-800 font-thin rounded-full px-5 py-2.5 text-center mr-2 mb-2" @click.prevent="goToPage('/game')">
           Click to show
         </button>
-  </div> -->
+  </div>
 </template>
 <script setup>
 import { ref, onMounted } from "vue";
@@ -99,7 +109,7 @@ import { useRouter } from "vue-router";
 import repository from "../../api/repository";
 const router = useRouter();
 const episodes = ref([]);
-// console.log('full Path', router.currentRoute.value.path)
+console.log('full Path',router.currentRoute.value.path)
 onMounted(() => {
   repository
     .episodes()
@@ -112,16 +122,15 @@ onMounted(() => {
     });
 });
 const activeEpisode = (id) => {
-  router.push({ path: '/start-game', query: { episodeId: id }})
-  // repository
-  //   .selectActiveEpisode({ id: id })
-  //   .then((res) => {
-  //     console.log(res.data);
-  //     episodes.value = res.data;
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
+  repository
+    .selectActiveEpisode({ id: id })
+    .then((res) => {
+      console.log(res.data);
+      episodes.value = res.data;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 const alrearyActive = () => {
   alert("already active!");

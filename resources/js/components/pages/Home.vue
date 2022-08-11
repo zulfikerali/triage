@@ -7,7 +7,7 @@
       <div class="mt-4">
         <div class="flex rounded-md overflow-hidden w-80">
           <input type="text" v-model="traineeId" class="px-2 w-2/3 border rounded-md rounded-r-none"
-            placeholder="Enter Trainee ID" v-on:keyup.enter="goToQuestionPage" required/>
+            placeholder="Enter Trainee ID" v-on:keyup.enter="goToQuestionPage" required />
           <button @click="goToQuestionPage" class="
               bg-indigo-600
               text-white
@@ -26,10 +26,11 @@
 </template>
 <script setup>
 import { ref, onMounted, inject } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 import repository from "../../api/repository";
 const swal = inject('$swal')
 const router = useRouter();
+const route = useRoute();
 const activeEp = ref(null);
 const traineeId = ref(null);
 function hasOneDigit(val) {
@@ -40,6 +41,7 @@ function hasOneDigit(val) {
   }
 }
 onMounted(() => {
+  console.log('query..', typeof route.query, 'episodeId' in route.query)
   repository
     .activeEpisode()
     .then((res) => {
@@ -51,31 +53,36 @@ onMounted(() => {
 });
 const goToQuestionPage = () => {
   if (traineeId.value != null) {
-    repository.examDone(traineeId.value)
-      .then((res) => {
-        // if (res.data == 1) {
-        //   swal.fire({
-        //     icon: 'warning',
-        //     title: 'Already exam done',
-        //     toast: true,
-        //     position: 'top-end',
-        //     showConfirmButton: false,
-        //     timer: 3000,
-        //     timerProgressBar: true,
-        //     didOpen: (toast) => {
-        //       toast.addEventListener('mouseenter', swal.stopTimer)
-        //       toast.addEventListener('mouseleave', swal.resumeTimer)
-        //     }
-        //   })
-        //   return
-        // } else {
-        //   router.push({ path: `/questions`, query: { traineeID: traineeId.value } });
-        // }
-        router.push({ path: `/questions`, query: { traineeID: traineeId.value } });
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    if ('episodeId' in route.query) {
+      router.push({ path: `/questions`, query: { traineeID: traineeId.value, episodeId: route.query.episodeId } });
+    } else {
+      router.push({ path: `/questions`, query: { traineeID: traineeId.value } });
+    }
+    // repository.examDone(traineeId.value)
+    //   .then((res) => {
+    // if (res.data == 1) {
+    //   swal.fire({
+    //     icon: 'warning',
+    //     title: 'Already exam done',
+    //     toast: true,
+    //     position: 'top-end',
+    //     showConfirmButton: false,
+    //     timer: 3000,
+    //     timerProgressBar: true,
+    //     didOpen: (toast) => {
+    //       toast.addEventListener('mouseenter', swal.stopTimer)
+    //       toast.addEventListener('mouseleave', swal.resumeTimer)
+    //     }
+    //   })
+    //   return
+    // } else {
+    //   router.push({ path: `/questions`, query: { traineeID: traineeId.value } });
+    // }
+    //   router.push({ path: `/questions`, query: { traineeID: traineeId.value } });
+    // })
+    // .catch((err) => {
+    //   console.log(err)
+    // })
   } else {
     swal.fire({
       icon: 'warning',

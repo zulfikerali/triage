@@ -6,6 +6,9 @@ export default {
   activeEpisode () {
     return api.get(`/getActiveEpisode`)
   },
+  getQuestionsbyEpisodeId (id) {
+    return api.get(`/getQuestionsbyEpisodeId/${id}`)
+  },
   questions () {
     return api.get(`/getQuestions`)
   },

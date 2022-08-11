@@ -25,6 +25,7 @@ Route::post('register', RegistrationController::class);
 Route::get('getEpisodes', [EpisodeController::class, 'getEpisodes']);
 Route::get('getActiveEpisode', [EpisodeController::class, 'getActiveEpisode']);
 Route::get('getQuestions', [EpisodeController::class, 'getQuestions']);
+Route::get('getQuestionsbyEpisodeId/{id}', [EpisodeController::class, 'getQuestionsbyEpisodeId']);
 Route::post('activeEpisode', [EpisodeController::class, 'activeEpisode']);
 Route::post('storeResult', [EpisodeController::class, 'storeResult']);
 Route::post('storeAnswerSummit', [EpisodeController::class, 'storeAnswerSummit']);

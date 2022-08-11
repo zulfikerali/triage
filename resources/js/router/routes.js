@@ -2,6 +2,7 @@ const Home = () => import('../components/pages/Home.vue');
 const Questions = () => import('../components/pages/Questions.vue');
 const Game = () => import('../components/pages/Game.vue');
 const Episodes = () => import('../components/pages/Admin/pages/Episodes.vue');
+const GameEpisodes = () => import('../components/pages/Episodes.vue');
 const EpisodeQuestions = () => import('../components/pages/EpisodeQuestions.vue');
 // const EpisodeQuestion = () => import('../components/pages/EpisodeQuestions.vue');
 const Introduction = () => import('../components/pages/Intro.vue');
@@ -70,6 +71,11 @@ export default [
             guard: 'auth'
         }
 
+    },
+    {
+        path: '/game-episodes',
+        component: GameEpisodes,
+        name: 'GameEpisodes',
     },
     {
         path: '/result/episodes',
