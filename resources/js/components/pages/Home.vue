@@ -1,6 +1,6 @@
 <template>
-  <div class="min-h-screen">
-    <h1 class="font-bold text-xl md:text-4xl text-center text-indigo-700 flex-none mt-5">
+  <div class="min-h-screen flex flex-col items-center justify-center">
+    <h1 class="font-bold text-xl md:text-4xl text-center text-indigo-700 flex-none">
       Enter Your ID then click start button to start your exam.
     </h1>
     <div class="flex justify-center items-center mt-6">

@@ -1,7 +1,11 @@
 <template>
-  <h1 class="font-bold text-4xl text-center text-indigo-700 flex-none mt-5">
-    Triage Episodes
-  </h1>
+    <h1 class="font-bold text-4xl text-center text-indigo-700 flex-none mt-5">
+        Triage Episodes
+    </h1>
+    <h1 class="font-bold text-3xl text-center text-gray-700 flex-none mt-5">
+        Please click episode no start button to start your test
+    </h1>
+
   <!-- <p class="text-center text-2xl pt-2">
     If you want to change episode to click
     <span class="border bg-blue-100 rounded-lg px-1 py-1 text-center ring-2 mr-1"

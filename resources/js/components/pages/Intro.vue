@@ -18,15 +18,7 @@
 <!--                <polyline points="12 5 19 12 12 19"></polyline>-->
 <!--            </svg>-->
 <!--        </a>-->
-        <a @click="goToPage('game-episodes')"
-           class="flex bg-blue-500 rounded-full font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6 cursor-pointer">
-            Go To Episode Page
-            <svg xmlns="http://www.w3.org/2000/svg" class="inline ml-2 w-6 stroke-current text-white stroke-2"
-                 viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="5" y1="12" x2="19" y2="12"></line>
-                <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
-        </a>
+
     </div>
     <div class="absolute top-0 right-0 z-20 p-4 noPrint">
       <span v-if="isAuthenticated">
@@ -77,6 +69,18 @@
         </div>
         <div class="w-full md:w-1/2">
           <div class="mb-10 md:mb-10 text-gray-600">
+              <h1 class="
+                  font-black
+                  uppercase
+                  text-2xl
+                  lg:text-2xl
+                  text-yellow-500
+                  font-thin
+                  mb-10
+                ">
+                  MEDICAL TRIAGE SIMULATOR
+              </h1>
+
             <h1 class="
                   font-black
                   uppercase
@@ -111,7 +115,7 @@
     </transition>
     <transition name="slide">
       <div v-show="slide != 1" class="
-        min-h-full min-w-full
+        min-h-full min-w-full flex flex-col justify-between
         rounded-3xl
         bg-white
         shadow-xl
@@ -121,38 +125,49 @@
         relative
         watermark
       ">
-        <div class="flex md:flex items-center text-center">
-          <div class="w-full md:w-1/2">
-            <div class="mb-10 md:mb-20 text-gray-600 font-light">
-              <h1 class="font-black uppercase text-3xl text-yellow-500 mb-10">
-                PLANNED BY:
-              </h1>
-              <p class="text-lg">
-                LT COL (DR) SHAIKH MOHAMMAD MAMUNUR RASHID
-              </p>
-              <p>MBBS, MD, MPH, FCGP, AMC</p>
-              <p>
-                CHIEF INSTRUCTOR
-              </p>
-            </div>
+          <div class="flex md:flex items-center text-center">
+              <div class="w-full md:w-1/2">
+                  <div class="mb-10 md:mb-20 text-gray-600 font-light">
+                      <h1 class="font-black uppercase text-3xl text-yellow-500 mb-10">
+                          PLANNED BY:
+                      </h1>
+                      <p class="text-lg">
+                          LT COL (DR) SHAIKH MOHAMMAD MAMUNUR RASHID
+                      </p>
+                      <p>MBBS, MD, MPH, FCGP, AMC</p>
+                      <p>
+                          CHIEF INSTRUCTOR
+                      </p>
+                  </div>
+              </div>
+              <div class="w-full md:w-1/2">
+                  <div class="mb-10 md:mb-20 text-gray-600 font-light">
+                      <h1 class="font-black uppercase text-3xl text-yellow-500 mb-10">
+                          GUIDED BY:
+                      </h1>
+                      <p class="text-lg">
+                          BRIGADIER GENERAL (DR) MD IQBAL HASAN
+                      </p>
+                      <p>
+                          MBBS, BGBM, M Phil, MPH, MDM, M MEd,
+                      </p>
+                      <p>
+                          COMMANDANT & PAPA HEALERS
+                      </p>
+                  </div>
+              </div>
           </div>
-          <div class="w-full md:w-1/2">
-            <div class="mb-10 md:mb-20 text-gray-600 font-light">
-              <h1 class="font-black uppercase text-3xl text-yellow-500 mb-10">
-                GUIDED BY:
-              </h1>
-              <p class="text-lg">
-                BRIGADIER GENERAL (DR) MD IQBAL HASAN
-              </p>
-              <p>
-                MBBS, BGBM, M Phil, MPH, MDM, M MEd,
-              </p>
-              <p>
-                COMMANDANT & PAPA HEALERS
-              </p>
-            </div>
+          <div class="mx-auto">
+              <a @click="goToPage('game-episodes')"
+                 class="flex bg-blue-500 text-sm md:text-2xl rounded-full font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6 cursor-pointer">
+                  Please click here to explore Triage episodes to start exam.
+                  <svg xmlns="http://www.w3.org/2000/svg" class="inline ml-2 w-6 stroke-current text-white stroke-2"
+                       viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+              </a>
           </div>
-        </div>
       </div>
     </transition>
     <div class="
