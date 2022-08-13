@@ -274,8 +274,9 @@ const selectedPriority = (code) => {
   game.state = "video";
   if (questionsData.value.length == game.current) {
     gameEnd()
-    if ('episodeId' in route.query) {
-        router.push('/game-episodes')
+    if ('traineeID' in route.query) {
+        router.push({ path: `/game-episodes`, query: { traineeID: route.query.traineeID } });
+        // router.push('/game-episodes')
         return
       }
     setTimeout(() => {

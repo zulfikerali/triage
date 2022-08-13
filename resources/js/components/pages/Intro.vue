@@ -9,19 +9,24 @@
       relative
     ">
     <div class="flex justify-center mb-4">
-      <!-- <div class="text-blue-600 mb-4">
-        <span class="cursor-pointer text-blue-800 border border-blue-500 px-3 py-2 rounded-lg" @click="goToPage">Start
-          Test</span>
-      </div> -->
-      <a @click="goToPage"
-        class="flex bg-blue-500 rounded-full font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6 cursor-pointer">
-        Start
-        <svg xmlns="http://www.w3.org/2000/svg" class="inline ml-2 w-6 stroke-current text-white stroke-2"
-          viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
-      </a>
+<!--        <a @click="goToPage"-->
+<!--           class="flex bg-blue-500 rounded-full font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6 cursor-pointer">-->
+<!--            Start-->
+<!--            <svg xmlns="http://www.w3.org/2000/svg" class="inline ml-2 w-6 stroke-current text-white stroke-2"-->
+<!--                 viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">-->
+<!--                <line x1="5" y1="12" x2="19" y2="12"></line>-->
+<!--                <polyline points="12 5 19 12 12 19"></polyline>-->
+<!--            </svg>-->
+<!--        </a>-->
+        <a @click="goToPage('game-episodes')"
+           class="flex bg-blue-500 rounded-full font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6 cursor-pointer">
+            Go To Episode Page
+            <svg xmlns="http://www.w3.org/2000/svg" class="inline ml-2 w-6 stroke-current text-white stroke-2"
+                 viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+        </a>
     </div>
     <div class="absolute top-0 right-0 z-20 p-4 noPrint">
       <span v-if="isAuthenticated">
@@ -194,8 +199,8 @@ onMounted(() => {
     slide.value = 2;
   }, 3000);
 });
-const goToPage = () => {
-  router.push("/start-game");
+const goToPage = (url) => {
+  router.push(url);
 };
 const logout = () => {
   repository.logout()

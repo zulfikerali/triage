@@ -19,9 +19,9 @@
         xl:grid-cols-2
       ">
       <div v-for="(episode) in episodes" :key="episode.id" class="
-          bg-blue-600 
-          bg-gradient-to-b 
-          from-blue-400 
+          bg-blue-600
+          bg-gradient-to-b
+          from-blue-400
           to-blue-500
           pt-1
           px-2
@@ -95,10 +95,11 @@
 </template>
 <script setup>
 import { ref, onMounted, inject } from "vue";
-import { useRouter } from "vue-router";
+import {useRoute, useRouter} from "vue-router";
 import repository from "../../api/repository";
 const swal = inject('$swal')
 const router = useRouter();
+const route = useRoute();
 const episodes = ref([]);
 // console.log('full Path', router.currentRoute.value.path)
 onMounted(() => {
@@ -113,6 +114,11 @@ onMounted(() => {
     });
 });
 const activeEpisode = (id) => {
+    if ('traineeID' in route.query) {
+        console.log(' route.query.traineeID',  route.query.traineeID)
+        router.push({ path: `/questions`, query: { traineeID: route.query.traineeID, episodeId: id } });
+        return
+    }
   router.push({ path: '/start-game', query: { episodeId: id }})
   // repository
   //   .selectActiveEpisode({ id: id })
