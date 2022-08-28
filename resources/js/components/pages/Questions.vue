@@ -1,7 +1,7 @@
 <template>
   <div v-for="(question, index) in questionsData" :key="question.id">
     <div v-if="game.state === 'video'" class="flex justify-center">
-      <video @ended="startTriage" class="w-auto max-w-5xl 2xl:max-w-6xl m-3 rounded lg:rounded-lg absolute"
+      <video @ended="startTriage" class="w-auto max-w-5xl 2xl:max-w-6xl m-3 rounded lg:rounded-lg absolute h-[calc(100vh-100px)]"
         v-if="game.current === index" autoplay>
         <source :src="'/videos/' + question.video_path" type="video/mp4" />
         Your browser does not support the video tag.
@@ -124,6 +124,7 @@ const route = useRoute();
 const router = useRouter();
 const evaluation = reactive({
   traineeID: null,
+  episodeID: null,
   result: [],
   resultValue: {
     attempt: 0,
@@ -181,6 +182,7 @@ const gameEnd = () => {
   game.timer = null
   game.state = "examend";
   evaluation.traineeID = route.query.traineeID;
+  evaluation.episodeID = route.query.episodeId;
   evaluation.resultValue.questions = questionsData.value.length;
   repository
     .storeResult({ evaluation: evaluation })
@@ -191,15 +193,15 @@ const gameEnd = () => {
     .catch((err) => {
       console.log(err);
     });
-  swal.fire({
-    icon: 'warning',
-    title: 'Exam Ended',
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000,
-    timerProgressBar: true,
-  })
+  // swal.fire({
+  //   icon: 'warning',
+  //   title: 'Exam Ended',
+  //   toast: true,
+  //   position: 'top-end',
+  //   showConfirmButton: false,
+  //   timer: 3000,
+  //   timerProgressBar: true,
+  // })
 }
 const onended = () => {
   game.state = "triage"
@@ -275,7 +277,7 @@ const selectedPriority = (code) => {
   if (questionsData.value.length == game.current) {
     gameEnd()
     if ('traineeID' in route.query) {
-        router.push({ path: `/game-episodes`, query: { traineeID: route.query.traineeID } });
+        router.push({ path: `/game-episodes`, query: { traineeID: route.query.traineeID, completedepisode: route.query.episodeId} });
         // router.push('/game-episodes')
         return
       }

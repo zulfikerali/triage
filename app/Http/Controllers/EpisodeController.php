@@ -9,13 +9,17 @@ use App\Models\Question;
 use App\Models\ColorCode;
 use App\Models\VictimQuestion;
 use Owenoj\LaravelGetId3\GetId3;
+use Carbon\Carbon;
 
 class EpisodeController extends Controller
 {
-    public function getEpisodes()
+    public function getEpisodes($traineeID = null)
     {
-        $episode =  Episode::withCount('questions')->with('questions')->get();
-        return $episode;
+        return Episode::with(['results'=> function($q) use ($traineeID) {
+            $q->where('trainee_id', $traineeID);
+        }])->get();
+        // $episode =  Episode::withCount('questions')->with('questions')->get();
+        // return $episode;
     }
     public function getActiveEpisode()
     {
@@ -46,12 +50,13 @@ class EpisodeController extends Controller
     public function storeResult(Request $request)
     {
         // return $request->all();
-        $episodeId = Episode::where('status', 1)->first()->id;
+        // $episodeId = Episode::where('status', 1)->first()->id;
        return Result::create([
             'trainee_id' => $request->evaluation['traineeID'],
-            'episode_id' => $episodeId,
+            'episode_id' => $request->evaluation['episodeID'],
             'evaluation_data' => $request->evaluation['result'],
-            'result_data' => $request->evaluation['resultValue']
+            'result_data' => $request->evaluation['resultValue'],
+            'is_attempt' => $request->evaluation['resultValue']['attempt']
         ]);
         return 'success';
 
@@ -136,7 +141,11 @@ class EpisodeController extends Controller
     }
     public function getTrainee($episode)
     {
-       return Episode::with('results')->where('id', $episode)->first();
+        $now = Carbon::now();
+        $fifteenDaysbefore = Carbon::now()->subDays(15);
+       return Episode::with(['results' => function($q) use($fifteenDaysbefore, $now){
+            $q->whereBetween('created_at', [$fifteenDaysbefore, $now]);
+       }])->where('id', $episode)->first();
     //    Result::where('episode_id', $episode)->get();
     }
     public function examDone($traineeId)
@@ -144,5 +153,15 @@ class EpisodeController extends Controller
        $episodeId = Episode::where('status', 1)->first()->id;
        $exam =  Result::where('trainee_id', $traineeId)->where('episode_id', $episodeId)->count();
        return $exam;
+    }
+    public function traineeDoneExam($traineeId)
+    {
+        return Result::where('trainee_id', $traineeId)->get();
+    }
+    public function getTraineeIDs()
+    {
+        $now = Carbon::now();
+        $fifteenDaysbefore = Carbon::now()->subDays(15);
+        return Result::select('trainee_id')->whereBetween('created_at', [$fifteenDaysbefore, $now])->distinct()->get();
     }
 }

@@ -1,27 +1,34 @@
 <template>
   <div class="min-h-screen flex flex-col items-center justify-center">
-    <h1 class="font-bold text-xl md:text-4xl text-center text-indigo-700 flex-none">
-      Enter Your ID then click start button to start your exam.
+    <h1 class="font-bold text-xl md:text-2xl text-center text-indigo-700 flex-none">
+      Please enter & confirm your ID and then click on the ‘Start Exam’ button.
     </h1>
-    <div class="flex justify-center items-center mt-6">
-      <div class="mt-4">
-        <div class="flex rounded-md overflow-hidden w-80">
-          <input type="text" v-model="traineeId" class="px-2 w-2/3 border rounded-md rounded-r-none"
-            placeholder="Enter Trainee ID" v-on:keyup.enter="goToQuestionPage" required />
-          <button @click="goToQuestionPage" class="
+    <div class="flex flex-col justify-center items-center mt-6 gap-4 w-80">
+      <div class="rounded-md w-full">
+        <input type="text" v-model="traineeId" class="px-2 py-2 w-full border rounded-md rounded-md"
+          placeholder="Enter Trainee ID" v-on:keyup.enter="goToQuestionPage" required />
+      </div>
+      <div class="rounded-md w-full">
+        <input type="text" v-model="confirmTraineeId" class="px-2 py-2 w-full border rounded-md rounded-md"
+          placeholder="Confirm Trainee ID" @focus="removeMessage" v-on:keyup.enter="goToQuestionPage" required />
+        <span v-if="traineeIDcheck" class="text-red-500 text-sm"> Doesn’t match. Please enter the correct & same ID.
+        </span>
+      </div>
+      <div class="">
+        <button @click="goToQuestionPage" class="
               bg-indigo-600
               text-white
               px-3
               text-lg
               font-semibold
-              py-2
-              rounded-r-md
+              py-1
+              rounded-md
             ">
-            Start Test
-          </button>
-        </div>
+          Start Exam
+        </button>
       </div>
     </div>
+
   </div>
 </template>
 <script setup>
@@ -33,6 +40,8 @@ const router = useRouter();
 const route = useRoute();
 const activeEp = ref(null);
 const traineeId = ref(null);
+const confirmTraineeId = ref(null);
+const traineeIDcheck = ref(false);
 function hasOneDigit(val) {
   if (String(Math.abs(val)).charAt(0) == val) {
     return 0;
@@ -41,7 +50,7 @@ function hasOneDigit(val) {
   }
 }
 onMounted(() => {
-  console.log('query..', typeof route.query, 'episodeId' in route.query)
+  // console.log('query..', typeof route.query, 'episodeId' in route.query)
   repository
     .activeEpisode()
     .then((res) => {
@@ -52,12 +61,32 @@ onMounted(() => {
     });
 });
 const goToQuestionPage = () => {
-  if (traineeId.value != null) {
-    if ('episodeId' in route.query) {
-      router.push({ path: `/questions`, query: { traineeID: traineeId.value, episodeId: route.query.episodeId } });
-    } else {
-      router.push({ path: `/questions`, query: { traineeID: traineeId.value } });
+  if (traineeId.value != null && confirmTraineeId.value) {
+    if (traineeId.value != confirmTraineeId.value) {
+      traineeIDcheck.value = true
+      return;
     }
+    repository.traineeDoneExam(traineeId.value)
+      .then((res) => {
+        if (res.data.length > 0) {
+          router.push({ path: `/game-episodes`, query: { traineeID: traineeId.value } });
+        } else {
+          if ('episodeId' in route.query) {
+            router.push({ path: `/questions`, query: { traineeID: traineeId.value, episodeId: route.query.episodeId } });
+          } else {
+            router.push({ path: `/questions`, query: { traineeID: traineeId.value } });
+          }
+        }
+
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    // if ('episodeId' in route.query) {
+    //   router.push({ path: `/questions`, query: { traineeID: traineeId.value, episodeId: route.query.episodeId } });
+    // } else {
+    //   router.push({ path: `/questions`, query: { traineeID: traineeId.value } });
+    // }
     // repository.examDone(traineeId.value)
     //   .then((res) => {
     // if (res.data == 1) {
@@ -100,4 +129,7 @@ const goToQuestionPage = () => {
     return
   }
 };
+const removeMessage = () => {
+  traineeIDcheck.value = false
+}
 </script>

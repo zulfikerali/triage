@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <!-- <Layout> -->
   <div class="text-center mt-5 mb-5">
     <h2 class="text-4xl tracking-tight">Create Question</h2>
   </div>
@@ -410,7 +410,7 @@
       </div>
     </form>
   </div>
-  </Layout>
+  <!-- </Layout> -->
 </template>
 
 <script setup>

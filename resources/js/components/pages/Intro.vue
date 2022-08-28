@@ -9,15 +9,15 @@
       relative
     ">
     <div class="flex justify-center mb-4">
-<!--        <a @click="goToPage"-->
-<!--           class="flex bg-blue-500 rounded-full font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6 cursor-pointer">-->
-<!--            Start-->
-<!--            <svg xmlns="http://www.w3.org/2000/svg" class="inline ml-2 w-6 stroke-current text-white stroke-2"-->
-<!--                 viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">-->
-<!--                <line x1="5" y1="12" x2="19" y2="12"></line>-->
-<!--                <polyline points="12 5 19 12 12 19"></polyline>-->
-<!--            </svg>-->
-<!--        </a>-->
+      <!--        <a @click="goToPage"-->
+      <!--           class="flex bg-blue-500 rounded-full font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6 cursor-pointer">-->
+      <!--            Start-->
+      <!--            <svg xmlns="http://www.w3.org/2000/svg" class="inline ml-2 w-6 stroke-current text-white stroke-2"-->
+      <!--                 viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">-->
+      <!--                <line x1="5" y1="12" x2="19" y2="12"></line>-->
+      <!--                <polyline points="12 5 19 12 12 19"></polyline>-->
+      <!--            </svg>-->
+      <!--        </a>-->
 
     </div>
     <div class="absolute top-0 right-0 z-20 p-4 noPrint">
@@ -26,9 +26,18 @@
         </router-link>
         <button @click="logout" class="py-2 px-2 border border-red-500 rounded-lg">Logout</button>
       </span>
+    </div>
+    <div class="absolute top-0 -right-4 z-20 p-4 noPrint">
       <span v-if="!isAuthenticated">
-        <router-link to="/login" class="py-2 px-2 border border-gray-800 rounded-lg">Log In
-        </router-link>
+        <button @click="goToPage('/login')" class="py-2 px-2 w-32 border-l-8 border-slate-400 bg-white text-blue-600 font-bold"> Admin
+          Login
+        </button>
+      </span>
+    </div>
+    <div class="absolute top-0 -left-4 z-20 p-4 noPrint w-32">
+      <span>
+        <button @click="commingSoon" class="py-2 px-2 border-r-8 border-slate-400 bg-white text-blue-600 font-bold w-full"> Apps
+        </button>
       </span>
     </div>
     <!-- <div class="absolute top-0 right-100 z-20 p-4 noPrint">
@@ -69,7 +78,7 @@
         </div>
         <div class="w-full md:w-1/2">
           <div class="mb-10 md:mb-10 text-gray-600">
-              <h1 class="
+            <h1 class="
                   font-black
                   uppercase
                   text-2xl
@@ -78,8 +87,8 @@
                   font-thin
                   mb-10
                 ">
-                  MEDICAL TRIAGE SIMULATOR
-              </h1>
+              MEDICAL TRIAGE SIMULATOR
+            </h1>
 
             <h1 class="
                   font-black
@@ -125,49 +134,49 @@
         relative
         watermark
       ">
-          <div class="flex md:flex items-center text-center">
-              <div class="w-full md:w-1/2">
-                  <div class="mb-10 md:mb-20 text-gray-600 font-light">
-                      <h1 class="font-black uppercase text-3xl text-yellow-500 mb-10">
-                          PLANNED BY:
-                      </h1>
-                      <p class="text-lg">
-                          LT COL (DR) SHAIKH MOHAMMAD MAMUNUR RASHID
-                      </p>
-                      <p>MBBS, MD, MPH, FCGP, AMC</p>
-                      <p>
-                          CHIEF INSTRUCTOR
-                      </p>
-                  </div>
-              </div>
-              <div class="w-full md:w-1/2">
-                  <div class="mb-10 md:mb-20 text-gray-600 font-light">
-                      <h1 class="font-black uppercase text-3xl text-yellow-500 mb-10">
-                          GUIDED BY:
-                      </h1>
-                      <p class="text-lg">
-                          BRIGADIER GENERAL (DR) MD IQBAL HASAN
-                      </p>
-                      <p>
-                          MBBS, BGBM, M Phil, MPH, MDM, M MEd,
-                      </p>
-                      <p>
-                          COMMANDANT & PAPA HEALERS
-                      </p>
-                  </div>
-              </div>
+        <div class="flex md:flex items-center text-center">
+          <div class="w-full md:w-1/2">
+            <div class="mb-10 md:mb-20 text-gray-600 font-light">
+              <h1 class="font-black uppercase text-3xl text-yellow-500 mb-10">
+                PLANNED BY:
+              </h1>
+              <p class="text-lg">
+                LT COL (DR) SHAIKH MOHAMMAD MAMUNUR RASHID
+              </p>
+              <p>MBBS, MD, MPH, FCGP, AMC</p>
+              <p>
+                CHIEF INSTRUCTOR
+              </p>
+            </div>
           </div>
-          <div class="mx-auto">
-              <a @click="goToPage('game-episodes')"
-                 class="flex bg-blue-500 text-sm md:text-2xl rounded-full font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6 cursor-pointer">
-                  Please click here to explore Triage episodes to start exam.
-                  <svg xmlns="http://www.w3.org/2000/svg" class="inline ml-2 w-6 stroke-current text-white stroke-2"
-                       viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                      <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-              </a>
+          <div class="w-full md:w-1/2">
+            <div class="mb-10 md:mb-20 text-gray-600 font-light">
+              <h1 class="font-black uppercase text-3xl text-yellow-500 mb-10">
+                GUIDED BY:
+              </h1>
+              <p class="text-lg">
+                BRIGADIER GENERAL (DR) MD IQBAL HASAN
+              </p>
+              <p>
+                MBBS, BGBM, M Phil, MPH, MDM, M MEd,
+              </p>
+              <p>
+                COMMANDANT & PAPA HEALERS
+              </p>
+            </div>
           </div>
+        </div>
+        <div class="mx-auto">
+          <a @click="goToPage('game-episodes')"
+            class="flex bg-blue-500 text-sm md:text-2xl rounded-full font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-600 mr-6 cursor-pointer">
+            Please click here to explore Triage episodes to start exam.
+            <svg xmlns="http://www.w3.org/2000/svg" class="inline ml-2 w-6 stroke-current text-white stroke-2"
+              viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
       </div>
     </transition>
     <div class="
@@ -202,9 +211,10 @@
   </div>
 </template>
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, inject } from "vue";
 import { useRouter } from "vue-router";
 import repository from "../../api/repository";
+const swal = inject('$swal')
 const router = useRouter();
 const slide = ref(1);
 const isAuthenticated = ref(null)
@@ -231,8 +241,33 @@ const logout = () => {
       isAuthenticated.value = false
     })
 }
+const commingSoon = () => {
+  swal.fire({
+    icon: 'warning',
+    title: 'Coming soon',
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 1000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', swal.stopTimer)
+      toast.addEventListener('mouseleave', swal.resumeTimer)
+    }
+  })
+}
 </script>
 <style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
 .slide-enter-to {
   right: 0%;
 }

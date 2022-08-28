@@ -1,7 +1,7 @@
 import api from './api'
 export default {
-  episodes () {
-    return api.get(`/getEpisodes`)
+  episodes (trainee) {
+    return api.get(`/getEpisodes/${trainee}`)
   },
   activeEpisode () {
     return api.get(`/getActiveEpisode`)
@@ -56,5 +56,11 @@ export default {
   },
   examDone(traineeId) {
     return api.get(`/exam-done/${traineeId}`)
-  }
+  },
+  traineeDoneExam(traineeId) {
+    return api.get(`/trainee-done-exam/${traineeId}`)
+  },
+  getTraineeIDs() {
+    return api.get(`/getTraineeIDs`)
+  },
 }

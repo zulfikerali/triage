@@ -17,6 +17,7 @@ const Login = () => import('../components/pages/Login.vue');
 const Registration = () => import('../components/pages/Registration.vue');
 const Dashboard = () => import('../components/pages/Admin/pages/Dashboard.vue');
 const Profile = () => import('../components/pages/Admin/pages/Profile.vue');
+const ResultByTraineeID = () => import('../components/pages/Admin/pages/ResultReportByTraineeID.vue');
 export default [
     {
         path: '/profile',
@@ -133,11 +134,20 @@ export default [
 
     },
     {
+        path: '/result-report-by-traineeID/:traineeId',
+        component: ResultByTraineeID,
+        name: 'ResultByTraineeID',
+        meta: {
+            guard: 'auth'
+        }
+
+    },
+    {
         path: '/create-question',
         component: CreateQuestion,
         name: 'CreateQuestion',
         meta: {
-            guard: 'auth'
+            guard: 'guest'
         }
 
     },
