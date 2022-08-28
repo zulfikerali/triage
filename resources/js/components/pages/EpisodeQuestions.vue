@@ -5,8 +5,8 @@
         </h1>
 
         <div class="flex flex-wrap justify-center">
+            <div v-if="!!currentEpisodes">
             <div
-                v-if="!!currentEpisodes"
                 v-for="(question, index) in currentEpisodes.questions"
                 :key="question.id"
                 class="w-1/4 m-3 cursor-pointer border border-gray-400 rounded-lg hover:bg-green-500 hover:text-white"
@@ -19,6 +19,7 @@
                     <source :src="'/videos/' + question.video_path" type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
+            </div>
             </div>
         </div>
     </div>
