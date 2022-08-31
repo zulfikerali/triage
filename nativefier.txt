@@ -1,0 +1,1 @@
+nativefier https://triage.gyankosh.org -n MTS --icon ./logo.ico --single-instance --background-color #d3e6ff --max-height --max-width

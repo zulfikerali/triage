@@ -36,8 +36,9 @@
     </div>
     <div class="absolute top-0 -left-4 z-20 p-4 noPrint w-32">
       <span>
-        <button @click="commingSoon" class="py-2 px-2 border-r-8 border-slate-400 bg-white text-blue-600 font-bold w-full"> Apps
-        </button>
+        <a href="/MEDICAL_TRIAGE_SIMULATOR.exe" download="MEDICAL_TRIAGE_SIMULATOR.exe">
+            <button class="py-2 px-2 border-r-8 border-slate-400 bg-white text-blue-600 font-bold w-full">Apps</button>
+        </a>
       </span>
     </div>
     <!-- <div class="absolute top-0 right-100 z-20 p-4 noPrint">
