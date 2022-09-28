@@ -19,7 +19,7 @@
       THANK YOU!
     </h1>
     <p class="font-bold text-xl text-center text-gray-700 flex-none mt-5">
-      You have completed exam on {{ episodeData != null ? episodeData.episode_name : '' }}.
+      You have completed exam on {{  episodeData != null ? episodeData.episode_name : ''  }}.
       <br />
       Please choose next episode.
     </p>
@@ -61,7 +61,7 @@
         md:grid-cols-2
         lg:grid-cols-2
         xl:grid-cols-2
-      ">
+      " v-if="episodes.length > 0">
       <div v-for="(episode) in episodes" :key="episode.id" class="
           pt-1
           px-2
@@ -86,8 +86,9 @@
                   cursor-pointer
                   ring-2 ring-white
                 ">
-                {{ episode.results.length > 0 ? (episode.results[0].is_attempt > 0 ? 'Completed' : 'Time Over') :
-                    'Start'
+                {{  episode.results.length > 0 ? (episode.results[0].is_attempt > 0 ? 'Completed' : 'Time Over') :
+                'Start'
+
                 }}
               </button>
               <!-- <span
@@ -115,7 +116,7 @@
         </div>
         <div class="p-4">
           <p class="text-white font-semibold text-center">
-            {{ episode.episode_name }}
+            {{  episode.episode_name  }}
           </p>
           <!-- <div class="flex justify-between mt-2">
                     <p class="text-gray-200">{{episode.questions_count}} Victims</p>
@@ -124,12 +125,20 @@
         </div>
       </div>
     </div>
+    <div
+      class="fixed top-0 left-0 right-0 bottom-0 w-full h-screen z-50 overflow-hidden opacity-75 flex flex-col items-center justify-center" v-else>
+      <div class="loader ease-linear rounded-full border-4 border-t-4 border-gray-300 h-12 w-12 mb-4"></div>
+      <h2 class="text-center text-blue-500 text-xl font-semibold">Loading...</h2>
+    </div>
   </div>
-  <div class="mt-4 text-center" v-if="examStatus == 'completed'">
-    <span class="w-full">Please click the exit button and contact with Chief Instructor for the Result.</span>
+  <div class="mt-14 text-center" v-if="examStatus == 'completed'">
+    <!-- <span class="w-full">Please click the exit button and contact with Chief Instructor for the Result.</span> -->
     <div class="mt-4">
       <router-link to="/" class="text-white bg-blue-600 hover:bg-blue-800 font-thin rounded-lg px-5 py-2 mr-2 mb-2">
-        Exit
+        Home
+      </router-link>
+      <router-link to="/login" class="text-white bg-blue-600 hover:bg-blue-800 font-thin rounded-lg px-5 py-2 mr-2 mb-2">
+        Result
       </router-link>
     </div>
   </div>
@@ -254,3 +263,30 @@ const commingSoon = () => {
   })
 }
 </script>
+<style scoped>
+.loader {
+  border-top-color: #3498db;
+  -webkit-animation: spinner 1.5s linear infinite;
+  animation: spinner 1.5s linear infinite;
+}
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>
