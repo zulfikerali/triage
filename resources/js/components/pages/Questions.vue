@@ -6,6 +6,7 @@
              class="rounded lg:rounded-lg"
              v-if="game.current === index"
              autoplay
+             controls
       >
         <source :src="'/videos/' + question.video_path" type="video/mp4" />
         Your browser does not support the video tag.
